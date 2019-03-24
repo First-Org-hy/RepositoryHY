@@ -1,5 +1,5 @@
 ##（常德找房） HouseCD -springboot 2.0 集成 mybatis
-    Developer：侯遥、沙开月、丁元杰
+    Developer：houyao、shaky
 
 ### 环境：
 
