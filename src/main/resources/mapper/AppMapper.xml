@@ -13,17 +13,18 @@
     INSERT INTO
       <include refid="BASE_TABLE"/>
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      appId,appSecret,appName,crtTime
+      appId,appSecret,appName,crtTime,
       <if test="appStatus != null">
         appStatus,
       </if>
+      rcntlyTime
     </trim>
     <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-      #{appId, jdbcType=VARCHAR},#{appSecret, jdbcType=VARCHAR},
-      #{appName, jdbcType=VARCHAR},#{crtTime, jdbcType=DATE},
+      #{appId, jdbcType=VARCHAR},#{appSecret, jdbcType=VARCHAR},#{appName, jdbcType=VARCHAR},#{crtTime, jdbcType=DATE},
       <if test="appStatus != null">
         #{appStatus, jdbcType=VARCHAR},
       </if>
+      CURRENT_TIMESTAMP
     </trim>
   </insert>
 
