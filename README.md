@@ -9,6 +9,7 @@
 * maven:3.3.9
 * alibaba Druid 数据库连接池：1.1.9
 * mysql 5.*
+* tomcat@7
 
 ### 额外功能：
 * PageHelper 分页插件
