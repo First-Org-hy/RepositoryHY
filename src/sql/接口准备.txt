@@ -1,0 +1,92 @@
+所有查询 where  dataState = 1，
+所有删除 update dataState = 2
+
+后台：
+经纪人管理接口；
+	经纪人查询：
+		select * from app_info where userType = '5'
+		所属公司：select companyName from app_info where parentId = '?'
+		推荐数量：select * fromo recommend where userId = '选择的经纪人id'
+		成交量： select count(*) from sell where dealState = '5' and userId = '?'
+		已提成佣金： select brokerage from brokerage where brokerageState='2'
+		待提成佣金： select brokerage from brokerage where brokerageState='1'	
+	经纪人推荐查看：
+		select * from recommend where userId = ? and dealState = '？'
+		删除：
+		update recommend set dataState=2  where id = ?		
+	经纪人佣金查看：
+		select * from brokerage where userId = ? where brokerageState ?
+		设置为领取：
+		update brokerage set brokerageState = 2 where id =?
+	经纪人修改（所属公司）；
+		所属公司list：select 公司 from app_info where userType = '4' and ...
+		update app_info set parentId = ? where userId = ?
+	经纪人状态修改
+		删除：
+		update app_info set dataState=2 where userId =?
+		通过or 不通过
+		update app_info set userState = 1 or 2 where userId = ?
+		
+	经纪人新增；
+		insert 
+
+	经纪公司：
+		select * from app_info where userType = '4'
+		经纪人数量： select count(*) from app_info where parentId = ?
+		推荐数量：select count(*) fromo recommend where userId in (select userId from app_info where parentId = ?)
+		成交量： select count(*) from sell where dealState = '5' and userId in (select userId from app_info where parentId = ?)
+		已提成佣金： select brokerage from brokerage where brokerageState='2' and userId in (select userId from app_info where parentId = ?)
+		待提成佣金： select brokerage from brokerage where brokerageState='1' and userId in (select userId from app_info where parentId = ?)
+		经纪公司推荐查看：
+			select * from recommend where userId = ? and dealState = '？'
+			删除：
+			update recommend set dataState=2  where id = ?	
+		经纪人佣金查看：
+			select * from brokerage where userId in (select userId from app_info where parentId = ?) where brokerageState ?
+			设置为领取：
+			update brokerage set brokerageState = 2 where id =?
+	经纪公司状态修改
+		删除：
+		update app_info set dataState=2 where userId =?
+		通过or 不通过
+		update app_info set userState = 1 or 2 where userId = ?
+	经济公司新增：
+		insert
+	
+销售管理：
+	销售管理查询：
+	select * from  sell 
+		楼盘查看： 根据housesId
+		户型查看： 根据houseTypeId
+		update sell set sellState = ? where id ,
+	
+	新增销售记录：
+		insert 
+	
+	
+	佣金设置：(精确到楼盘)
+		select *  from brokerage_param
+		
+		佣金
+		insert
+
+客户管理：（单表维护）
+	客户表 guest	
+	查、增加、改
+	
+	
+	
+小程序：
+经纪人：
+  
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
