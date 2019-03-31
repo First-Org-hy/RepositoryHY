@@ -13,13 +13,13 @@ select * from housecd.t_user;
 CREATE TABLE housecd.app_info(
   userId INT NOT NULL PRIMARY KEY AUTO_INCREMENT, /*用户id */
   appName VARCHAR(255),			/*微信名 */
-  appId VARCHAR(255) NOT NULL , /*微信id */
+  appId   VARCHAR(255) NOT NULL , /*微信id */
   appSecret VARCHAR(255) NOT NULL ,  /*微信秘钥 */
   userName							/*用户姓名 */
   userIdCard						/*用户身份证号 */
   userPhone VARCHAR(255),			/*用户手机号 */
   userType VARCHAR(255) NOT NULL,  /*1系统管理员，2编辑，3楼盘商务，4经济公司，5经纪人，6普通用户*/    
-             /*userComment 客户备注*/     
+             
   recommendHousesId		/*客户推荐楼盘 */
   recommendHouseTypeId	/*客户推荐户型 */  
   companyName			/*公司名称 （针对公司）*/
@@ -30,9 +30,26 @@ CREATE TABLE housecd.app_info(
   dataState				/*数据状态 1.正常 2.逻辑删除*/
 ) ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
+
+
+/*银行卡信息表 */
+create table housecd.bank_info(
+	id
+	userId
+	cardName
+	cardPhone
+	bank
+	cardNum
+	bankDeposit
+	crtTime TIMESTAMP ,	/*创建时间 */ 
+	dataState				/*数据状态 1.正常 2.逻辑删除*/
+
+)
+
 /*推荐表*/
 create table housecd.recommend(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  housesId      /*楼盘id， 针对楼盘推荐用户 */
   userId       /*经济人id */
   userName		
   guestName
@@ -113,3 +130,50 @@ create table housecd.guest(
 	crtTime timestamp,
 	dataState
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
+
+/*区域变 */ 
+create table housecd.area(
+  areaId
+  areaName
+  crtTime timestamp,
+  dataState
+)
+
+/*广告表 */
+create table housecd.advertising(
+ adId 
+ adName
+ adAddress   /*广告位置  */
+ adPicture
+ startTime
+ deadLine
+ crtTime timestamp,
+ dataState
+ 
+)
+
+/*资讯表 */
+create table housecd.houses_info(
+ Id 
+ headline /*标题  */
+ programa /*栏目  */
+ pictureAddress
+ lable   /*标签  */
+ content /*内容  */
+ crtTime timestamp,
+ dataState
+ 
+)
+
+/*动态表 */
+create table housecd.houses_state(
+ Id 
+ headline
+ areaId
+ housesId
+
+ crtTime timestamp,
+ dataState
+ 
+)
+
