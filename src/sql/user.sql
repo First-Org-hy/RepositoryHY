@@ -94,7 +94,7 @@ create table housecd.brokerage_param(
 /*销售表*/
 create table housecd.sell(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  housesBusinessId  /*楼盘商务id */
+  housesBusinessId  /*楼盘商务id ,来自app_info表 */
   userId		/*经纪人id */
   userParentId  /*经纪公司id */  
   guestId		/*客户id */
@@ -158,7 +158,7 @@ create table housecd.houses_info(
  headline /*标题  */
  programa /*栏目  */
  pictureAddress
- lable   /*标签  */
+ lableId   /*标签  */
  content /*内容  */
  crtTime timestamp,
  dataState
@@ -176,4 +176,141 @@ create table housecd.houses_state(
  dataState
  
 )
+
+/*标签表 一个ID允许多个标签*/  
+create table housecd.lable(
+ lableId
+ lableContext
+ crtTime timestamp,
+ dataState
+)
+
+/* 楼盘表 */
+create table housecd.houses(
+ housesId			/*楼盘ID */
+ housesName			/*楼盘Name */
+ housesSpecialty  /*特点，使用标签表 */
+ houseState /*状态： 在建0,在售1,售罄2 */
+ pictureX  /*效果图 */
+ pictureS   /*实施图 */
+ pictureJ	/*交通图 */
+ /*配套设施：学校、公交、医院、银行、地铁、综合商场 */
+ /*户型ID，需要户型表 */
+ /*占地面积 */
+ /*建筑面积 */
+ /*商用面积 */
+ /*开发商 */
+ /*楼盘地址 */
+ /*产权年限 */
+ /*区域ID： 所属区域 */
+ /*建筑类型： */
+ /*绿化率 */
+ /*物业公司 */
+ /*最新开盘 */
+ /*交房时间 */
+ /*均价 */
+ /*投资商 */
+ /*容积率 */
+ /*户数 */
+ /*车位数 */
+ /*装修情况 */
+ /*定位  是什么？？？ 省市区 */
+ /*推荐 */
+
+ crtTime timestamp,
+ dataState
+ 
+
+)
+
+ /*户型表 */
+ create table housecd.house_type(
+ houseTypeId
+ houseTypeName
+ houseTypeSpecialty   /*特点，使用标签表 */
+ houseTypePicture
+ /* 楼栋*/
+ /* 居室*/
+ /* 建筑面积*/
+ /* 参考均价*/
+ /* 参考总价*/
+ /* 分类：住宅*/
+ crtTime timestamp,
+ dataState 
+ )
+ 
+/*新房表 */
+create table housecd.house(
+ houseId
+		  /*区域 */
+ housesId /*楼盘 */
+		  /*户型：楼盘下的户型 */
+		  /*新房id： 添加新房： 10栋1单元1楼,10栋1单元1楼 */
+		  /* */
+  crtTime timestamp,
+ dataState 
+
+) 
+ 
+/* 二手房表 */ 
+create table housecd.second_hand_house(
+ secondHouseId
+ houseName  /*一期10栋A户型 */
+ /*区域 */
+ /*地址 */
+ /*小区 */
+ /*面积 */
+ /*户型 varchar */
+ /*朝向 */
+ /*楼层 */
+ /*装修：毛坯、简装、精装 */
+ /*户型：住宅、公寓、商铺 */
+ /*特点：使用标签表  */
+ /*照片地址 */
+ /*单价 */
+ /*总价 */
+ /*房源介绍 */
+ /*发布者 */
+ /*是否上线：上线 下线 */
+ 
+  crtTime timestamp,
+ dataState 
+ 
+)
+
+/**/
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
