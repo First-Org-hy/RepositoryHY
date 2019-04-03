@@ -13,4 +13,5 @@ public interface RecommendDao {
 
     List<RecommendDomain> selectRecommends();
 
+    List<RecommendDomain> selectGuest(String guestName, String guestPhone);
 }

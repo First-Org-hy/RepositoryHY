@@ -1,5 +1,6 @@
 package com.hy.service;
 
+import com.hy.common.Lable;
 import com.hy.model.RecommendDomain;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface RecommendService {
 
-    int addRecommend(RecommendDomain recommend);
+    Lable addRecommend(RecommendDomain recommend);
 
     List<RecommendDomain> selectRecommends();
 

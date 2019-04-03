@@ -16,7 +16,7 @@ public class BankInfoController {
     private BankInfoService bankInfoService;
 
     @ResponseBody
-    @GetMapping(value = "add")
+    @PostMapping(value = "add")
     public int addBankInfo(BankInfoDomain bankInfoDomain){
         //userId:经纪人ID ，cardName 姓名， cardPhone 电话， bank 银行，cardNum 银行卡号， bankDeposit 开户行地址。 支持一人多卡
 
