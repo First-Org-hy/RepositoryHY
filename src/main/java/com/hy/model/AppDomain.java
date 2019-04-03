@@ -4,7 +4,7 @@ import java.sql.Date;
 
 /**
  * Created by yaohou on 22:10 2019/3/21.
- * description:
+ * description:用户实体类
  */
 public class AppDomain {
     private Integer userId;

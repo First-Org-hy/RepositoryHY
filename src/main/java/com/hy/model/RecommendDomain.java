@@ -2,7 +2,7 @@ package com.hy.model;
 
 /**
  * Created by yaohou on 15:57 2019/4/3.
- * description:
+ * description:推荐客户实体类
  */
 public class RecommendDomain {
     private String id;

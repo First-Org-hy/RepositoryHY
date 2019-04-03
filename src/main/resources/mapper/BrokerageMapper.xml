@@ -28,7 +28,7 @@
     </trim>
   </insert>
 
-  <select id="selectBankInfoss" resultType="com.hy.model.BankInfoDomain">
+  <select id="selectBrokerages" resultType="com.hy.model.BrokerageDomain">
       SELECT
         <include refid="BASE_COLUMN"/>
       FROM

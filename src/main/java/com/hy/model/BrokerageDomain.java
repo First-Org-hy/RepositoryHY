@@ -2,7 +2,7 @@ package com.hy.model;
 
 /**
  * Created by yaohou on 20:07 2019/4/3.
- * description:
+ * description:佣金实体类
  */
 public class BrokerageDomain {
     private String id;

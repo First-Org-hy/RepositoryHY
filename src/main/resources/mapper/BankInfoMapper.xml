@@ -56,7 +56,7 @@
     </trim>
   </insert>
 
-  <select id="selectBankInfoss" resultType="com.hy.model.BankInfoDomain">
+  <select id="selectBankInfos" resultType="com.hy.model.BankInfoDomain">
       SELECT
         <include refid="BASE_COLUMN"/>
       FROM

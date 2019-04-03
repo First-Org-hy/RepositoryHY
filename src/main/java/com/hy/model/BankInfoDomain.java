@@ -2,7 +2,7 @@ package com.hy.model;
 
 /**
  * Created by yaohou on 16:49 2019/4/3.
- * description:
+ * description:用户银行卡信息实体类
  */
 public class BankInfoDomain {
 
