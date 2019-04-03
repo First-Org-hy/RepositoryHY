@@ -1,6 +1,11 @@
 server:
-  port: 8080
+  port: 7001
   tomcat.uri-encoding: UTF-8
+  ssl:
+    key-store: housecd.key
+    key-store-type: JKS
+    key-alias: tomcat
+    key-store-password: housecd
 
 spring:
     http:

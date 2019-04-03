@@ -1,316 +1,310 @@
 CREATE DATABASE housecd;
 
-drop table housecd.t_user
+DROP TABLE IF EXISTS housecd.t_user;
 CREATE TABLE housecd.t_user(
-  userId INT NOT NULL PRIMARY KEY auto_increment COMMENT 'ÓÃ»§id',
-  userName VARCHAR(255) NOT NULL COMMENT 'ĞÕÃû',
-  PASSWORD VARCHAR(255) NOT NULL COMMENT 'ÃÜÂë',
-  phone VARCHAR(255) NOT null COMMENT 'µç»°'
+  userId INT NOT NULL PRIMARY KEY auto_increment COMMENT 'ç”¨æˆ·id',
+  userName VARCHAR(255) NOT NULL COMMENT 'å§“å',
+  PASSWORD VARCHAR(255) NOT NULL COMMENT 'å¯†ç ',
+  phone VARCHAR(255) NOT null COMMENT 'ç”µè¯'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
-select * from housecd.t_user;
 
-/*ÓÃ»§±í*/
+
+DROP TABLE IF EXISTS housecd.app_info;
+
+
+/*ç”¨æˆ·è¡¨*/
 CREATE TABLE housecd.app_info(
-  userId INT NOT NULL PRIMARY KEY AUTO_INCREMENT, /*ÓÃ»§id */
-  appName VARCHAR(255),			/*Î¢ĞÅÃû */
-  appId   VARCHAR(255) NOT NULL , /*Î¢ĞÅid */
-  appSecret VARCHAR(255) NOT NULL ,  /*Î¢ĞÅÃØÔ¿ */
-  userName							/*ÓÃ»§ĞÕÃû */
-  userIdCard						/*ÓÃ»§Éí·İÖ¤ºÅ */
-  userPhone VARCHAR(255),			/*ÓÃ»§ÊÖ»úºÅ */
-  userType VARCHAR(255) NOT NULL,  /*1ÏµÍ³¹ÜÀíÔ±£¬2±à¼­£¬3Â¥ÅÌÉÌÎñ£¬4¾­¼Ã¹«Ë¾£¬5¾­¼ÍÈË£¬6ÆÕÍ¨ÓÃ»§*/    
-             
-  recommendHousesId		/*¿Í»§ÍÆ¼öÂ¥ÅÌ */
-  recommendHouseTypeId	/*¿Í»§ÍÆ¼ö»§ĞÍ */  
-  companyName			/*¹«Ë¾Ãû³Æ £¨Õë¶Ô¹«Ë¾£©*/
-  parentId 				/*ËùÊô¹«Ë¾id */
-  updateTime TIMESTAMP	/*¸üĞÂÊ±¼ä */
-  crtTime TIMESTAMP ,	/*´´½¨Ê±¼ä */
-  userState				/*¾­¼ÍÈË(¹«Ë¾)×´Ì¬£º0.´ıÉóºË £¬1.Í¨¹ı£¬ 2²»Í¨¹ı */
-  dataState				/*Êı¾İ×´Ì¬ 1.Õı³£ 2.Âß¼­É¾³ı*/
+  userId 	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT, /*ç”¨æˆ·id */
+  appName 	  VARCHAR(255) COMMENT 'å¾®ä¿¡å',
+  appId 	  VARCHAR(255) NOT NULL COMMENT 'å¾®ä¿¡id',
+  appSecret   VARCHAR(255) NOT NULL COMMENT 'å¾®ä¿¡ç§˜é’¥',
+  userName    VARCHAR(255) COMMENT 'ç”¨æˆ·å§“å',
+  userIdCard  VARCHAR(255) COMMENT 'ç”¨æˆ·èº«ä»½è¯å·',
+  userPhone   VARCHAR(255) COMMENT 'ç”¨æˆ·æ‰‹æœºå·',
+  userType    CHAR(1) 	   COMMENT 'ç”¨æˆ·ç±»å‹ï¼š1ç³»ç»Ÿç®¡ç†å‘˜ï¼Œ2ç¼–è¾‘ï¼Œ3æ¥¼ç›˜å•†åŠ¡ï¼Œ4ç»æµå…¬å¸ï¼Œ5ç»çºªäººï¼Œ6æ™®é€šç”¨æˆ·',
+  -- userComment VARCHAR(255) COMMENT 'å®¢æˆ·å¤‡æ³¨',
+  housesId    VARCHAR(255) COMMENT 'å®¢æˆ·æ¨èæ¥¼ç›˜',
+  houseTypeId VARCHAR(50)  COMMENT 'å®¢æˆ·æ¨èæˆ·å‹',
+  companyName VARCHAR(255) COMMENT 'å…¬å¸åç§°',
+  parentId 	  VARCHAR(255) COMMENT 'æ‰€å±å…¬å¸id',
+  userState   CHAR(1) 	   COMMENT 'ç»çºªäºº(å…¬å¸)çŠ¶æ€:0.å¾…å®¡æ ¸ï¼Œ1.é€šè¿‡ï¼Œ2ä¸é€šè¿‡',
+  crtTime     TIMESTAMP    COMMENT 'åˆ›å»ºæ—¶é—´',
+  updateTime  TIMESTAMP	   COMMENT 'æ›´æ–°æ—¶é—´',
+  dataState   CHAR(1)      COMMENT 'æ•°æ®çŠ¶æ€:1.æ­£å¸¸ 2.é€»è¾‘åˆ é™¤'
 ) ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 
-
-/*ÒøĞĞ¿¨ĞÅÏ¢±í */
+/*é“¶è¡Œå¡ä¿¡æ¯è¡¨ */
 create table housecd.bank_info(
-	id
-	userId
-	cardName
-	cardPhone
-	bank
-	cardNum
-	bankDeposit
-	crtTime TIMESTAMP ,	/*´´½¨Ê±¼ä */ 
-	dataState				/*Êı¾İ×´Ì¬ 1.Õı³£ 2.Âß¼­É¾³ı*/
+  cardId	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+  userId	  VARCHAR(255) COMMENT 'ç”¨æˆ·id',
+  cardName	  VARCHAR(255) COMMENT 'å¼€å¡å§“å',
+  cardPhone   VARCHAR(255) COMMENT 'å¼€å¡ç”µè¯',
+  bank        VARCHAR(255) COMMENT 'å¼€å¡é“¶è¡Œ',
+  cardNum     VARCHAR(255) COMMENT 'å¡å·',
+  bankDeposit VARCHAR(255) COMMENT 'å¼€æˆ·è¡Œ',
+  crtTime 	  TIMESTAMP    COMMENT 'åˆ›å»ºæ—¶é—´',
+  updateTime  TIMESTAMP	   COMMENT 'æ›´æ–°æ—¶é—´',
+  dataState   CHAR(1) 	   COMMENT 'dataçŠ¶æ€'
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-)
-
-/*ÍÆ¼ö±í*/
+/*æ¨èè¡¨*/
 create table housecd.recommend(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  housesId      /*Â¥ÅÌid£¬ Õë¶ÔÂ¥ÅÌÍÆ¼öÓÃ»§ */
-  userId       /*¾­¼ÃÈËid */
-  userName		
-  guestName
-  guestPhone 
-  dealState		/*³É½»×´Ì¬ 1.Î´³É½» 2.³É½» */
-  dead_line		/*µ½ÆÚÊ±¼ä 30 */
-  crtTime timestamp,
-  dataState
+  id 		 INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+  housesId   VARCHAR(255) COMMENT 'æ¥¼ç›˜idï¼Œ é’ˆå¯¹æ¥¼ç›˜æ¨èç”¨æˆ·',
+  userId     VARCHAR(255) COMMENT 'ç»çºªäººid',
+  userName   VARCHAR(255) COMMENT 'ç”¨æˆ·å',
+  guestName  VARCHAR(255) COMMENT 'å®¢æˆ·å',
+  guestPhone VARCHAR(255) COMMENT 'å®¢æˆ·æ‰‹æœº',
+  dealState	 CHAR(1)      COMMENT 'æˆäº¤çŠ¶æ€:1.æœªæˆäº¤ 2.æˆäº¤',
+  -- dead_line	 VARCHAR(255) COMMENT 'åˆ°æœŸæ—¶é—´:30-crtTime',
+  crtTime    TIMESTAMP    COMMENT 'åˆ›å»ºæ—¶é—´',
+  updateTime TIMESTAMP	  COMMENT 'æ›´æ–°æ—¶é—´',
+  dataState  VARCHAR(50)  COMMENT 'æˆäº¤çŠ¶æ€'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
-/*Ó¶½ğ±í*/
+/*ä½£é‡‘è¡¨*/
 create table housecd.brokerage(
-id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  userId	/*¾­¼ÃÈËid */
-  userName
-  guestId   /*¿Í»§id */
-  guestName
-  guestPhone 
-  housesId
-  houseTypeId
-  houseNum
-  brokerage   	/*Ó¶½ğ */
-  brokerageState  /*Ó¶½ğ×´Ì¬ 1.´ıÌáÈ¡ 2.ÒÑÌáÈ¡*/
-  ifRead 
-  crtTime timestamp comment '',
-  dataState
+  id 	 	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  userId      VARCHAR(255) COMMENT 'ç»çºªäººid',
+  userName    VARCHAR(255) COMMENT 'ç”¨æˆ·å',
+  guestId     VARCHAR(255) COMMENT 'å®¢æˆ·ID',
+  guestName   VARCHAR(255) COMMENT 'å®¢æˆ·å§“å',
+  guestPhone  VARCHAR(255) COMMENT 'å®¢æˆ·æ‰‹æœº',
+  -- housesId    VARCHAR(255) COMMENT 'æ¥¼ç›˜Id',
+  houseId     VARCHAR(255) COMMENT 'æˆ¿å­ID',
+  houseTypeId VARCHAR(255) COMMENT 'æˆ¿å­ç±»å‹ID',
+  houseNum    VARCHAR(255) COMMENT 'æˆ¿å­åºå·',
+  brokerage   DECIMAL 	   COMMENT 'ä½£é‡‘',
+  brokerState CHAR(1) 	   COMMENT 'ä½£é‡‘çŠ¶æ€:1.å¾…æå– 2.å·²æå–',
+  ifRead 	  CHAR(1) 	   COMMENT 'æ˜¯å¦å·²è¯»',
+  crtTime 	  TIMESTAMP    COMMENT 'åˆ›å»ºæ—¶é—´',
+  updateTime  TIMESTAMP	   COMMENT 'æ›´æ–°æ—¶é—´',
+  dataState   CHAR(1) 	   COMMENT 'dataçŠ¶æ€'
 )ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
-/*Ó¶½ğ²ÎÊı±í*/
+/*ä½£é‡‘å‚æ•°è¡¨ï¼šï¼ˆé’ˆå¯¹æ¥¼ç›˜è®¾ç½®å‚æ•°ï¼‰*/
 create table housecd.brokerage_param(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  housesId    /*Â¥ÅÌid */
-  userParentId   /*¾­¼Í¹«Ë¾id */
-  userId		/*¾­¼ÍÈËid */
-  address		/*ËùÊôÇøÓò */
-  brokerage		/*Ó¶½ğ */
-  brokerageType /*Ó¶½ğÀàĞÍ£º1.¹Ì¶¨£¬2.±ÈÀı */
-  crtTime timestamp comment '',
-  dataState
+  id 		   INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  housesId     VARCHAR(255) COMMENT 'æ¥¼ç›˜id',
+  userParentId VARCHAR(255) COMMENT 'ç»çºªå…¬å¸id',
+  userId	   VARCHAR(255) COMMENT 'ç»çºªäººid',
+  address	   VARCHAR(255) COMMENT 'æ‰€å±åŒºåŸŸ',
+  brokerage	   DECIMAL 		COMMENT 'ä½£é‡‘',
+  brokerType   CHAR(1) 	    COMMENT 'ä½£é‡‘ç±»å‹ï¼š1.å›ºå®šï¼Œ2.æ¯”ä¾‹',
+  crtTime 	   timestamp 	COMMENT 'åˆ›å»ºæ—¶é—´',
+  updateTime   TIMESTAMP	COMMENT 'æ›´æ–°æ—¶é—´',
+  dataState    CHAR(1) 		COMMENT 'dataçŠ¶æ€'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
-/*ÏúÊÛ±í*/
+/*é”€å”®è¡¨*/
 create table housecd.sell(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  housesBusinessId  /*Â¥ÅÌÉÌÎñid ,À´×Ôapp_info±í */
-  userId		/*¾­¼ÍÈËid */
-  userParentId  /*¾­¼Í¹«Ë¾id */  
-  guestId		/*¿Í»§id */
-  guestName
-  guestIdCard
-  guestAddress  
-  housesId		/*Â¥ÅÌid */
-  houseTypeId   /*»§ĞÍid */ 
-  houseNum		/*·¿¼äºÅ */	
-  price			/*µ¥¼Û */
-  totalPrice    /*×Ü¼Û */ 
-  pictureAddress /*Í¼Æ¬µØÖ· */  
-  sellState     /*ÏúÊÛ²Ù×÷£º0 ´ıÉóºË£¬1 ÉóºËÍ¨¹ı */
-  
-  dealState     /*½»Ò××´Ì¬ 1.¿´·¿£¬2.½»¶¨½ğ 3. ½»Ê×¸¶ 4.ÒøĞĞ·¿´û 5.¹ºÂòÍê³É 6. Î´¹ºÂò  */  
-  brokerage		/*Ó¶½ğ */
-  brokerageState  /*Ó¶½ğ×´Ì¬ */
-  crtTime timestamp,
-  dataState
+  id 		   INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  userBsId 	   VARCHAR(255) COMMENT 'æ¥¼ç›˜å•†åŠ¡id',
+  userId  	   VARCHAR(255) COMMENT 'ç»çºªäººid'	,
+  userParentId VARCHAR(255) COMMENT 'ç»çºªå…¬å¸id' ,
+  guestId 	   VARCHAR(255) COMMENT 'å®¢æˆ·id',
+  guestName    VARCHAR(255) COMMENT 'å®¢æˆ·å§“å',
+  guestIdCard  VARCHAR(50)  COMMENT 'å®¢æˆ·èº«ä»½è¯å·',
+  guestAddress VARCHAR(255) COMMENT 'å®¢æˆ·åœ°å€',
+  housesId     VARCHAR(255) COMMENT 'æ¥¼ç›˜id'	,
+  houseTypeId  VARCHAR(255) COMMENT 'æˆ·å‹id',
+  houseNum	   VARCHAR(255) COMMENT 'æˆ¿é—´å·',
+  price	       DECIMAL   	COMMENT 'å•ä»·',
+  totalPrice   DECIMAL   	COMMENT 'æ€»ä»·',
+  picAddress   VARCHAR(255) COMMENT 'å›¾ç‰‡åœ°å€',
+  sellState    CHAR(1)   	COMMENT 'å›¾ç‰‡åœ°å€ï¼š0 å¾…å®¡æ ¸ï¼Œ1 å®¡æ ¸é€šè¿‡ ',
+  dealState    CHAR(1)   	COMMENT 'äº¤æ˜“çŠ¶æ€:1.çœ‹æˆ¿ï¼Œ2.äº¤å®šé‡‘ 3. äº¤é¦–ä»˜ 4.é“¶è¡Œæˆ¿è´· 5.è´­ä¹°å®Œæˆ 6. æœªè´­ä¹°',
+  brokerage	   DECIMAL      COMMENT 'ä½£é‡‘',
+  brokerState  CHAR(1)   	COMMENT 'ä½£é‡‘çŠ¶æ€',
+  crtTime 	   TIMESTAMP 	COMMENT 'åˆ›å»ºæ—¶é—´',
+  updateTime   TIMESTAMP 	COMMENT 'æ›´æ–°æ—¶é—´',
+  dataState    CHAR(1)   	COMMENT 'dataçŠ¶æ€'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
-/*¿Í»§±í*/
+/*å®¢æˆ·è¡¨*/
 create table housecd.guest(
-	guestId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	guestName
-	guestIdCard
-	guestPhone
-	housesId
-	houseTypeId
-	userParentId
-	userId
-	guestComment	
-	crtTime timestamp,
-	dataState
+  guestId      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  guestName    VARCHAR(255) COMMENT 'å®¢æˆ·å§“å',
+  guestIdCard  VARCHAR(50)  COMMENT 'å®¢æˆ·èº«ä»½è¯å·',
+  guestPhone   VARCHAR(255) COMMENT 'å®¢æˆ·æ‰‹æœº',
+  housesId     VARCHAR(255) COMMENT 'æ¥¼ç›˜id',
+  houseTypeId  VARCHAR(255) COMMENT 'æˆ·å‹id',
+  userParentId VARCHAR(255) COMMENT 'ç»çºªå…¬å¸id',
+  userId 	   VARCHAR(255) COMMENT 'ç»çºªäººid',
+  guestComment VARCHAR(255) COMMENT 'å®¢æˆ·å¤‡æ³¨',
+  crtTime      TIMESTAMP    COMMENT 'åˆ›å»ºæ—¶é—´',
+  updateTime   TIMESTAMP	COMMENT 'æ›´æ–°æ—¶é—´',
+  dataState    CHAR(1)      COMMENT 'dataçŠ¶æ€'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
-/*ÇøÓò±ä */ 
+/*åŒºåŸŸè¡¨ */
 create table housecd.area(
-  areaId
-  areaName
-  crtTime timestamp,
-  dataState
-)
+  areaId	 INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  areaName	 VARCHAR(255) COMMENT 'åŒºåŸŸåç§°ï¼š',
+  crtTime    TIMESTAMP    COMMENT 'åˆ›å»ºæ—¶é—´',
+  updateTime TIMESTAMP	  COMMENT 'æ›´æ–°æ—¶é—´',
+  dataState  CHAR(1)      COMMENT 'dataçŠ¶æ€'
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-/*¹ã¸æ±í */
+/*å¹¿å‘Šè¡¨ */
 create table housecd.advertising(
- adId 
+ adId 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  adName
- adAddress   /*¹ã¸æÎ»ÖÃ  */
+ adAddress   /*å¹¿å‘Šä½ç½®  */
  adPicture
  startTime
  deadLine
  crtTime timestamp,
  dataState
- 
-)
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-/*×ÊÑ¶±í */
+/*èµ„è®¯è¡¨ */
 create table housecd.houses_info(
- Id 
- headline /*±êÌâ  */
- programa /*À¸Ä¿  */
+ Id 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ headline /*æ ‡é¢˜  */
+ programa /*æ ç›®  */
  pictureAddress
- lableId   /*±êÇ©  */
- content /*ÄÚÈİ  */
+ lableId   /*æ ‡ç­¾  */
+ content /*å†…å®¹  */
  crtTime timestamp,
  dataState
- 
-)
 
-/*¶¯Ì¬±í */
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+/*åŠ¨æ€è¡¨ */
 create table housecd.houses_state(
- Id 
+ Id 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  headline
  areaId
  housesId
 
  crtTime timestamp,
  dataState
- 
-)
 
-/*±êÇ©±í Ò»¸öIDÔÊĞí¶à¸ö±êÇ©*/  
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+/*æ ‡ç­¾è¡¨ ä¸€ä¸ªIDå…è®¸å¤šä¸ªæ ‡ç­¾*/
 create table housecd.lable(
- lableId
+ lableId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  lableContext
  crtTime timestamp,
  dataState
-)
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-/* Â¥ÅÌ±í */
+/* æ¥¼ç›˜è¡¨ */
 create table housecd.houses(
- housesId			/*Â¥ÅÌID */
- housesName			/*Â¥ÅÌName */
- housesSpecialty  /*ÌØµã£¬Ê¹ÓÃ±êÇ©±í */
- houseState /*×´Ì¬£º ÔÚ½¨0,ÔÚÊÛ1,ÊÛóÀ2 */
- pictureX  /*Ğ§¹ûÍ¼ */
- pictureS   /*ÊµÊ©Í¼ */
- pictureJ	/*½»Í¨Í¼ */
- /*ÅäÌ×ÉèÊ©£ºÑ§Ğ£¡¢¹«½»¡¢Ò½Ôº¡¢ÒøĞĞ¡¢µØÌú¡¢×ÛºÏÉÌ³¡ */
- /*»§ĞÍID£¬ĞèÒª»§ĞÍ±í */
- /*Õ¼µØÃæ»ı */
- /*½¨ÖşÃæ»ı */
- /*ÉÌÓÃÃæ»ı */
- /*¿ª·¢ÉÌ */
- /*Â¥ÅÌµØÖ· */
- /*²úÈ¨ÄêÏŞ */
- /*ÇøÓòID£º ËùÊôÇøÓò */
- /*½¨ÖşÀàĞÍ£º */
- /*ÂÌ»¯ÂÊ */
- /*ÎïÒµ¹«Ë¾ */
- /*×îĞÂ¿ªÅÌ */
- /*½»·¿Ê±¼ä */
- /*¾ù¼Û */
- /*Í¶×ÊÉÌ */
- /*Èİ»ıÂÊ */
- /*»§Êı */
- /*³µÎ»Êı */
- /*×°ĞŞÇé¿ö */
- /*¶¨Î»  ÊÇÊ²Ã´£¿£¿£¿ Ê¡ÊĞÇø */
- /*ÍÆ¼ö */
+ housesId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,		/*æ¥¼ç›˜ID */
+ housesName			/*æ¥¼ç›˜Name */
+ housesSpecialty  /*ç‰¹ç‚¹ï¼Œä½¿ç”¨æ ‡ç­¾è¡¨ */
+ houseState /*çŠ¶æ€ï¼š åœ¨å»º0,åœ¨å”®1,å”®ç½„2 */
+ pictureX  /*æ•ˆæœå›¾ */
+ pictureS   /*å®æ–½å›¾ */
+ pictureJ	/*äº¤é€šå›¾ */
+ /*é…å¥—è®¾æ–½ï¼šå­¦æ ¡ã€å…¬äº¤ã€åŒ»é™¢ã€é“¶è¡Œã€åœ°é“ã€ç»¼åˆå•†åœº */
+ /*æˆ·å‹IDï¼Œéœ€è¦æˆ·å‹è¡¨ */
+ /*å åœ°é¢ç§¯ */
+ /*å»ºç­‘é¢ç§¯ */
+ /*å•†ç”¨é¢ç§¯ */
+ /*å¼€å‘å•† */
+ /*æ¥¼ç›˜åœ°å€ */
+ /*äº§æƒå¹´é™ */
+ /*åŒºåŸŸIDï¼š æ‰€å±åŒºåŸŸ */
+ /*å»ºç­‘ç±»å‹ï¼š */
+ /*ç»¿åŒ–ç‡ */
+ /*ç‰©ä¸šå…¬å¸ */
+ /*æœ€æ–°å¼€ç›˜ */
+ /*äº¤æˆ¿æ—¶é—´ */
+ /*å‡ä»· */
+ /*æŠ•èµ„å•† */
+ /*å®¹ç§¯ç‡ */
+ /*æˆ·æ•° */
+ /*è½¦ä½æ•° */
+ /*è£…ä¿®æƒ…å†µ */
+ /*å®šä½  æ˜¯ä»€ä¹ˆï¼Ÿï¼Ÿï¼Ÿ çœå¸‚åŒº */
+ /*æ¨è */
 
  crtTime timestamp,
  dataState
- 
 
-)
 
- /*»§ĞÍ±í */
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+ /*æˆ·å‹è¡¨ */
  create table housecd.house_type(
- houseTypeId
+ houseTypeId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  houseTypeName
- houseTypeSpecialty   /*ÌØµã£¬Ê¹ÓÃ±êÇ©±í */
+ houseTypeSpecialty   /*ç‰¹ç‚¹ï¼Œä½¿ç”¨æ ‡ç­¾è¡¨ */
  houseTypePicture
- /* Â¥¶°*/
- /* ¾ÓÊÒ*/
- /* ½¨ÖşÃæ»ı*/
- /* ²Î¿¼¾ù¼Û*/
- /* ²Î¿¼×Ü¼Û*/
- /* ·ÖÀà£º×¡Õ¬*/
+ /* æ¥¼æ ‹*/
+ /* å±…å®¤*/
+ /* å»ºç­‘é¢ç§¯*/
+ /* å‚è€ƒå‡ä»·*/
+ /* å‚è€ƒæ€»ä»·*/
+ /* åˆ†ç±»ï¼šä½å®…*/
  crtTime timestamp,
- dataState 
- )
- 
-/*ĞÂ·¿±í */
+ dataState
+ )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+/*æ–°æˆ¿è¡¨ */
 create table housecd.house(
- houseId
-		  /*ÇøÓò */
- housesId /*Â¥ÅÌ */
-		  /*»§ĞÍ£ºÂ¥ÅÌÏÂµÄ»§ĞÍ */
-		  /*ĞÂ·¿id£º Ìí¼ÓĞÂ·¿£º 10¶°1µ¥Ôª1Â¥,10¶°1µ¥Ôª1Â¥ */
+ houseId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+		  /*åŒºåŸŸ */
+ housesId /*æ¥¼ç›˜ */
+		  /*æˆ·å‹ï¼šæ¥¼ç›˜ä¸‹çš„æˆ·å‹ */
+		  /*æ–°æˆ¿idï¼š æ·»åŠ æ–°æˆ¿ï¼š 10æ ‹1å•å…ƒ1æ¥¼,10æ ‹1å•å…ƒ1æ¥¼ */
 		  /* */
   crtTime timestamp,
- dataState 
+ dataState
 
-) 
- 
-/* ¶şÊÖ·¿±í */ 
+) ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+/* äºŒæ‰‹æˆ¿è¡¨ */
 create table housecd.second_hand_house(
- secondHouseId
- houseName  /*Ò»ÆÚ10¶°A»§ĞÍ */
- /*ÇøÓò */
- /*µØÖ· */
- /*Ğ¡Çø */
- /*Ãæ»ı */
- /*»§ĞÍ varchar */
- /*³¯Ïò */
- /*Â¥²ã */
- /*×°ĞŞ£ºÃ«Å÷¡¢¼ò×°¡¢¾«×° */
- /*»§ĞÍ£º×¡Õ¬¡¢¹«Ô¢¡¢ÉÌÆÌ */
- /*ÌØµã£ºÊ¹ÓÃ±êÇ©±í  */
- /*ÕÕÆ¬µØÖ· */
- /*µ¥¼Û */
- /*×Ü¼Û */
- /*·¿Ô´½éÉÜ */
- /*·¢²¼Õß */
- /*ÊÇ·ñÉÏÏß£ºÉÏÏß ÏÂÏß */
+ secondHouseId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ houseName  /*ä¸€æœŸ10æ ‹Aæˆ·å‹ */
+ /*åŒºåŸŸ */
+ /*åœ°å€ */
+ /*å°åŒº */
+ /*é¢ç§¯ */
+ /*æˆ·å‹ varchar */
+ /*æœå‘ */
+ /*æ¥¼å±‚ */
+ /*è£…ä¿®ï¼šæ¯›å¯ã€ç®€è£…ã€ç²¾è£… */
+ /*æˆ·å‹ï¼šä½å®…ã€å…¬å¯“ã€å•†é“º */
+ /*ç‰¹ç‚¹ï¼šä½¿ç”¨æ ‡ç­¾è¡¨  */
+ /*ç…§ç‰‡åœ°å€ */
+ /*å•ä»· */
+ /*æ€»ä»· */
+ /*æˆ¿æºä»‹ç» */
+ /*å‘å¸ƒè€… */
+ /*æ˜¯å¦ä¸Šçº¿ï¼šä¸Šçº¿ ä¸‹çº¿ */
+
+ crtTime timestamp,
+ dataState
+
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+/* ç§Ÿæˆ¿è¡¨ */
+create table housecd.renting_house(
+ houseId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ houseName
+ areaId
+ address
+ é¢ç§¯
+ houseTypeId /* æˆ·å‹*/
+ æœå‘
+ æ¥¼å±‚
+ /* è£…ä¿®:æ¯›å¯ã€ç®€è£…ã€ç²¾è£… */
+ /* ç±»å‹ï¼šä½å®…ã€å…¬å¯“ã€å•†é“º*/
+ /* ç±»å‹ï¼š æ•´ç§Ÿã€åˆç§Ÿã€*/
+ /* è®¾æ–½ï¼šåºŠã€ç”µè§†ã€çƒ­æ°´å™¨ã€ç©ºè°ƒã€å®½å¸¦ã€æ´—è¡£æœºã€å†°ç®±ã€ç‚‰ç¶*/
+ /* ç‰¹ç‚¹ï¼šç‰¹ç‚¹1ã€ç‰¹ç‚¹2  ä½¿ç”¨lableæ ‡ç­¾è¡¨*/
+ /* ç…§ç‰‡ï¼š1 2 3 */
+ /* æˆ¿ç§Ÿï¼š*å…ƒ/æœˆã€å­£ã€åŠå¹´ã€å¹´  */
+ /* æˆ¿æºç®€ä»‹*/
+ /* è”ç³»ç”µè¯*/
+ /* å‘å¸ƒè€…*/
  
-  crtTime timestamp,
- dataState 
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
  
-)
-
-/**/
- 
- 
- 
- 
- 
- 
-
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

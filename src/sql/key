@@ -1,0 +1,10 @@
+keytool -genkeypair -alias tomcat -keyalg RSA -keystore E:\housecd.key
+
+housecd
+hou
+yao
+housecs
+shanghai
+shanghai
+
+housecdhy

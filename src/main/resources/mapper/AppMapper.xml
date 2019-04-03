@@ -6,25 +6,68 @@
   </sql>
 
   <sql id="BASE_COLUMN">
-    id,appName,appId,appSecret,appStatus,phone,crtTime,rcntlyTime,comment
+    userId, appName, appId, appSecret, userName, userIdCard, userPhone, userType,
+      companyName, parentId, userState, crtTime, updateTime,dataState
   </sql>
 
   <insert id="insert" parameterType="com.hy.model.AppDomain">
     INSERT INTO
       <include refid="BASE_TABLE"/>
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      appId,appSecret,appName,crtTime,
-      <if test="appStatus != null">
-        appStatus,
+      <if test="appName != null">
+        appName,
       </if>
-      rcntlyTime
+      appId,appSecret,
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="userIdCard != null">
+        userIdCard,
+      </if>
+      <if test="userPhone != null">
+        userPhone,
+      </if>
+      <if test="userType != null">
+        userType,
+      </if>
+      <if test="companyName != null">
+        companyName,
+      </if>
+      <if test="parentId != null">
+        parentId,
+      </if>
+      <if test="userState != null">
+        userState,
+      </if>
+      crtTime, updateTime,dataState
     </trim>
     <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-      #{appId, jdbcType=VARCHAR},#{appSecret, jdbcType=VARCHAR},#{appName, jdbcType=VARCHAR},#{crtTime, jdbcType=DATE},
-      <if test="appStatus != null">
-        #{appStatus, jdbcType=VARCHAR},
+      <if test="appName != null">
+        #{appName, jdbcType=VARCHAR},
       </if>
-      CURRENT_TIMESTAMP
+        #{appId, jdbcType=VARCHAR},#{appSecret, jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName, jdbcType=VARCHAR},
+      </if>
+      <if test="userIdCard != null">
+        #{userIdCard, jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone, jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType, jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName, jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId, jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null">
+        #{userState, jdbcType=VARCHAR},
+      </if>
+      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1
     </trim>
   </insert>
 
