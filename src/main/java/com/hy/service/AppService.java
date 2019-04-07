@@ -8,4 +8,6 @@ import com.hy.model.AppDomain;
  */
 public interface AppService {
     int addApp(AppDomain app);
+
+    int delBrokerByUserId(AppDomain app);
 }

@@ -2,6 +2,7 @@ package com.hy.service.impl;
 
 import com.hy.common.Lable;
 import com.hy.dao.RecommendDao;
+import com.hy.model.AppDomain;
 import com.hy.model.RecommendDomain;
 import com.hy.service.RecommendService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,33 @@ public class RecommendServiceImpl implements RecommendService {
         return lable;
     }
 
+    /**
+     * 根据经纪人ID查询推荐列表数据
+     * @param app
+     * @return
+     */
     @Override
-    public List<RecommendDomain> selectRecommends() {
-        return recommendDao.selectRecommends();
+    public List<RecommendDomain> queryRecoInfoByUserId(AppDomain app) {
+        return recommendDao.queryRecoInfoByUserId(app);
+    }
+
+    /**
+     * 根据经纪公司ID查询推荐列表数据
+     * @param app
+     * @return
+     */
+    @Override
+    public List<RecommendDomain> queryRecoInfoByUserParId(AppDomain app) {
+        return recommendDao.queryRecoInfoByUserParId(app);
+    }
+
+    /**
+     * 根据经纪人ID，客户姓名，客户电话 查询推荐列表数据
+     * @param reMend
+     * @return
+     */
+    @Override
+    public List<RecommendDomain> queryRecoInfoByGuestName(RecommendDomain reMend) {
+        return recommendDao.queryRecoInfoByGuestName(reMend);
     }
 }

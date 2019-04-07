@@ -27,4 +27,9 @@ public class AppServiceImpl implements AppService{
 
         return appDao.insert(app);
     }
+
+    @Override
+    public int delBrokerByUserId(AppDomain app) {
+        return appDao.delBrokerByUserId(app);
+    }
 }

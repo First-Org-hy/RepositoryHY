@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.dao.SellDao" >
+  <sql id="BASE_TABLE">
+    sell
+  </sql>
+
+  <sql id="BASE_COLUMN">
+    id, userBsId, userId, userParentId, guestId, guestName, guestIdCard, guestAddress,
+      housesId, houseTypeId, houseNum, price, totalPrice, picAddress, sellState, dealState,
+      brokerage, brokerState, crtTime, updateTime, dataState
+  </sql>
+
+  <insert id="addSell" parameterType="com.hy.model.SellDomain">
+    INSERT INTO
+      <include refid="BASE_TABLE"/>
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userBsId != null">
+        userBsId,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="userParentId != null">
+        userParentId,
+      </if>
+      <if test="guestId != null">
+        guestId,
+      </if>
+      <if test="guestName != null">
+        guestName,
+      </if>
+      <if test="guestIdCard != null">
+        guestIdCard,
+      </if>
+      <if test="guestAddress != null">
+        guestAddress,
+      </if>
+      <if test="housesId != null">
+        housesId,
+      </if>
+      <if test="houseTypeId != null">
+        houseTypeId,
+      </if>
+      <if test="houseNum != null">
+        houseNum,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="totalPrice != null">
+        totalPrice,
+      </if>
+      <if test="picAddress != null">
+        picAddress,
+      </if>
+      <if test="sellState != null">
+        sellState,
+      </if>
+      <if test="dealState != null">
+        dealState,
+      </if>
+      <if test="brokerage != null">
+        brokerage,
+      </if>
+      <if test="brokerState != null">
+        brokerState,
+      </if>
+      crtTime, updateTime,dataState
+    </trim>
+    <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+      <if test="userBsId != null">
+        #{userBsId, jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId, jdbcType=VARCHAR},
+      </if>
+      <if test="userParentId != null">
+        #{userParentId, jdbcType=VARCHAR},
+      </if>
+      <if test="guestId != null">
+        #{guestId, jdbcType=VARCHAR},
+      </if>
+      <if test="guestName != null">
+        #{guestName, jdbcType=VARCHAR},
+      </if>
+      <if test="guestIdCard != null">
+        #{guestIdCard, jdbcType=VARCHAR},
+      </if>
+      <if test="guestAddress != null">
+        #{guestAddress, jdbcType=VARCHAR},
+      </if>
+      <if test="housesId != null">
+        #{housesId, jdbcType=VARCHAR},
+      </if>
+      <if test="houseTypeId != null">
+        #{houseTypeId, jdbcType=VARCHAR},
+      </if>
+      <if test="houseNum != null">
+        #{houseNum, jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price, jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice, jdbcType=DECIMAL},
+      </if>
+      <if test="picAddress != null">
+        #{picAddress, jdbcType=VARCHAR},
+      </if>
+      <if test="guestAddress != null">
+        #{guestAddress, jdbcType=VARCHAR},
+      </if>
+      <if test="sellState != null">
+        #{sellState, jdbcType=VARCHAR},
+      </if>
+      <if test="dealState != null">
+        #{dealState, jdbcType=VARCHAR},
+      </if>
+      <if test="brokerage != null">
+        #{brokerage, jdbcType=DECIMAL},
+      </if>
+      <if test="brokerState != null">
+        #{brokerState, jdbcType=VARCHAR},
+      </if>
+      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1
+    </trim>
+  </insert>
+
+  <select id="querySellInfoByUserId" parameterType="com.hy.model.SellDomain" resultType="com.hy.model.SellDomain">
+      SELECT
+        <include refid="BASE_COLUMN"/>
+      FROM
+        <include refid="BASE_TABLE"/>
+        WHERE userId = #{userId}
+  </select>
+
+
+  <select id="querySellInfoByUserParId" parameterType="com.hy.model.SellDomain" resultType="com.hy.model.SellDomain">
+    SELECT
+    <include refid="BASE_COLUMN"/>
+    FROM
+    <include refid="BASE_TABLE"/>
+    WHERE userParentId = #{userParentId} ORDER BY updateTime DESC;
+  </select>
+</mapper>

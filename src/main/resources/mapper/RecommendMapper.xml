@@ -20,6 +20,9 @@
       <if test="userId != null">
         userId,
       </if>
+      <if test="userParentId != null">
+        userParentId,
+      </if>
       <if test="userName != null">
         userName,
       </if>
@@ -41,6 +44,9 @@
       <if test="userId != null">
         #{userId, jdbcType=VARCHAR},
       </if>
+      <if test="userParentId != null">
+        #{userParentId, jdbcType=VARCHAR},
+      </if>
       <if test="userName != null">
         #{userName, jdbcType=VARCHAR},
       </if>
@@ -57,12 +63,30 @@
     </trim>
   </insert>
 
-  <select id="selectRecommends" resultType="com.hy.model.RecommendDomain">
+  <select id="queryRecoInfoByUserId" parameterType="com.hy.model.AppDomain" resultType="com.hy.model.RecommendDomain">
       SELECT
         <include refid="BASE_COLUMN"/>
       FROM
         <include refid="BASE_TABLE"/>
+       WHERE userId = #{userId} ORDER BY updateTime
   </select>
 
+  <select id="queryRecoInfoByUserParId" parameterType="com.hy.model.AppDomain" resultType="com.hy.model.RecommendDomain">
+      SELECT
+        <include refid="BASE_COLUMN"/>
+      FROM
+        <include refid="BASE_TABLE"/>
+      WHERE userParentId = #{parentId} ORDER BY updateTime
+  </select>
 
+  <select id="queryRecoInfoByGuestName" parameterType="com.hy.model.RecommendDomain" resultType="com.hy.model.RecommendDomain">
+      SELECT
+        re.*
+      FROM
+        recommend re
+        left join app_info app
+        on re.userId = app.userId
+      WHERE app.userName like #{guestName} or guestName like #{guestName} or guestPhone like #{guestName}
+      ORDER BY updateTime
+  </select>
 </mapper>

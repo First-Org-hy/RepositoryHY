@@ -15,6 +15,7 @@ public class RecommendDomain {
     private String crtTime;
     private String updateTime;
     private String dataState;
+    private String userParentId;//经纪公司id
 
     public String getId() {
         return id;
@@ -94,5 +95,13 @@ public class RecommendDomain {
 
     public void setDataState(String dataState) {
         this.dataState = dataState;
+    }
+
+    public String getUserParentId() {
+        return userParentId;
+    }
+
+    public void setUserParentId(String userParentId) {
+        this.userParentId = userParentId;
     }
 }

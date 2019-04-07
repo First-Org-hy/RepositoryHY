@@ -78,5 +78,12 @@
         <include refid="BASE_TABLE"/>
   </select>
 
+  <update id="delBrokerByUserId" parameterType="com.hy.model.AppDomain" >
+    UPDATE
+      <include refid="BASE_TABLE"/>
+      SET dataState = '0' ,
+        updateTime = CURRENT_TIMESTAMP
+        WHERE userId = #{userId}
+  </update>
 
 </mapper>

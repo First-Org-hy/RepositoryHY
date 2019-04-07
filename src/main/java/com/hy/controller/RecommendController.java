@@ -1,13 +1,13 @@
 package com.hy.controller;
 
 import com.hy.common.Lable;
+import com.hy.model.AppDomain;
 import com.hy.model.RecommendDomain;
 import com.hy.service.RecommendService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by yaohou on 16:16 2019/4/3.
@@ -34,5 +34,22 @@ public class RecommendController {
         return recommendService.addRecommend(recommend);
     }
 
+    @ResponseBody
+    @GetMapping(value = "queryRecommendInfoByUserId")
+    public List<RecommendDomain> queryRecommendInfoByUserId(AppDomain app){
+        return recommendService.queryRecoInfoByUserId(app);
+    }
+
+    @ResponseBody
+    @GetMapping(value = "queryRecommendInfoByUserParId")
+    public List<RecommendDomain> queryRecommendInfoByUserParId(AppDomain app){
+        return recommendService.queryRecoInfoByUserParId(app);
+    }
+
+    @ResponseBody
+    @GetMapping(value = "queryRecommendInfoByGuestName")
+    public List<RecommendDomain> queryRecommendInfoByGuestName(RecommendDomain reMend){
+        return recommendService.queryRecoInfoByGuestName(reMend);
+    }
 
 }

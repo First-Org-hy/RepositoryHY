@@ -12,4 +12,6 @@ public interface AppDao {
     int insert(AppDomain appDomain);
 
     List<AppDomain> selectApps();
+
+    int delBrokerByUserId(AppDomain app);
 }
