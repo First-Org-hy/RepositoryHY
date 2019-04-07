@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.dao.HousesDao" >
+  <sql id="BASE_TABLE">
+    housecd.houses
+  </sql>
+
+  <sql id="BASE_COLUMN">
+    housesId, housesName, housesSpclty, houseState, pictureX, pictureS,
+    pictureJ, mating, houseTypeId, areaZ, areaJ, areaS, developers,
+    housesAddrss, period, areaId, buildType, greenRate, companyW, openHouse,
+    deadLine, avgPrice, investor, plotRatio, familyNum, carportNum, fitment,
+    location, recommend, crtTime, updateTime, dataState
+  </sql>
+
+  <insert id="insert" parameterType="com.hy.model.HousesDomain">
+    INSERT INTO
+      <include refid="BASE_TABLE"/>
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="housesId != null">
+        housesId,
+      </if>
+      <if test="housesName != null">
+        housesName,
+      </if>
+
+      crtTime, updateTime,dataState
+    </trim>
+    <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+      <if test="housesId != null">
+        #{housesId, jdbcType=VARCHAR},
+      </if>
+      <if test="housesName != null">
+        #{housesName, jdbcType=VARCHAR},
+      </if>
+
+      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1
+    </trim>
+  </insert>
+
+  <select id="selectHouses" parameterType="com.hy.model.HousesDomain" resultType="com.hy.model.HousesDomain" >
+      SELECT
+        <include refid="BASE_COLUMN"/>
+      FROM
+        <include refid="BASE_TABLE"/>
+      WHERE 1=1
+        <if test="housesId != null">
+      AND  housesId = #{housesId, jdbcType=VARCHAR}
+        </if>
+      ORDER BY updateTime DESC
+  </select>
+
+
+</mapper>
