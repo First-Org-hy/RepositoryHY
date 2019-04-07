@@ -227,8 +227,6 @@ create table housecd.houses(
  crtTime      TIMESTAMP    COMMENT '创建时间',
  updateTime   TIMESTAMP	   COMMENT '更新时间',
  dataState    CHAR(1)      COMMENT 'data状态'
-
-
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*楼盘特点 一个ID允许多个标签*/
