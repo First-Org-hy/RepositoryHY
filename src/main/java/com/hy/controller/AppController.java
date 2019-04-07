@@ -24,7 +24,7 @@ public class AppController {
 
 
     @ResponseBody
-    @PostMapping("/delBrokerByUserId")
+    @PostMapping("/delByUserId")
     public int delBrokerByUserId(AppDomain app){
         return appService.delBrokerByUserId(app);
     }

@@ -35,19 +35,19 @@ public class RecommendController {
     }
 
     @ResponseBody
-    @GetMapping(value = "queryRecommendInfoByUserId")
+    @GetMapping(value = "queryByUserId")
     public List<RecommendDomain> queryRecommendInfoByUserId(AppDomain app){
         return recommendService.queryRecoInfoByUserId(app);
     }
 
     @ResponseBody
-    @GetMapping(value = "queryRecommendInfoByUserParId")
+    @GetMapping(value = "queryByUserParId")
     public List<RecommendDomain> queryRecommendInfoByUserParId(AppDomain app){
         return recommendService.queryRecoInfoByUserParId(app);
     }
 
     @ResponseBody
-    @GetMapping(value = "queryRecommendInfoByGuestName")
+    @GetMapping(value = "queryByGuestName")
     public List<RecommendDomain> queryRecommendInfoByGuestName(RecommendDomain reMend){
         return recommendService.queryRecoInfoByGuestName(reMend);
     }

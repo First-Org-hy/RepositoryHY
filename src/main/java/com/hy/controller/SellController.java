@@ -28,13 +28,13 @@ public class SellController {
     }
 
     @ResponseBody
-    @GetMapping("/querySellInfoByUserId")
+    @GetMapping("/queryByUserId")
     public List<SellDomain> querySellInfoByUserId(SellDomain sell) {
         return sellService.querySellInfoByUserId(sell);
     }
 
     @ResponseBody
-    @GetMapping("/querySellInfoByUserParId")
+    @GetMapping("/queryByUserParId")
     public List<SellDomain> querySellInfoByUserParId(SellDomain sell) {
         return sellService.querySellInfoByUserParId(sell);
     }
