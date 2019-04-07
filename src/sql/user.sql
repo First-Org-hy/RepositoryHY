@@ -53,6 +53,7 @@ create table housecd.recommend(
   id 		 INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
   housesId   VARCHAR(255) COMMENT '楼盘id， 针对楼盘推荐用户',
   userId     VARCHAR(255) COMMENT '经纪人id',
+  userParentId VARCHAR(255) COMMENT '经纪公司Id',
   userName   VARCHAR(255) COMMENT '用户名',
   guestName  VARCHAR(255) COMMENT '客户名',
   guestPhone VARCHAR(255) COMMENT '客户手机',
