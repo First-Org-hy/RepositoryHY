@@ -20,6 +20,13 @@ public class RecommendController {
     @Autowired
     private RecommendService recommendService;
 
+    /**
+     *
+     *  添加推荐人
+     * @author yaohou
+     * @date 2019/4/7 12:55
+     * @return com.hy.common.Lable
+     */
     @ResponseBody
     @PostMapping(value = "add")
     public Lable addRecommend(RecommendDomain recommend){

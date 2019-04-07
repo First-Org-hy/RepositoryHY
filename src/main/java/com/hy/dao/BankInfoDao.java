@@ -11,5 +11,5 @@ import java.util.List;
 public interface BankInfoDao {
     int insert(BankInfoDomain bankInfo);
 
-    List<BankInfoDomain> selectBankInfos();
+    List<BankInfoDomain> selectBankInfos(BankInfoDomain bankInfoDomain);
 }

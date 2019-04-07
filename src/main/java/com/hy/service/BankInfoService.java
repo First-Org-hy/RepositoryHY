@@ -12,5 +12,5 @@ public interface BankInfoService {
 
     int add (BankInfoDomain bankInfoDomain);
 
-    List<BankInfoDomain> selectBankIndo();
+    List<BankInfoDomain> selectBankInfo(BankInfoDomain bankInfoDomain);
 }

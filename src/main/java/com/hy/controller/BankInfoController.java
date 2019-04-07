@@ -5,6 +5,8 @@ import com.hy.service.BankInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by yaohou on 17:13 2019/4/3.
  * description:
@@ -15,6 +17,13 @@ public class BankInfoController {
     @Autowired
     private BankInfoService bankInfoService;
 
+    /**
+     *
+     * 添加银行卡
+     * @author yaohou
+     * @date 2019/4/7 12:56
+     * @return int
+     */
     @ResponseBody
     @PostMapping(value = "add")
     public int addBankInfo(BankInfoDomain bankInfoDomain){
@@ -22,6 +31,16 @@ public class BankInfoController {
 
 
         return bankInfoService.add(bankInfoDomain);
+    }
+
+    @ResponseBody
+    @GetMapping(value = "query")
+    public List<BankInfoDomain> queryBankInfo(BankInfoDomain bankInfoDomain){
+
+        List<BankInfoDomain> bankInfoDomains = bankInfoService.selectBankInfo(bankInfoDomain);
+
+        return bankInfoDomains;
+
     }
 
 

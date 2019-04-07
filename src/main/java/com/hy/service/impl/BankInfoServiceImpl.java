@@ -24,7 +24,9 @@ public class BankInfoServiceImpl implements BankInfoService {
     }
 
     @Override
-    public List<BankInfoDomain> selectBankIndo() {
-        return bankInfoDao.selectBankInfos();
+    public List<BankInfoDomain> selectBankInfo(BankInfoDomain bankInfoDomain) {
+        return bankInfoDao.selectBankInfos(bankInfoDomain);
     }
+
+
 }
