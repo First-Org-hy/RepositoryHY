@@ -194,41 +194,70 @@ create table housecd.lable(
 
 /* 楼盘表 */
 create table housecd.houses(
- housesId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,		/*楼盘ID */
- housesName			/*楼盘Name */
- housesSpecialty  /*特点，使用标签表 */
- houseState /*状态： 在建0,在售1,售罄2 */
- pictureX  /*效果图 */
- pictureS   /*实施图 */
- pictureJ	/*交通图 */
- /*配套设施：学校、公交、医院、银行、地铁、综合商场 */
- /*户型ID，需要户型表 */
- /*占地面积 */
- /*建筑面积 */
- /*商用面积 */
- /*开发商 */
- /*楼盘地址 */
- /*产权年限 */
- /*区域ID： 所属区域 */
- /*建筑类型： */
- /*绿化率 */
- /*物业公司 */
- /*最新开盘 */
- /*交房时间 */
- /*均价 */
- /*投资商 */
- /*容积率 */
- /*户数 */
- /*车位数 */
- /*装修情况 */
- /*定位  是什么？？？ 省市区 */
- /*推荐 */
-
- crtTime timestamp,
- dataState
+ housesId	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  /*楼盘ID */
+ housesName	  VARCHAR(255) COMMENT '楼盘Name',	
+ housesSpclty VARCHAR(255) COMMENT '特点，使用标签表',
+ houseState   VARCHAR(255) COMMENT '状态： 在建0,在售1,售罄2',
+ pictureX     VARCHAR(255) COMMENT '效果图',
+ pictureS     VARCHAR(255) COMMENT '实施图',
+ pictureJ	  VARCHAR(255) COMMENT '交通图',
+ mating       VARCHAR(255) COMMENT '配套设施：学校、公交、医院、银行、地铁、综合商场',
+ houseTypeId  VARCHAR(255) COMMENT '户型ID，需要户型表',		
+ areaZ 	      VARCHAR(255) COMMENT '占地面积',
+ areaJ        VARCHAR(255) COMMENT '建筑面积',
+ areaS 	  	  VARCHAR(255) COMMENT '商用面积',
+ developers   VARCHAR(255) COMMENT '开发商',
+ housesAddrss VARCHAR(255) COMMENT '楼盘地址',
+ period  	  VARCHAR(255) COMMENT '产权年限',
+ areaId       VARCHAR(255) COMMENT '区域ID： 所属区域',
+ buildType    VARCHAR(255) COMMENT '建筑类型：',
+ greenRate    VARCHAR(255) COMMENT '绿化率',
+ companyW     VARCHAR(255) COMMENT '物业公司',
+ openHouse    VARCHAR(255) COMMENT '最新开盘',
+ deadLine     VARCHAR(255) COMMENT '交房时间',
+ avgPrice     VARCHAR(255) COMMENT '均价',
+ investor     VARCHAR(255) COMMENT '投资商',
+ plotRatio    VARCHAR(255) COMMENT '容积率',
+ familyNum    VARCHAR(255) COMMENT '户数',
+ carportNum   VARCHAR(255) COMMENT '车位数',
+ fitment      VARCHAR(255) COMMENT '装修情况',
+ location     VARCHAR(255) COMMENT '定位  是什么？？？ 省市区',
+ recommend    VARCHAR(255) COMMENT '推荐',
+ crtTime      TIMESTAMP    COMMENT '创建时间',
+ updateTime   TIMESTAMP	   COMMENT '更新时间',
+ dataState    CHAR(1)      COMMENT 'data状态'
 
 
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+/*楼盘特点 一个ID允许多个标签*/
+create table housecd.houses_spclty(
+ lableId	  VARCHAR(255) COMMENT '楼盘特点id',
+ lableContext VARCHAR(255) COMMENT '楼盘特点内容',
+ crtTime      TIMESTAMP    COMMENT '创建时间',
+ updateTime   TIMESTAMP	   COMMENT '更新时间',
+ dataState    CHAR(1)      COMMENT 'data状态'
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+/*楼盘图片地址表 一个ID允许多个标签*/
+create table housecd.houses_picture(
+ lableId	  VARCHAR(255) COMMENT '图片地址id',
+ lableContext VARCHAR(255) COMMENT '图片地址',
+ crtTime      TIMESTAMP    COMMENT '创建时间',
+ updateTime   TIMESTAMP	   COMMENT '更新时间',
+ dataState    CHAR(1)      COMMENT 'data状态'
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+/*楼盘配套设施表 一个ID允许多个标签*/
+create table housecd.houses_picture(
+ lableId	  VARCHAR(255) COMMENT '配套设置id',
+ lableContext VARCHAR(255) COMMENT '图片地址',
+ crtTime      TIMESTAMP    COMMENT '创建时间',
+ updateTime   TIMESTAMP	   COMMENT '更新时间',
+ dataState    CHAR(1)      COMMENT 'data状态'
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+
 
  /*户型表 */
  create table housecd.house_type(
@@ -270,7 +299,7 @@ create table housecd.second_hand_house(
  /*户型 varchar */
  /*朝向 */
  /*楼层 */
- /*装修：毛坯、简装、精装 */
+ /*装修：0毛坯、简装、精装 */
  /*户型：住宅、公寓、商铺 */
  /*特点：使用标签表  */
  /*照片地址 */
