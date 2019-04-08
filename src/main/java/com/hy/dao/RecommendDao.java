@@ -1,5 +1,6 @@
 package com.hy.dao;
 
+import com.hy.common.Lable;
 import com.hy.model.AppDomain;
 import com.hy.model.RecommendDomain;
 
@@ -19,6 +20,10 @@ public interface RecommendDao {
     List<RecommendDomain> queryRecoInfoByUserParId(AppDomain app);
 
     List<RecommendDomain> queryRecoInfoByGuestName(RecommendDomain reMend);
+
+    int isRecommendOfCom(String userId, String userParId);
+
+    List<AppDomain> queryCompanyInfo(String userId);
 }
 
 

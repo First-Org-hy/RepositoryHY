@@ -75,4 +75,32 @@ public class RecommendServiceImpl implements RecommendService {
     public List<RecommendDomain> queryRecoInfoByGuestName(RecommendDomain reMend) {
         return recommendDao.queryRecoInfoByGuestName(reMend);
     }
+
+    /**
+     * 判断该用户是否是某经纪公司的经纪人
+     * @param userId userParId
+     * @return
+     */
+    @Override
+    public Lable isRecommendOfCom(String userId, String userParId) {
+        Lable la = new Lable();
+        if(recommendDao.isRecommendOfCom(userId, userParId) == 1) {
+            la.setId("1");
+            la.setMessage("该用户是经纪人");
+        }else{
+            la.setId("0");
+            la.setMessage("该用户不是经纪人");
+        }
+        return la;
+    }
+
+    /**
+     * 查询经纪公司的名称，联系电话
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<AppDomain> queryCompanyInfo(String userId) {
+        return recommendDao.queryCompanyInfo(userId);
+    }
 }

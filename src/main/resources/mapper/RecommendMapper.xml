@@ -89,4 +89,12 @@
       WHERE app.userName like #{guestName} or guestName like #{guestName} or guestPhone like #{guestName}
       ORDER BY updateTime
   </select>
+
+  <select id="isRecommendOfCom" parameterType="String" >
+    SELECT COUNT(*) FROM app_info A WHERE A.userId = #{userId} AND A.parentId = #{userParId} AND A.dataState = '1' AND A.userType = '5'
+  </select>
+
+  <select id="queryCompanyInfo" parameterType="String" resultType="com.hy.model.AppDomain" >
+    SELECT A.userId, A.userName, A.userPhone  FROM APP_INFO A WHERE A.userId = #{userId}
+  </select>
 </mapper>

@@ -143,4 +143,14 @@
     <include refid="BASE_TABLE"/>
     WHERE userParentId = #{userParentId} ORDER BY updateTime DESC;
   </select>
+
+  <select id="isBusSeller" parameterType="String" >
+    SELECT COUNT(*) FROM APP_INFO A WHERE A.userId = #{userId} AND A.userType = '3' AND A.dataState = '1'
+  </select>
+
+  <select id="queryBySeller" parameterType="String" resultType="com.hy.model.SellDomain">
+
+  </select>
+
+
 </mapper>

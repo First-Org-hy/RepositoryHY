@@ -2,6 +2,7 @@ package com.hy.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by shakaiyue on 14:28 2019/4/7.
@@ -29,6 +30,9 @@ public class SellDomain {
     private Date crtTime; 	        //创建时间
     private Date updateTime;        //更新时间
     private String dataState;       //data状态
+
+    private List<HousesDomain> houses;  //楼盘信息
+    private String guestPhone;      //客户电话
 
     public Integer getId() {
         return id;
@@ -196,5 +200,21 @@ public class SellDomain {
 
     public void setDataState(String dataState) {
         this.dataState = dataState;
+    }
+
+    public List<HousesDomain> getHouses() {
+        return houses;
+    }
+
+    public void setHouses(List<HousesDomain> houses) {
+        this.houses = houses;
+    }
+
+    public String getGuestPhone() {
+        return guestPhone;
+    }
+
+    public void setGuestPhone(String guestPhone) {
+        this.guestPhone = guestPhone;
     }
 }

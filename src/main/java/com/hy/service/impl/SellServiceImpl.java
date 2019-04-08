@@ -1,6 +1,9 @@
 package com.hy.service.impl;
 
+import com.hy.common.Lable;
 import com.hy.dao.SellDao;
+import com.hy.model.HousesDomain;
+import com.hy.model.HousesUserDomain;
 import com.hy.model.SellDomain;
 import com.hy.service.SellService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +73,50 @@ public class SellServiceImpl implements SellService {
     @Override
     public List<SellDomain> querySellInfoByUserParId(SellDomain sell) {
         return selldao.querySellInfoByUserParId(sell);
+    }
+
+    /**
+     * 查询用户是否为驻点商务
+     * @param userId
+     * @return
+     */
+    @Override
+    public Lable isBusSeller(String userId) {
+        Lable la = new Lable();
+        if(selldao.isBusSeller(userId) == 1){
+            la.setId("1");
+            la.setMessage("该用户是驻点商务");
+        }else {
+            la.setId("0");
+            la.setMessage("该用户不是驻点商务");
+        }
+        return la;
+    }
+
+    /**
+     * 查询某个驻点商务的全部销售记录
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<SellDomain> queryBySeller(String userId) {
+        List<SellDomain> sells = selldao.queryBySeller(userId);
+        for(SellDomain sell : sells){
+            String houseId = sell.getHousesId();
+            List<HousesDomain> houses = selldao.queryHouseById(houseId);
+            sell.setHouses(houses);
+        }
+        return sells;
+    }
+
+    @Override
+    public List<HousesUserDomain> queryBySellId(String userId) {
+       List<HousesUserDomain>  houseUsers = selldao.queryBySellId(userId);
+       for(HousesUserDomain house : houseUsers) {
+           String houseId = house.getHousesId();
+           List<HousesDomain> housesInfo = selldao.queryHouseById(houseId);
+           house.setHouses(housesInfo);
+       }
+       return houseUsers;
     }
 }

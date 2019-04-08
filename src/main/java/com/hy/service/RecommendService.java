@@ -19,4 +19,9 @@ public interface RecommendService {
     List<RecommendDomain> queryRecoInfoByUserParId(AppDomain app);
 
     List<RecommendDomain> queryRecoInfoByGuestName(RecommendDomain reMend);
+
+    Lable isRecommendOfCom(String userId, String userParId);
+
+    List<AppDomain> queryCompanyInfo(String userId);
+
 }
