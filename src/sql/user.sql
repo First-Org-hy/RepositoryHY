@@ -229,6 +229,17 @@ create table housecd.houses(
  dataState    CHAR(1)      COMMENT 'data状态'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
+/*楼盘商务关系表*/
+create table houses_user(
+housesId     VARCHAR(255)  COMMENT '楼盘ID',
+userId       VARCHAR(255)  COMMENT '驻点商务ID',
+crtTime      TIMESTAMP     COMMENT '创建时间',
+updateTime   TIMESTAMP	   COMMENT '更新时间',
+updateId  	 VARCHAR(255)  COMMENT '更新人id',
+dataState    CHAR(1)       COMMENT 'data状态'
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+
 /*楼盘特点 一个ID允许多个标签*/
 create table housecd.houses_spclty(
  lableId	  VARCHAR(255) COMMENT '楼盘特点id',

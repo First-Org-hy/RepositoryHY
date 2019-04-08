@@ -5,6 +5,7 @@ import com.hy.model.AppDomain;
 import com.hy.model.RecommendDomain;
 import com.hy.service.RecommendService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,4 +53,15 @@ public class RecommendController {
         return recommendService.queryRecoInfoByGuestName(reMend);
     }
 
+    @ResponseBody
+    @GetMapping(value = "queryCompanyInfo")
+    public List<AppDomain> queryCompanyInfo(String userId){
+        return recommendService.queryCompanyInfo(userId);
+    }
+
+    @ResponseBody
+    @PostMapping(value = "isRecommendOfCom")
+    public Lable isRecommendOfCom(String userId, String userParId){
+        return recommendService.isRecommendOfCom(userId, userParId);
+    }
 }
