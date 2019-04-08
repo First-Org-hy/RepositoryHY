@@ -78,7 +78,7 @@ create table housecd.brokerage(
   houseNum    VARCHAR(255) COMMENT '房子序号',
   brokerage   DECIMAL 	   COMMENT '佣金',
   brokerState CHAR(1) 	   COMMENT '佣金状态:1.待提取 2.已提取',
-  ifRead 	  CHAR(1) 	   COMMENT '是否已读',
+  ifRead 	  CHAR(1) 	   COMMENT '是否已读:1.未读 2.已读',
   crtTime 	  TIMESTAMP    COMMENT '创建时间',
   updateTime  TIMESTAMP	   COMMENT '更新时间',
   dataState   CHAR(1) 	   COMMENT 'data状态'
