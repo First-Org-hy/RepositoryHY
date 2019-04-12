@@ -272,78 +272,82 @@ create table housecd.houses_picture(
  /*户型表 */
  create table housecd.house_type(
  houseTypeId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
- houseTypeName
- houseTypeSpecialty   /*特点，使用标签表 */
- houseTypePicture
- /* 楼栋*/
- /* 居室*/
- /* 建筑面积*/
- /* 参考均价*/
- /* 参考总价*/
- /* 分类：住宅*/
- crtTime timestamp,
- dataState
+ houseTypeName   VARCHAR(255) COMMENT '户型类型名称',
+ houseTypeSpci   VARCHAR(255) COMMENT '户型类型特点', /*特点，使用标签表 */
+ houseTypePic    VARCHAR(255) COMMENT '户型类型图片', /*特点，使用标签表 */
+ houseFTTB       VARCHAR(255) COMMENT '楼栋',
+ houseTypeNum    VARCHAR(255) COMMENT '居室数目',
+ houseSize       VARCHAR(255) COMMENT '建筑面积',
+ houseAvmPrice   VARCHAR(255) COMMENT '参考均价',
+ houseTolPrice   VARCHAR(255) COMMENT '参考总价',
+ houseType       VARCHAR(255) COMMENT '分类：住宅',
+ crtTime         TIMESTAMP	  COMMENT '创建时间',
+ updateTime      TIMESTAMP	  COMMENT '更新时间',
+ dataState       CHAR(1)      COMMENT 'data状态'
  )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*新房表 */
-create table housecd.house(
- houseId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-		  /*区域 */
- housesId /*楼盘 */
-		  /*户型：楼盘下的户型 */
-		  /*新房id： 添加新房： 10栋1单元1楼,10栋1单元1楼 */
-		  /* */
-  crtTime timestamp,
- dataState
+create table housecd.newHouse(
+ Id	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ houseArea	  VARCHAR(255) COMMENT '区域',
+ housesId     VARCHAR(255) COMMENT '楼盘ID',
+ houseTypeId	VARCHAR(255) COMMENT '户型：楼盘下的户型',
+ houseId	    VARCHAR(255) COMMENT '新房id： 添加新房： 10栋1单元1楼,10栋1单元1楼',
+ crtTime      TIMESTAMP	  COMMENT '创建时间',
+ updateTime   TIMESTAMP	  COMMENT '更新时间',
+ dataState    CHAR(1)      COMMENT 'data状态'
 
 ) ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /* 二手房表 */
 create table housecd.second_hand_house(
- secondHouseId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
- houseName  /*一期10栋A户型 */
- /*区域 */
- /*地址 */
- /*小区 */
- /*面积 */
- /*户型 varchar */
- /*朝向 */
- /*楼层 */
- /*装修：0毛坯、简装、精装 */
- /*户型：住宅、公寓、商铺 */
- /*特点：使用标签表  */
- /*照片地址 */
- /*单价 */
- /*总价 */
- /*房源介绍 */
- /*发布者 */
- /*是否上线：上线 下线 */
-
- crtTime timestamp,
- dataState
-
+ Id	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ secondHouseId  VARCHAR(255) COMMENT '二手房Id',
+ houseName      VARCHAR(255) COMMENT '二手房名称：一期10栋A户型',
+ houseArea      VARCHAR(255) COMMENT '区域',	/*区域 */
+ houseAddress   VARCHAR(255) COMMENT '地址',	/*地址 */
+ housePlot      VARCHAR(255) COMMENT '小区', /*小区 */
+ houseSize      VARCHAR(255) COMMENT '房屋面积',   /*面积 */
+ houseTypeId    VARCHAR(255) COMMENT '户型',/*户型 varchar */
+ houseBound     VARCHAR(255) COMMENT '朝向',/*朝向 */
+ houseFloor     VARCHAR(255) COMMENT '楼层',/*楼层 */
+ houseFixType   VARCHAR(255) COMMENT '装修类型：0毛坯、1简装、2精装 ',
+ houseType      VARCHAR(255) COMMENT '户型：0住宅、1公寓、2商铺 ',
+ houseStyleId   VARCHAR(255) COMMENT '特点，使用标签表',
+ housePicAddress VARCHAR(255) COMMENT '照片地址',
+ houseAvmPrice  VARCHAR(255) COMMENT '单价',
+ houseTolPrice  VARCHAR(255) COMMENT '总价',
+ houseSou       VARCHAR(255) COMMENT '房源介绍',/*房源介绍 */
+ housePulId       VARCHAR(255) COMMENT '发布者',/*发布者 */
+ houseState     VARCHAR(255) COMMENT '是否上线：0上线 1下线 ',/*是否上线：上线 下线 */
+ crtTime        TIMESTAMP	  COMMENT '创建时间',
+ updateTime     TIMESTAMP	  COMMENT '更新时间',
+ dataState      CHAR(1)      COMMENT 'data状态'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /* 租房表 */
 create table housecd.renting_house(
- houseId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
- houseName
- areaId
- address
- 面积
- houseTypeId /* 户型*/
- 朝向
- 楼层
- /* 装修:毛坯、简装、精装 */
- /* 类型：住宅、公寓、商铺*/
- /* 类型： 整租、合租、*/
- /* 设施：床、电视、热水器、空调、宽带、洗衣机、冰箱、炉灶*/
- /* 特点：特点1、特点2  使用lable标签表*/
- /* 照片：1 2 3 */
- /* 房租：*元/月、季、半年、年  */
- /* 房源简介*/
- /* 联系电话*/
- /* 发布者*/
- 
+ Id	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ secondHouseId  VARCHAR(255) COMMENT '房屋Id',
+ houseName      VARCHAR(255) COMMENT '二手房名称：一期10栋A户型',
+ houseArea      VARCHAR(255) COMMENT '区域',	/*区域 */
+ houseAddress   VARCHAR(255) COMMENT '地址',	/*地址 */
+ housePlot      VARCHAR(255) COMMENT '小区', /*小区 */
+ houseSize      VARCHAR(255) COMMENT '房屋面积',   /*面积 */
+ houseTypeId    VARCHAR(255) COMMENT '户型',/*户型 varchar */
+ houseBound     VARCHAR(255) COMMENT '朝向',/*朝向 */
+ houseFloor     VARCHAR(255) COMMENT '楼层',/*楼层 */
+ houseFixType   VARCHAR(255) COMMENT '装修类型：0毛坯、1简装、2精装 ',
+ houseType      VARCHAR(255) COMMENT '户型：0整租 1合租',
+ houseStyleId   VARCHAR(255) COMMENT '特点，使用标签表',
+ housePicAddress VARCHAR(255) COMMENT '照片地址',
+ houseMonPrice   VARCHAR(255) COMMENT '房租租金 月',
+ houseYearPrice  VARCHAR(255) COMMENT '房租租金 年',
+ houseSou       VARCHAR(255) COMMENT '房源介绍',/*房源介绍 */
+ houseState     VARCHAR(255) COMMENT '是否已被租：0是 1否',
+ housePulId     VARCHAR(255) COMMENT '发布者',/*发布者 */
+ crtTime        TIMESTAMP	  COMMENT '创建时间',
+ updateTime     TIMESTAMP	  COMMENT '更新时间',
+ dataState      CHAR(1)      COMMENT 'data状态'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
  
