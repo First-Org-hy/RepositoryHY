@@ -329,7 +329,7 @@ create table housecd.second_hand_house(
 create table housecd.renting_house(
  Id	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  secondHouseId  VARCHAR(255) COMMENT '房屋Id',
- houseName      VARCHAR(255) COMMENT '二手房名称：一期10栋A户型',
+ houseName      VARCHAR(255) COMMENT '租房名称：一期10栋A户型',
  houseArea      VARCHAR(255) COMMENT '区域',	/*区域 */
  houseAddress   VARCHAR(255) COMMENT '地址',	/*地址 */
  housePlot      VARCHAR(255) COMMENT '小区', /*小区 */
