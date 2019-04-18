@@ -157,39 +157,32 @@ create table housecd.advertising(
  startTime
  deadLine
  crtTime timestamp,
+ updateTime  TIMESTAMP	   COMMENT '更新时间',
  dataState
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*资讯表 */
 create table housecd.houses_info(
  Id 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
- headline /*标题  */
- programa /*栏目  */
- pictureAddress
- lableId   /*标签  */
- content /*内容  */
- crtTime timestamp,
- dataState
-
+ headline    VARCHAR(255) COMMENT '标题',
+ programId   VARCHAR(255) COMMENT '栏目Id',
+ programName VARCHAR(255) COMMENT '栏目名称',
+ picAddress  VARCHAR(255) COMMENT '标题图片地址',
+ lableId     VARCHAR(255) COMMENT '标签',
+ content     VARCHAR(4000) COMMENT '内容',/*内容  */
+ crtTime     TIMESTAMP     COMMENT '创建时间',
+ updateTime  TIMESTAMP	   COMMENT '更新时间',
+ dataState   CHAR(1)      COMMENT 'data状态'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-/*动态表 */
-create table housecd.houses_state(
- Id 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
- headline
- areaId
- housesId
 
- crtTime timestamp,
- dataState
-
-)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*标签表 一个ID允许多个标签*/
 create table housecd.lable(
  lableId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  lableContext
  crtTime timestamp,
+ updateTime  TIMESTAMP	   COMMENT '更新时间',
  dataState
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
@@ -301,8 +294,7 @@ create table housecd.newHouse(
 
 /* 二手房表 */
 create table housecd.second_hand_house(
- Id	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
- secondHouseId  VARCHAR(255) COMMENT '二手房Id',
+ secondHouseId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  houseName      VARCHAR(255) COMMENT '二手房名称：一期10栋A户型',
  houseArea      VARCHAR(255) COMMENT '区域',	/*区域 */
  houseAddress   VARCHAR(255) COMMENT '地址',	/*地址 */
@@ -318,8 +310,10 @@ create table housecd.second_hand_house(
  houseAvmPrice  VARCHAR(255) COMMENT '单价',
  houseTolPrice  VARCHAR(255) COMMENT '总价',
  houseSou       VARCHAR(255) COMMENT '房源介绍',/*房源介绍 */
- housePulId       VARCHAR(255) COMMENT '发布者',/*发布者 */
+ housePulId     VARCHAR(255) COMMENT '发布者',/*发布者 */
+ relPhone       VARCHAR(255) COMMENT '联系电话',
  houseState     VARCHAR(255) COMMENT '是否上线：0上线 1下线 ',/*是否上线：上线 下线 */
+ sortWay        VARCHAR(255) COMMENT '排序方式：0，默认排序  1，从高到低  2，从低到高',
  crtTime        TIMESTAMP	  COMMENT '创建时间',
  updateTime     TIMESTAMP	  COMMENT '更新时间',
  dataState      CHAR(1)      COMMENT 'data状态'
@@ -327,8 +321,7 @@ create table housecd.second_hand_house(
 
 /* 租房表 */
 create table housecd.renting_house(
- Id	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
- secondHouseId  VARCHAR(255) COMMENT '房屋Id',
+ rentHouseId	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  houseName      VARCHAR(255) COMMENT '租房名称：一期10栋A户型',
  houseArea      VARCHAR(255) COMMENT '区域',	/*区域 */
  houseAddress   VARCHAR(255) COMMENT '地址',	/*地址 */
@@ -338,7 +331,8 @@ create table housecd.renting_house(
  houseBound     VARCHAR(255) COMMENT '朝向',/*朝向 */
  houseFloor     VARCHAR(255) COMMENT '楼层',/*楼层 */
  houseFixType   VARCHAR(255) COMMENT '装修类型：0毛坯、1简装、2精装 ',
- houseType      VARCHAR(255) COMMENT '户型：0整租 1合租',
+ rentType       VARCHAR(255) COMMENT '租房类型：0整租 1合租 ',
+ houseType      VARCHAR(255) COMMENT '类型：0住宅、1公寓、2商铺',
  houseStyleId   VARCHAR(255) COMMENT '特点，使用标签表',
  housePicAddress VARCHAR(255) COMMENT '照片地址',
  houseMonPrice   VARCHAR(255) COMMENT '房租租金 月',
@@ -346,8 +340,34 @@ create table housecd.renting_house(
  houseSou       VARCHAR(255) COMMENT '房源介绍',/*房源介绍 */
  houseState     VARCHAR(255) COMMENT '是否已被租：0是 1否',
  housePulId     VARCHAR(255) COMMENT '发布者',/*发布者 */
+ relPhone       VARCHAR(255) COMMENT '联系电话',
+ sortWay        VARCHAR(255) COMMENT '排序方式：0，默认排序  1，从高到低  2，从低到高',
  crtTime        TIMESTAMP	  COMMENT '创建时间',
  updateTime     TIMESTAMP	  COMMENT '更新时间',
  dataState      CHAR(1)      COMMENT 'data状态'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
- 
+
+
+/*预约看房表*/
+create table order_record(
+orderId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+orderUsId      VARCHAR(255) COMMENT '预约人ID',
+orderName      VARCHAR(255) COMMENT '预约人姓名',
+orderTel       VARCHAR(255) COMMENT '预约人电话',
+orderHouseId   VARCHAR(255) COMMENT '预约楼盘Id',
+orderHouseName VARCHAR(255) COMMENT '预约楼盘名称',
+crtTime        TIMESTAMP	  COMMENT '创建时间',
+updateTime     TIMESTAMP	  COMMENT '更新时间',
+dataState      CHAR(1)      COMMENT 'data状态'
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
+/*楼盘动态表*/
+create table house_dynamic(
+dynamicId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+houseId        VARCHAR(255) COMMENT '楼盘Id',
+userId         VARCHAR(255) COMMENT '发布人Id',
+content        VARCHAR(255) COMMENT '内容',
+crtTime        TIMESTAMP	  COMMENT '创建时间',
+updateTime     TIMESTAMP	  COMMENT '更新时间',
+dataState      CHAR(1)      COMMENT 'data状态'
+);ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;

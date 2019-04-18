@@ -1,8 +1,7 @@
 package com.hy.service;
 
 import com.hy.common.Lable;
-import com.hy.model.HousesDomain;
-import com.hy.model.RentHouseDomain;
+import com.hy.model.*;
 
 import java.util.List;
 
@@ -14,4 +13,24 @@ public interface HouseService {
 //    List<HousesDomain> queryHouses(HousesDomain housesDomain);
 
     Lable addRentHouse(RentHouseDomain house);
+
+    List<RentHouseDomain> queryRentHouse(RentHouseDomain house);
+
+    List<RentHouseDomain> queryRentsByUserId(String userId);
+
+    Lable addSecondHouse(SecondHouseDomain house);
+
+    List<SecondHouseDomain> querySecondHouse(SecondHouseDomain house);
+
+    List<SecondHouseDomain> querySecondsByUserId(String userId);
+
+    Lable addOrderRecord(OrderRecordDomain order);
+
+    Lable addHouseDynamic(HouseDynamicDomain Dynamic);
+
+    List<HouseDynamicDomain> queryDyByHouseId(String houseId);
+
+    Lable addHousesInfo(HousesInfoDomain houseInfo);
+
+    List<HousesInfoDomain> queryHousesInfo();
 }

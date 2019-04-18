@@ -7,14 +7,14 @@ import java.sql.Date;
 import java.util.List;
 
 /**
- * Created by shakaiyue on 22:10 2019/4/12.
- * description:租房实体类
+ * Created by shakaiyue on 22:10 2019/4/17.
+ * description:二手房实体类
  */
-public class RentHouseDomain {
+public class SecondHouseDomain {
 
-    private Integer rentHouseId;     // 租房房屋Id
+    private Integer secondHouseId;   // 二手房房屋Id
 
-    private String houseName;        // 租房名称：一期10栋A户型
+    private String houseName;        // 二手房名称：一期10栋A户型
     private String houseArea;        // 区域
     private String houseAddress;     // 地址
     private String housePlot;        // 小区
@@ -23,14 +23,13 @@ public class RentHouseDomain {
     private String houseBound;       // 朝向
     private String houseFloor;       // 楼层
     private String houseFixType;     // 装修类型：0毛坯 1简装、2精装
-    private String rentType;         // 租房类型：0整租 1合租 2 不限
     private String houseType;        // 类型：0住宅、1公寓、2商铺
     private String houseStyleId;     // 特点，使用标签表
     private String housePicAddress;  // 照片地址
-    private String houseMonPrice;    // 房租租金 月
-    private String houseYearPrice;   // 房租租金 年
+    private String houseAvmPrice;    // 单价
+    private String houseTolPrice;    // 总价
     private String houseSou;         // 房源介绍
-    private String houseState;       // 是否已被租：0是 1否
+    private String houseState;       // 是否上线：0上线 1下线
     private String housePulId;       // 发布者
     private String relPhone;         //联系电话
     private Date crtTime;            // 创建时间
@@ -41,12 +40,12 @@ public class RentHouseDomain {
     private List<HousesDomain> houses; //楼盘信息
     private List<Lable> houseStyles;   //楼盘特点
 
-    public Integer getRentHouseId() {
-        return rentHouseId;
+    public Integer getSecondHouseId() {
+        return secondHouseId;
     }
 
-    public void setRentHouseId(Integer rentHouseId) {
-        this.rentHouseId = rentHouseId;
+    public void setSecondHouseId(Integer secondHouseId) {
+        this.secondHouseId = secondHouseId;
     }
 
     public String getHouseName() {
@@ -121,25 +120,15 @@ public class RentHouseDomain {
         this.housePicAddress = housePicAddress;
     }
 
-    public String getHouseMonPrice() {
-        return houseMonPrice;
-    }
+    public String getHouseAvmPrice() { return houseAvmPrice; }
 
-    public void setHouseMonPrice(String houseMonPrice) {
-        this.houseMonPrice = houseMonPrice;
-    }
+    public void setHouseAvmPrice(String houseAvmPrice) { this.houseAvmPrice = houseAvmPrice; }
 
-    public String getHouseYearPrice() {
-        return houseYearPrice;
-    }
+    public String getHouseTolPrice() { return houseTolPrice; }
 
-    public void setHouseYearPrice(String houseYearPrice) {
-        this.houseYearPrice = houseYearPrice;
-    }
+    public void setHouseTolPrice(String houseTolPrice) { this.houseTolPrice = houseTolPrice; }
 
-    public String getHouseSou() {
-        return houseSou;
-    }
+    public String getHouseSou() { return houseSou; }
 
     public void setHouseSou(String houseSou) {
         this.houseSou = houseSou;
@@ -220,10 +209,6 @@ public class RentHouseDomain {
     public String getSortWay() { return sortWay; }
 
     public void setSortWay(String sortWay) { this.sortWay = sortWay; }
-
-    public String getRentType() { return rentType; }
-
-    public void setRentType(String rentType) { this.rentType = rentType; }
 
     public List<Lable> getHouseStyles() { return houseStyles; }
 
