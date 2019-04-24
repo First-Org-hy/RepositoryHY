@@ -12,6 +12,13 @@ import java.util.List;
  */
 public interface RecommendService {
 
+    /**
+     * 添加推荐人
+     *
+     * @author yaohou
+     * @date 2019/4/24 22:11
+     * @return com.hy.common.Lable
+     */
     Lable addRecommend(RecommendDomain recommend);
 
     List<RecommendDomain> queryRecoInfoByUserId(AppDomain app);
