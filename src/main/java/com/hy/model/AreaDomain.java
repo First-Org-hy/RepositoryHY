@@ -9,7 +9,6 @@ public class AreaDomain {
     private String areaName;
     private String crtTime;
     private String updateTime;
-    private String dataState;
 
     public String getAreaId() {
         return areaId;
@@ -43,11 +42,5 @@ public class AreaDomain {
         this.updateTime = updateTime;
     }
 
-    public String getDataState() {
-        return dataState;
-    }
 
-    public void setDataState(String dataState) {
-        this.dataState = dataState;
-    }
 }

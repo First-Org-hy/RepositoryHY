@@ -8,7 +8,7 @@
   <sql id="BASE_COLUMN">
     id, userBsId, userId, userParentId, guestId, guestName, guestIdCard, guestAddress,
       housesId, houseTypeId, houseNum, price, totalPrice, picAddress, sellState, dealState,
-      brokerage, brokerState, crtTime, updateTime, dataState
+      brokerage, brokerState, crtTime, updateTime
   </sql>
 
   <insert id="addSell" parameterType="com.hy.model.SellDomain">
@@ -66,7 +66,7 @@
       <if test="brokerState != null">
         brokerState,
       </if>
-      crtTime, updateTime,dataState
+      crtTime, updateTime
     </trim>
     <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
       <if test="userBsId != null">
@@ -123,7 +123,7 @@
       <if test="brokerState != null">
         #{brokerState, jdbcType=VARCHAR},
       </if>
-      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1
+      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
     </trim>
   </insert>
 

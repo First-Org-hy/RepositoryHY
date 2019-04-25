@@ -19,7 +19,7 @@ public class BrokerageDomain {
     private String ifRead;
     private String crtTime;
     private String updateTime;
-    private String dataState;
+
 
     public String getId() {
         return id;
@@ -133,11 +133,5 @@ public class BrokerageDomain {
         this.updateTime = updateTime;
     }
 
-    public String getDataState() {
-        return dataState;
-    }
 
-    public void setDataState(String dataState) {
-        this.dataState = dataState;
-    }
 }

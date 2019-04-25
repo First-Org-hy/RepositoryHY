@@ -15,7 +15,7 @@ public class HouseDynamicDomain {
     private String content;         // 内容
     private Date crtTime;           // 创建时间
     private Date updateTime;        // 更新时间
-    private String dataState;       // data状态'
+
 
     public Integer getDynamicId() {
         return dynamicId;
@@ -65,11 +65,5 @@ public class HouseDynamicDomain {
         this.updateTime = updateTime;
     }
 
-    public String getDataState() {
-        return dataState;
-    }
 
-    public void setDataState(String dataState) {
-        this.dataState = dataState;
-    }
 }

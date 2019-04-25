@@ -18,7 +18,6 @@ public class OrderRecordDomain {
     private String orderHouseName;  // 预约楼盘名称
     private Date crtTime;           // 创建时间
     private Date updateTime;        // 更新时间
-    private String dataState;       // data状态'
 
     public Integer getOrderId() {
         return orderId;
@@ -76,13 +75,6 @@ public class OrderRecordDomain {
         this.updateTime = updateTime;
     }
 
-    public String getDataState() {
-        return dataState;
-    }
-
-    public void setDataState(String dataState) {
-        this.dataState = dataState;
-    }
 
     public String getOrderHouseName() {
         return orderHouseName;

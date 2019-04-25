@@ -7,7 +7,7 @@
 
   <sql id="BASE_COLUMN">
     id, housesId, userId, userName, guestName, guestPhone,
-    dealState, crtTime, updateTime, dataState
+    dealState, crtTime, updateTime
   </sql>
 
   <insert id="insert" parameterType="com.hy.model.RecommendDomain">
@@ -35,7 +35,7 @@
       <if test="dealState != null">
         dealState,
       </if>
-      crtTime, updateTime,dataState
+      crtTime, updateTime
     </trim>
     <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
       <if test="housesId != null">
@@ -59,7 +59,7 @@
       <if test="dealState != null">
         #{dealState, jdbcType=VARCHAR},
       </if>
-      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1
+      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
     </trim>
   </insert>
 

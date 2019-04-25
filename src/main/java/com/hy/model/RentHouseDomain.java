@@ -35,7 +35,6 @@ public class RentHouseDomain {
     private String relPhone;         //联系电话
     private Date crtTime;            // 创建时间
     private Date updateTime;         // 更新时间
-    private String dataState;        // data状态'
     private String sortWay;          // 排序方式：0，默认排序  1，从高到低  2，从低到高
 
     private List<HousesDomain> houses; //楼盘信息
@@ -175,14 +174,6 @@ public class RentHouseDomain {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getDataState() {
-        return dataState;
-    }
-
-    public void setDataState(String dataState) {
-        this.dataState = dataState;
     }
 
     public String getHouseBound() {

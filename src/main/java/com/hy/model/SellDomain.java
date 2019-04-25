@@ -29,7 +29,6 @@ public class SellDomain {
     private String brokerState;     //佣金状态
     private Date crtTime; 	        //创建时间
     private Date updateTime;        //更新时间
-    private String dataState;       //data状态
 
     private List<HousesDomain> houses;  //楼盘信息
     private String guestPhone;      //客户电话
@@ -192,14 +191,6 @@ public class SellDomain {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getDataState() {
-        return dataState;
-    }
-
-    public void setDataState(String dataState) {
-        this.dataState = dataState;
     }
 
     public List<HousesDomain> getHouses() {

@@ -6,7 +6,8 @@
   </sql>
 
   <sql id="BASE_COLUMN">
-    id, userId, userName, guestId, guestName, guestPhone, houseId, houseTypeId, houseNum, brokerage, brokerState, ifRead, crtTime, updateTime, dataState
+    id, userId, userName, guestId, guestName, guestPhone, houseId, houseTypeId, houseNum,
+    brokerage, brokerState, ifRead, crtTime, updateTime
   </sql>
 
   <insert id="insert" parameterType="com.hy.model.BrokerageDomain">
@@ -17,14 +18,14 @@
         userId,
       </if>
 
-      crtTime, updateTime,dataState
+      crtTime, updateTime
     </trim>
     <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         #{userId, jdbcType=VARCHAR},
       </if>
 
-      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1
+      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
     </trim>
   </insert>
 

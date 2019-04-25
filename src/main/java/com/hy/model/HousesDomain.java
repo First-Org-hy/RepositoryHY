@@ -50,7 +50,7 @@ public class HousesDomain {
     private String recommend;
     private String crtTime;
     private String updateTime;
-    private String dataState;
+
 
     public String getHousesId() {
         return housesId;
@@ -340,11 +340,5 @@ public class HousesDomain {
         this.updateTime = updateTime;
     }
 
-    public String getDataState() {
-        return dataState;
-    }
 
-    public void setDataState(String dataState) {
-        this.dataState = dataState;
-    }
 }

@@ -15,7 +15,7 @@ public class BankInfoDomain {
     private String bankDeposit;
     private String crtTime;
     private String updateTime;
-    private String dataState;
+
 
     public String getCardId() {
         return cardId;
@@ -89,11 +89,5 @@ public class BankInfoDomain {
         this.updateTime = updateTime;
     }
 
-    public String getDataState() {
-        return dataState;
-    }
 
-    public void setDataState(String dataState) {
-        this.dataState = dataState;
-    }
 }

@@ -7,7 +7,7 @@
 
   <sql id="BASE_COLUMN">
     userId, appName, appId, appSecret, userName, userIdCard, userPhone, userType,
-      companyName, parentId, userState, crtTime, updateTime,dataState
+      companyName, parentId, userState, crtTime, updateTime
   </sql>
 
   <insert id="insert" parameterType="com.hy.model.AppDomain">
@@ -39,7 +39,7 @@
       <if test="userState != null">
         userState,
       </if>
-      crtTime, updateTime,dataState
+      crtTime, updateTime
     </trim>
     <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
       <if test="appName != null">
@@ -67,7 +67,7 @@
       <if test="userState != null">
         #{userState, jdbcType=VARCHAR},
       </if>
-      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,1
+      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
     </trim>
   </insert>
 

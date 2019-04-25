@@ -12,7 +12,6 @@ public class HousesUserDomain {
     private String userId;          //驻点商务ID
     private String housesId;        //楼盘ID
     private String updateId;        //更新人id
-    private String dataState;       //data状态
     private Date crtTime;
     private Date updateTime;
     private List<HousesDomain> houses; //楼盘信息
@@ -39,14 +38,6 @@ public class HousesUserDomain {
 
     public void setUpdateId(String updateId) {
         this.updateId = updateId;
-    }
-
-    public String getDataState() {
-        return dataState;
-    }
-
-    public void setDataState(String dataState) {
-        this.dataState = dataState;
     }
 
     public Date getCrtTime() {
