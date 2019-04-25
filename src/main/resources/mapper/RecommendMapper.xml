@@ -91,7 +91,8 @@
   </select>
 
   <select id="isRecommendOfCom" parameterType="String" >
-    SELECT COUNT(*) FROM app_info A WHERE A.userId = #{userId} AND A.parentId = #{userParId} AND A.dataState = '1' AND A.userType = '5'
+    SELECT COUNT(*) FROM app_info A WHERE A.userId = #{userId} AND A.parentId = #{userParId}
+    AND A.userType = '5'
   </select>
 
   <select id="queryCompanyInfo" parameterType="String" resultType="com.hy.model.AppDomain" >
