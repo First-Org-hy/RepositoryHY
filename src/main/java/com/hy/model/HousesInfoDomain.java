@@ -1,7 +1,6 @@
 package com.hy.model;
 
 import java.sql.Date;
-import java.util.List;
 
 /**
  * Created by shakaiyue on 22:10 2019/4/17.

@@ -1,6 +1,7 @@
 package com.hy.service.impl;
 
 import com.hy.common.Lable;
+import com.hy.dao.HousesDao;
 import com.hy.dao.SellDao;
 import com.hy.model.HousesDomain;
 import com.hy.model.HousesUserDomain;
@@ -21,6 +22,9 @@ public class SellServiceImpl implements SellService {
 
     @Autowired
     private SellDao selldao;
+
+    @Autowired
+    private HousesDao housesDao;
 
     /**
      * 增加销售记录
@@ -103,7 +107,9 @@ public class SellServiceImpl implements SellService {
         List<SellDomain> sells = selldao.queryBySeller(userId);
         for(SellDomain sell : sells){
             String houseId = sell.getHousesId();
-            List<HousesDomain> houses = selldao.queryHouseById(houseId);
+            HousesDomain house = new HousesDomain();
+            house.setHousesId(houseId);
+            List<HousesDomain> houses = housesDao.selectHouses(house);
             sell.setHouses(houses);
         }
         return sells;
@@ -114,7 +120,10 @@ public class SellServiceImpl implements SellService {
        List<HousesUserDomain>  houseUsers = selldao.queryBySellId(userId);
        for(HousesUserDomain house : houseUsers) {
            String houseId = house.getHousesId();
-           List<HousesDomain> housesInfo = selldao.queryHouseById(houseId);
+           HousesDomain houses = new HousesDomain();
+           houses.setHousesId(houseId);
+           houses.setAreaId("ss");
+           List<HousesDomain> housesInfo = housesDao.selectHouses(houses);
            house.setHouses(housesInfo);
        }
        return houseUsers;

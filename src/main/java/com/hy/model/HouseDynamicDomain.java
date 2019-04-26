@@ -1,6 +1,6 @@
 package com.hy.model;
 
-import java.sql.Date;
+
 
 /**
  * Created by shakaiyue on 22:10 2019/4/17.
@@ -13,8 +13,8 @@ public class HouseDynamicDomain {
     private String houseId;         // 楼盘ID
     private String userId;          // 发布人Id
     private String content;         // 内容
-    private Date crtTime;           // 创建时间
-    private Date updateTime;        // 更新时间
+    private String crtTime;           // 创建时间
+    private String updateTime;        // 更新时间
 
 
     public Integer getDynamicId() {
@@ -49,19 +49,19 @@ public class HouseDynamicDomain {
         this.content = content;
     }
 
-    public Date getCrtTime() {
+    public String getCrtTime() {
         return crtTime;
     }
 
-    public void setCrtTime(Date crtTime) {
+    public void setCrtTime(String crtTime) {
         this.crtTime = crtTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

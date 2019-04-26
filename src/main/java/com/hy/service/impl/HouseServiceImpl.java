@@ -74,6 +74,9 @@ public class HouseServiceImpl implements HouseService {
         if(i == 1){
             lable.setId("1");
             lable.setMessage("二手房信息发布成功");
+        }else{
+            lable.setId("0");
+            lable.setMessage("二手房信息发布失败");
         }
         return lable;
     }
@@ -140,6 +143,11 @@ public class HouseServiceImpl implements HouseService {
         return lable;
     }
 
+    /**
+     * 新增楼盘资讯信息
+     * @param houseInfo
+     * @return
+     */
     @Override
     public Lable addHousesInfo(HousesInfoDomain houseInfo) {
         Lable lable = new Lable();
@@ -151,6 +159,10 @@ public class HouseServiceImpl implements HouseService {
         return lable;
     }
 
+    /**
+     * 房产资讯查询
+     * @return
+     */
     @Override
     public List<HousesInfoDomain> queryHousesInfo() {
         return houseDao.queryHousesInfo();
