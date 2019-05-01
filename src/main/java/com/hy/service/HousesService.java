@@ -5,12 +5,16 @@ import com.hy.model.HousesDomain;
 
 import java.util.List;
 
-/**
- * Created by yaohou on 18:11 2019/4/7.
- * description:
- */
+/** Created by yaohou on 18:11 2019/4/7. description: */
 public interface HousesService {
-    List<HousesDomain> queryHouses(HousesDomain housesDomain);
+  /**
+   * 查询楼盘信息
+   *
+   * @author yaohou
+   * @date 2019/5/1 17:31
+   * @return java.util.List<com.hy.model.HousesDomain>
+   */
+  List<HousesDomain> queryHouses(HousesDomain housesDomain);
 
-    Lable addHouses(HousesDomain housesDomain);
+  Lable addHouses(HousesDomain housesDomain);
 }

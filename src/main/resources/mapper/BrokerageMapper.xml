@@ -1,45 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hy.dao.BrokerageDao" >
-  <sql id="BASE_TABLE">
+<mapper namespace="com.hy.dao.BrokerageDao">
+    <sql id="BASE_TABLE">
     brokerage
   </sql>
 
-  <sql id="BASE_COLUMN">
+    <sql id="BASE_COLUMN">
     id, userId, userName, guestId, guestName, guestPhone, houseId, houseTypeId, houseNum,
     brokerage, brokerState, ifRead, crtTime, updateTime
   </sql>
 
-  <insert id="insert" parameterType="com.hy.model.BrokerageDomain">
-    INSERT INTO
-      <include refid="BASE_TABLE"/>
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        userId,
-      </if>
-
-      crtTime, updateTime
-    </trim>
-    <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId, jdbcType=VARCHAR},
-      </if>
-
-      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
-    </trim>
-  </insert>
-
-  <select id="selectBrokerages" parameterType="com.hy.model.BrokerageDomain" resultType="com.hy.model.BrokerageDomain">
-      SELECT
-        <include refid="BASE_COLUMN"/>
-      FROM
+    <insert id="insert" parameterType="com.hy.model.BrokerageDomain">
+        INSERT INTO
         <include refid="BASE_TABLE"/>
-      WHERE 1=1
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                userId,
+            </if>
+
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId, jdbcType=VARCHAR},
+            </if>
+
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+
+    <select id="selectBrokerages" parameterType="com.hy.model.BrokerageDomain"
+            resultType="com.hy.model.BrokerageDomain">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE 1=1
         <if test="userId != null">
-      AND userId = #{userId, jdbcType=VARCHAR}
+            AND userId = #{userId, jdbcType=VARCHAR}
         </if>
-      ORDER BY UPDATETIME DESC
-  </select>
+        <if test="brokerState != null">
+            and brokerState = #{brokerState,jdbcType=CHAR}
+        </if>
+        <if test="ifRead != null">
+            and ifRead = #{ifRead,jdbcType=CHAR}
+        </if>
+        ORDER BY UPDATETIME DESC
+    </select>
 
-
+    <update id="updateBrokeragesRead" parameterType="com.hy.model.BrokerageDomain">
+        update
+        <include refid="BASE_TABLE"/>
+        set ifRead = 2
+        where id = #{id}
+    </update>
 </mapper>

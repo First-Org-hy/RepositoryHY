@@ -32,9 +32,6 @@ public class BankInfoController {
   @ResponseBody
   @GetMapping(value = "query")
   public List<BankInfoDomain> queryBankInfo(BankInfoDomain bankInfoDomain) {
-
-    List<BankInfoDomain> bankInfoDomains = bankInfoService.selectBankInfo(bankInfoDomain);
-
-    return bankInfoDomains;
+    return bankInfoService.selectBankInfo(bankInfoDomain);
   }
 }

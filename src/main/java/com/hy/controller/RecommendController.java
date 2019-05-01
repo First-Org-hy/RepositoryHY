@@ -29,6 +29,12 @@ public class RecommendController {
   }
 
   @ResponseBody
+  @GetMapping(value = "query")
+  public List<RecommendDomain> queryAllRecommend(AppDomain app) {
+    return recommendService.queryAllRecommend(app);
+  }
+
+  @ResponseBody
   @GetMapping(value = "queryByUserParId")
   public List<RecommendDomain> queryRecommendInfoByUserParId(AppDomain app) {
     return recommendService.queryRecoInfoByUserParId(app);

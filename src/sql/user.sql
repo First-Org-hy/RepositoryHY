@@ -26,10 +26,10 @@ DROP TABLE IF EXISTS housecd.house_dynamic;
 
 
 CREATE TABLE housecd.t_user(
-  userId INT NOT NULL PRIMARY KEY auto_increment COMMENT '用户id',
+  userId INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '用户id',
   userName VARCHAR(255) NOT NULL COMMENT '姓名',
   PASSWORD VARCHAR(255) NOT NULL COMMENT '密码',
-  phone VARCHAR(255) NOT null COMMENT '电话'
+  phone VARCHAR(255) NOT NULL COMMENT '电话'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 
@@ -55,7 +55,7 @@ CREATE TABLE housecd.app_info(
 
 
 /*银行卡信息表 */
-create table housecd.bank_info(
+CREATE TABLE housecd.bank_info(
   cardId	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
   userId	  VARCHAR(255) COMMENT '用户id',
   cardName	  VARCHAR(255) COMMENT '开卡姓名',
@@ -68,7 +68,7 @@ create table housecd.bank_info(
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*推荐表*/
-create table housecd.recommend(
+CREATE TABLE housecd.recommend(
   id 		 INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
   housesId   VARCHAR(255) COMMENT '楼盘id， 针对楼盘推荐用户',
   userId     VARCHAR(255) COMMENT '经纪人id',
@@ -83,7 +83,7 @@ create table housecd.recommend(
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 /*佣金表*/
-create table housecd.brokerage(
+CREATE TABLE housecd.brokerage(
   id 	 	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   userId      VARCHAR(255) COMMENT '经纪人id',
   userName    VARCHAR(255) COMMENT '用户名',
@@ -102,7 +102,7 @@ create table housecd.brokerage(
 )ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 /*佣金参数表：（针对楼盘设置参数）*/
-create table housecd.brokerage_param(
+CREATE TABLE housecd.brokerage_param(
   id 		   INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   housesId     VARCHAR(255) COMMENT '楼盘id',
   userParentId VARCHAR(255) COMMENT '经纪公司id',
@@ -110,12 +110,12 @@ create table housecd.brokerage_param(
   address	   VARCHAR(255) COMMENT '所属区域',
   brokerage	   DECIMAL 		COMMENT '佣金',
   brokerType   CHAR(1) 	    COMMENT '佣金类型：1.固定，2.比例',
-  crtTime 	   timestamp 	COMMENT '创建时间',
+  crtTime 	   TIMESTAMP 	COMMENT '创建时间',
   updateTime   TIMESTAMP	COMMENT '更新时间'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 /*销售表*/
-create table housecd.sell(
+CREATE TABLE housecd.sell(
   id 		   INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   userBsId 	   VARCHAR(255) COMMENT '楼盘商务id',
   userId  	   VARCHAR(255) COMMENT '经纪人id'	,
@@ -139,7 +139,7 @@ create table housecd.sell(
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 /*客户表*/
-create table housecd.guest(
+CREATE TABLE housecd.guest(
   guestId      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   guestName    VARCHAR(255) COMMENT '客户姓名',
   guestIdCard  VARCHAR(50)  COMMENT '客户身份证号',
@@ -154,7 +154,7 @@ create table housecd.guest(
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 /*区域表 */
-create table housecd.area(
+CREATE TABLE housecd.area(
   areaId	 INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   areaName	 VARCHAR(255) COMMENT '区域名称',
   crtTime    TIMESTAMP    COMMENT '创建时间',
@@ -162,19 +162,19 @@ create table housecd.area(
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*广告表 */
-create table housecd.advertising(
+CREATE TABLE housecd.advertising(
  adId 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  adName      VARCHAR(255) COMMENT '广告名称',
  adAddress   VARCHAR(255) COMMENT '广告位置',/*广告位置  */
  adPicture   VARCHAR(255) COMMENT '广告图片',
  startTime   VARCHAR(255) COMMENT '开始时间',
  deadLine    VARCHAR(255) COMMENT '标题名称',
- crtTime     timestamp    COMMENT '创建时间',
+ crtTime     TIMESTAMP    COMMENT '创建时间',
  updateTime  TIMESTAMP	  COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*资讯表 */
-create table housecd.houses_info(
+CREATE TABLE housecd.houses_info(
  Id 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  headline    VARCHAR(255) COMMENT '标题',
  programId   VARCHAR(255) COMMENT '栏目Id',
@@ -189,7 +189,7 @@ create table housecd.houses_info(
 
 
 /*标签表 一个ID允许多个标签*/
-create table housecd.lable(
+CREATE TABLE housecd.lable(
  lableId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  lableContext    VARCHAR(4000) COMMENT '标签内容',
  crtTime         TIMESTAMP     COMMENT '创建时间',
@@ -197,7 +197,7 @@ create table housecd.lable(
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /* 楼盘表 */
-create table housecd.houses(
+CREATE TABLE housecd.houses(
  housesId	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  housesName	  VARCHAR(255) COMMENT '楼盘Name',	
  housesSpclty VARCHAR(255) COMMENT '特点，使用标签表',
@@ -232,7 +232,7 @@ create table housecd.houses(
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*楼盘商务关系表*/
-create table houses_user(
+CREATE TABLE houses_user(
 housesId     VARCHAR(255)  COMMENT '楼盘ID',
 userId       VARCHAR(255)  COMMENT '驻点商务ID',
 crtTime      TIMESTAMP     COMMENT '创建时间',
@@ -242,7 +242,7 @@ updateId  	 VARCHAR(255)  COMMENT '更新人id'
 
 
 /*楼盘特点 一个ID允许多个标签*/
-create table housecd.houses_spclty(
+CREATE TABLE housecd.houses_spclty(
  lableId	  VARCHAR(255) COMMENT '楼盘特点id',
  lableContext VARCHAR(255) COMMENT '楼盘特点内容',
  crtTime      TIMESTAMP    COMMENT '创建时间',
@@ -250,7 +250,7 @@ create table housecd.houses_spclty(
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*楼盘图片地址表 一个ID允许多个标签*/
-create table housecd.houses_picture(
+CREATE TABLE housecd.houses_picture(
  lableId	  VARCHAR(255) COMMENT '图片地址id',
  lableContext VARCHAR(255) COMMENT '图片地址',
  crtTime      TIMESTAMP    COMMENT '创建时间',
@@ -258,7 +258,7 @@ create table housecd.houses_picture(
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*楼盘配套设施表 一个ID允许多个标签*/
-create table housecd.houses_facilities(
+CREATE TABLE housecd.houses_facilities(
  lableId	  VARCHAR(255) COMMENT '配套设置id',
  lableContext VARCHAR(255) COMMENT '图片地址',
  crtTime      TIMESTAMP    COMMENT '创建时间',
@@ -268,7 +268,7 @@ create table housecd.houses_facilities(
 
 
  /*户型表 */
- create table housecd.house_type(
+ CREATE TABLE housecd.house_type(
  houseTypeId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  houseTypeName   VARCHAR(255) COMMENT '户型类型名称',
  houseTypeSpci   VARCHAR(255) COMMENT '户型类型特点', /*特点，使用标签表 */
@@ -284,7 +284,7 @@ create table housecd.houses_facilities(
  )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*新房表 */
-create table housecd.newHouse(
+CREATE TABLE housecd.newHouse(
  Id	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  houseArea	  VARCHAR(255) COMMENT '区域',
  housesId     VARCHAR(255) COMMENT '楼盘ID',
@@ -295,7 +295,7 @@ create table housecd.newHouse(
 ) ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /* 二手房表 */
-create table housecd.second_hand_house(
+CREATE TABLE housecd.second_hand_house(
  secondHouseId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  houseName      VARCHAR(255) COMMENT '二手房名称：一期10栋A户型',
  houseArea      VARCHAR(255) COMMENT '区域',	/*区域 */
@@ -321,7 +321,7 @@ create table housecd.second_hand_house(
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /* 租房表 */
-create table housecd.renting_house(
+CREATE TABLE housecd.renting_house(
  rentHouseId	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  houseName      VARCHAR(255) COMMENT '租房名称：一期10栋A户型',
  houseArea      VARCHAR(255) COMMENT '区域',	/*区域 */
@@ -349,7 +349,7 @@ create table housecd.renting_house(
 
 
 /*预约看房表*/
-create table order_record(
+CREATE TABLE order_record(
 orderId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 orderUsId      VARCHAR(255) COMMENT '预约人ID',
 orderName      VARCHAR(255) COMMENT '预约人姓名',
@@ -361,11 +361,11 @@ updateTime     TIMESTAMP	  COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*楼盘动态表*/
-create table house_dynamic(
+CREATE TABLE house_dynamic(
 dynamicId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 houseId        VARCHAR(255) COMMENT '楼盘Id',
 userId         VARCHAR(255) COMMENT '发布人Id',
 content        VARCHAR(255) COMMENT '内容',
 crtTime        TIMESTAMP	  COMMENT '创建时间',
 updateTime     TIMESTAMP	  COMMENT '更新时间'
-);ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;

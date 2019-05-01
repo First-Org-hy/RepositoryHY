@@ -17,13 +17,15 @@ public class BankInfoServiceImpl implements BankInfoService {
 
   @Override
   public Lable add(BankInfoDomain bankInfoDomain) {
-    Lable lable = new Lable();
-    if (bankInfoDao.insert(bankInfoDomain) == 1) {
-      lable.setId("1");
-      lable.setMessage("成功");
+    Lable lable = null;
+    if (bankInfoDao.selectBankInfos(bankInfoDomain).size() != 0) {
+      new Lable("2", "已存在");
     } else {
-      lable.setId("2");
-      lable.setMessage("失败");
+      if (bankInfoDao.insert(bankInfoDomain) == 1) {
+        new Lable("1", "新增成功");
+      } else {
+        new Lable("0", "新增失败");
+      }
     }
     return lable;
   }
