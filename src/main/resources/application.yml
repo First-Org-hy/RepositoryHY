@@ -6,7 +6,6 @@ server:
     key-store-type: JKS
     key-alias: tomcat
     key-store-password: housecd
-
 spring:
     http:
         encoding:
@@ -42,11 +41,22 @@ spring:
           #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
           pool-prepared-statements: false
           max-pool-prepared-statement-per-connection-size: 20
-
+    mvc:
+      view:
+        prefix: /WEB-INF/jsp/
+        suffix: .jsp
+    servlet:
+      multipart:
+        max-file-size: 30MB
+        max-request-size: 30MB
+        enabled: true
+#    thymeleaf:
+#      mode: HTML5
+#      encoding: UTF-8
+#      cache: false
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.hy.model
-
 #pagehelper
 pagehelper:
     helperDialect: mysql
@@ -54,6 +64,3 @@ pagehelper:
     supportMethodsArguments: true
     params: count=countSql
     returnPageInfo: check
-
-
-
