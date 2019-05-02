@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS housecd.brokerage_param;
 DROP TABLE IF EXISTS housecd.sell;
 DROP TABLE IF EXISTS housecd.guest;
 DROP TABLE IF EXISTS housecd.area;
-DROP TABLE IF EXISTS housecd.advertising;
+DROP TABLE IF EXISTS housecd.ad;
 DROP TABLE IF EXISTS housecd.houses_info;
 DROP TABLE IF EXISTS housecd.lable;
 DROP TABLE IF EXISTS housecd.houses;
@@ -163,13 +163,13 @@ CREATE TABLE housecd.area(
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*广告表 */
-CREATE TABLE housecd.advertising(
+CREATE TABLE housecd.ad(
  adId 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  adName      VARCHAR(255) COMMENT '广告名称',
  adAddress   VARCHAR(255) COMMENT '广告位置',/*广告位置  */
  adPicture   VARCHAR(255) COMMENT '广告图片',
  startTime   VARCHAR(255) COMMENT '开始时间',
- deadLine    VARCHAR(255) COMMENT '标题名称',
+ deadLine    VARCHAR(255) COMMENT '下线时间',
  crtTime     TIMESTAMP    COMMENT '创建时间',
  updateTime  TIMESTAMP	  COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;

@@ -1,0 +1,90 @@
+package com.hy.model;
+
+import com.hy.common.Lable;
+
+import java.util.List;
+
+/** Created by yaohou on 18:56 2019/5/2. description: 广告实体类 */
+public class AdDomain {
+  private String adId;
+  private String adName; // 广告名称
+  private String adAddress; // 广告位置
+  private String adLables; // 图片地址串  地址，地址，后天切割
+  private List<Lable> adPicture; // 广告图片
+  private String startTime; // 开始时间
+  private String deadLine; // 标题名称
+  private String crtTime; // 创建时间
+  private String updateTime; // 更新时间
+
+  public String getAdLables() {
+    return adLables;
+  }
+
+  public void setAdLables(String adLables) {
+    this.adLables = adLables;
+  }
+
+  public List<Lable> getAdPicture() {
+    return adPicture;
+  }
+
+  public void setAdPicture(List<Lable> adPicture) {
+    this.adPicture = adPicture;
+  }
+
+  public String getAdId() {
+    return adId;
+  }
+
+  public void setAdId(String adId) {
+    this.adId = adId;
+  }
+
+  public String getAdName() {
+    return adName;
+  }
+
+  public void setAdName(String adName) {
+    this.adName = adName;
+  }
+
+  public String getAdAddress() {
+    return adAddress;
+  }
+
+  public void setAdAddress(String adAddress) {
+    this.adAddress = adAddress;
+  }
+
+  public String getStartTime() {
+    return startTime;
+  }
+
+  public void setStartTime(String startTime) {
+    this.startTime = startTime;
+  }
+
+  public String getDeadLine() {
+    return deadLine;
+  }
+
+  public void setDeadLine(String deadLine) {
+    this.deadLine = deadLine;
+  }
+
+  public String getCrtTime() {
+    return crtTime;
+  }
+
+  public void setCrtTime(String crtTime) {
+    this.crtTime = crtTime;
+  }
+
+  public String getUpdateTime() {
+    return updateTime;
+  }
+
+  public void setUpdateTime(String updateTime) {
+    this.updateTime = updateTime;
+  }
+}

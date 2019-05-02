@@ -2,14 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hy.dao.AppDao">
     <sql id="BASE_TABLE">
-    app_info
+      app_info
   </sql>
-
     <sql id="BASE_COLUMN">
     userId, appName, appId, appSecret, userName, userIdCard, userPhone, userType,
       companyName, parentId, userState, crtTime, updateTime
-  </sql>
-
+    </sql>
     <insert id="insert" parameterType="com.hy.model.AppDomain">
         INSERT INTO
         <include refid="BASE_TABLE"/>
@@ -70,13 +68,6 @@
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
     </insert>
-
-    <select id="selectApps" resultType="com.hy.model.AppDomain">
-        SELECT
-        <include refid="BASE_COLUMN"/>
-        FROM
-        <include refid="BASE_TABLE"/>
-    </select>
     <select id="querySell" parameterType="com.hy.model.AppDomain" resultType="com.hy.model.AppDomain">
         SELECT
         <include refid="BASE_COLUMN"/>
@@ -88,7 +79,6 @@
         </if>
         ORDER BY updateTime DESC
     </select>
-
     <update id="delBrokerByUserId" parameterType="com.hy.model.AppDomain">
         UPDATE
         <include refid="BASE_TABLE"/>
@@ -96,5 +86,41 @@
         updateTime = CURRENT_TIMESTAMP
         WHERE userId = #{userId}
     </update>
-
+    <update id="update" parameterType="com.hy.model.AppDomain">
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        <if test="userName != null">
+            AND userName = #{userName, jdbcType=VARCHAR}
+        </if>
+        <if test="userPhone != null">
+            AND userPhone = #{userPhone, jdbcType=VARCHAR}
+        </if>
+        SET userType = #{userType}, updateTime = CURRENT_TIMESTAMP
+        WHERE userId = #{userId}
+    </update>
+    <select id="query" parameterType="com.hy.model.AppDomain" resultType="com.hy.model.AppDomain">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+        where 1=1
+        <if test="userPhone != null">
+            AND userPhone = #{userPhone, jdbcType=VARCHAR}
+        </if>
+        <if test="userPhone != null">
+            AND userName = #{userPhone, jdbcType=VARCHAR}
+        </if>
+        <if test="userPhone != null">
+            AND appId = #{userPhone, jdbcType=VARCHAR}
+        </if>
+        <if test="userPhone != null">
+            AND userType = #{userPhone, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime DESC
+    </select>
+    <delete id="del" parameterType="com.hy.model.AppDomain">
+        delete from
+        <include refid="BASE_TABLE"/>
+        where userId = #{userId}
+    </delete>
 </mapper>

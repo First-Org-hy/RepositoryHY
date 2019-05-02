@@ -8,8 +8,6 @@ import java.util.List;
 public interface AppDao {
   int insert(AppDomain appDomain);
 
-  List<AppDomain> selectApps();
-
   int delBrokerByUserId(AppDomain app);
 
   /**
@@ -20,4 +18,11 @@ public interface AppDao {
    * @return java.util.List<com.hy.model.AppDomain>
    */
   List<AppDomain> querySell(AppDomain app);
+
+  // 用户管理-六种类型的用户查询，无需条件
+  List<AppDomain> query(AppDomain appDomain);
+  // 用户管理-修改用户类型：userId，userType
+  int update(AppDomain appDomain);
+  // 删除用户: userId
+  int del(AppDomain appDomain);
 }

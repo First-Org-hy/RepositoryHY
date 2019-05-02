@@ -1,5 +1,6 @@
 package com.hy.service;
 
+import com.hy.common.Lable;
 import com.hy.model.AppDomain;
 
 import java.util.List;
@@ -18,4 +19,10 @@ public interface AppService {
    * @return java.util.List<com.hy.model.AppDomain>
    */
   List<AppDomain> querySell(AppDomain app);
+  // 用户管理-六种类型的用户查询，无需条件
+  List<AppDomain> query(AppDomain appDomain);
+  // 用户管理-修改用户类型：userId，userType
+  Lable update(AppDomain appDomain);
+  // 删除用户: userId
+  Lable del(AppDomain appDomain);
 }
