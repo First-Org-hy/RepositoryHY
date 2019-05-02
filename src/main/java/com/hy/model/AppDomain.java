@@ -1,146 +1,153 @@
 package com.hy.model;
 
 import java.sql.Date;
+import java.util.List;
 
-/**
- * Created by yaohou on 22:10 2019/3/21.
- * description:用户实体类
- */
+/** Created by yaohou on 22:10 2019/3/21. description:用户实体类 */
 public class AppDomain {
-    private Integer userId;
-    private String appName;
-    private String appId;
-    private String appSecret;
-    private String userName;
-    private String userIdCard;
-    private String userPhone;
-    private String userType;
-    private String housesId;
-    private String houseTypeId;
-    private String companyName;
-    private String parentId;
-    private String userState;
-    private Date crtTime;
-    private Date updateTime;
+  private String userId;
+  private String appName;
+  private String appId;
+  private String appSecret;
+  private String userName;
+  private String userIdCard;
+  private String userPhone;
+  private String userType;
+  private String housesId;
+  private String houseTypeId;
+  private String companyName;
+  private String parentId;
+  private String userState;
+  private Date crtTime;
+  private Date updateTime;
 
+  private List<SellDomain> sellList; // 销售信息
 
-    public Integer getUserId() {
-        return userId;
-    }
+  public List<SellDomain> getSellList() {
+    return sellList;
+  }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+  public void setSellList(List<SellDomain> sellList) {
+    this.sellList = sellList;
+  }
 
-    public String getAppName() {
-        return appName;
-    }
+  public String getUserId() {
+    return userId;
+  }
 
-    public void setAppName(String appName) {
-        this.appName = appName;
-    }
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
 
-    public String getAppId() {
-        return appId;
-    }
+  public String getAppName() {
+    return appName;
+  }
 
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
+  public void setAppName(String appName) {
+    this.appName = appName;
+  }
 
-    public String getAppSecret() {
-        return appSecret;
-    }
+  public String getAppId() {
+    return appId;
+  }
 
-    public void setAppSecret(String appSecret) {
-        this.appSecret = appSecret;
-    }
+  public void setAppId(String appId) {
+    this.appId = appId;
+  }
 
-    public String getUserName() {
-        return userName;
-    }
+  public String getAppSecret() {
+    return appSecret;
+  }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+  public void setAppSecret(String appSecret) {
+    this.appSecret = appSecret;
+  }
 
-    public String getUserIdCard() {
-        return userIdCard;
-    }
+  public String getUserName() {
+    return userName;
+  }
 
-    public void setUserIdCard(String userIdCard) {
-        this.userIdCard = userIdCard;
-    }
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
 
-    public String getUserPhone() {
-        return userPhone;
-    }
+  public String getUserIdCard() {
+    return userIdCard;
+  }
 
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
+  public void setUserIdCard(String userIdCard) {
+    this.userIdCard = userIdCard;
+  }
 
-    public String getUserType() {
-        return userType;
-    }
+  public String getUserPhone() {
+    return userPhone;
+  }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
+  public void setUserPhone(String userPhone) {
+    this.userPhone = userPhone;
+  }
 
-    public String getHousesId() {
-        return housesId;
-    }
+  public String getUserType() {
+    return userType;
+  }
 
-    public void setHousesId(String housesId) {
-        this.housesId = housesId;
-    }
+  public void setUserType(String userType) {
+    this.userType = userType;
+  }
 
-    public String getHouseTypeId() {
-        return houseTypeId;
-    }
+  public String getHousesId() {
+    return housesId;
+  }
 
-    public void setHouseTypeId(String houseTypeId) {
-        this.houseTypeId = houseTypeId;
-    }
+  public void setHousesId(String housesId) {
+    this.housesId = housesId;
+  }
 
-    public String getCompanyName() {
-        return companyName;
-    }
+  public String getHouseTypeId() {
+    return houseTypeId;
+  }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+  public void setHouseTypeId(String houseTypeId) {
+    this.houseTypeId = houseTypeId;
+  }
 
-    public String getParentId() {
-        return parentId;
-    }
+  public String getCompanyName() {
+    return companyName;
+  }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
+  public void setCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
 
-    public String getUserState() {
-        return userState;
-    }
+  public String getParentId() {
+    return parentId;
+  }
 
-    public void setUserState(String userState) {
-        this.userState = userState;
-    }
+  public void setParentId(String parentId) {
+    this.parentId = parentId;
+  }
 
-    public Date getCrtTime() {
-        return crtTime;
-    }
+  public String getUserState() {
+    return userState;
+  }
 
-    public void setCrtTime(Date crtTime) {
-        this.crtTime = crtTime;
-    }
+  public void setUserState(String userState) {
+    this.userState = userState;
+  }
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+  public Date getCrtTime() {
+    return crtTime;
+  }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+  public void setCrtTime(Date crtTime) {
+    this.crtTime = crtTime;
+  }
+
+  public Date getUpdateTime() {
+    return updateTime;
+  }
+
+  public void setUpdateTime(Date updateTime) {
+    this.updateTime = updateTime;
+  }
 }

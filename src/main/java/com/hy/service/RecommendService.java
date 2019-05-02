@@ -35,5 +35,5 @@ public interface RecommendService {
    * @date 2019/5/1 16:10
    * @return java.util.List<com.hy.model.RecommendDomain>
    */
-  List<RecommendDomain> queryAllRecommend(AppDomain app);
+  List<RecommendDomain> query(RecommendDomain recommendDomain);
 }

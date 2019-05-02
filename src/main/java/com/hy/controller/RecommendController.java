@@ -28,10 +28,11 @@ public class RecommendController {
     return recommendService.queryRecoInfoByUserId(app);
   }
 
+  // 楼盘商务,使用楼盘id housesId, 查询该楼盘推荐信息
   @ResponseBody
   @GetMapping(value = "query")
-  public List<RecommendDomain> queryAllRecommend(AppDomain app) {
-    return recommendService.queryAllRecommend(app);
+  public List<RecommendDomain> query(RecommendDomain recommendDomain) {
+    return recommendService.query(recommendDomain);
   }
 
   @ResponseBody

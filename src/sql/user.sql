@@ -122,6 +122,7 @@ CREATE TABLE housecd.sell(
   userParentId VARCHAR(255) COMMENT '经纪公司id' ,
   guestId 	   VARCHAR(255) COMMENT '客户id',
   guestName    VARCHAR(255) COMMENT '客户姓名',
+  guestPhone   VARCHAR(255) COMMENT '客户手机',
   guestIdCard  VARCHAR(50)  COMMENT '客户身份证号',
   guestAddress VARCHAR(255) COMMENT '客户地址',
   housesId     VARCHAR(255) COMMENT '楼盘id'	,
@@ -199,6 +200,7 @@ CREATE TABLE housecd.lable(
 /* 楼盘表 */
 CREATE TABLE housecd.houses(
  housesId	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ userId       VARCHAR(255) COMMENT '驻点商务ID',
  housesName	  VARCHAR(255) COMMENT '楼盘Name',	
  housesSpclty VARCHAR(255) COMMENT '特点，使用标签表',
  houseState   VARCHAR(255) COMMENT '状态： 在建0,在售1,售罄2',
@@ -231,7 +233,7 @@ CREATE TABLE housecd.houses(
  updateTime   TIMESTAMP	   COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-/*楼盘商务关系表*/
+/*楼盘商务关系表 (舍弃 ,楼盘表添加 驻点商务ID)*/
 CREATE TABLE houses_user(
 housesId     VARCHAR(255)  COMMENT '楼盘ID',
 userId       VARCHAR(255)  COMMENT '驻点商务ID',

@@ -47,6 +47,9 @@
         <if test="housesId != null">
             AND housesId = #{housesId, jdbcType=VARCHAR}
         </if>
+        <if test="userId != null">
+            AND userId = #{userId, jdbcType=VARCHAR}
+        </if>
         ORDER BY updateTime DESC
     </select>
 

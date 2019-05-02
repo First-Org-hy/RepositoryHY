@@ -82,19 +82,15 @@ public class RecommendServiceImpl implements RecommendService {
     return la;
   }
 
-  /**
-   * 查询经纪公司的名称，联系电话
-   *
-   * @param userId
-   * @return
-   */
+  // 查询经纪公司的名称，联系电话
   @Override
   public List<AppDomain> queryCompanyInfo(String userId) {
     return recommendDao.queryCompanyInfo(userId);
   }
 
+  // 根据楼盘id housesId,获取楼盘推荐信息
   @Override
-  public List<RecommendDomain> queryAllRecommend(AppDomain app) {
-    return recommendDao.queryAllRecommend();
+  public List<RecommendDomain> query(RecommendDomain recommendDomain) {
+    return recommendDao.query(recommendDomain);
   }
 }

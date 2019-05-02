@@ -111,11 +111,15 @@
     SELECT A.userId, A.userName, A.userPhone  FROM APP_INFO A WHERE A.userId = #{userId}
   </select>
 
-    <select id="queryAllRecommend" parameterType="com.hy.model.AppDomain" resultType="com.hy.model.RecommendDomain">
+    <select id="query" parameterType="com.hy.model.RecommendDomain" resultType="com.hy.model.RecommendDomain">
         SELECT
         <include refid="BASE_COLUMN"/>
         FROM
         <include refid="BASE_TABLE"/>
+        WHERE 1=1
+        <if test="housesId != null">
+            AND housesId = #{housesId, jdbcType=VARCHAR}
+        </if>
         ORDER BY updateTime
     </select>
 

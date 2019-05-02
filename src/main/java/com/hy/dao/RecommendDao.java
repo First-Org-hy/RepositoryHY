@@ -34,7 +34,6 @@ public interface RecommendDao {
   int isRecommendOfCom(String userId, String userParId);
 
   List<AppDomain> queryCompanyInfo(String userId);
-
   /**
    * 查询所有推荐人信息
    *
@@ -42,5 +41,5 @@ public interface RecommendDao {
    * @date 2019/5/1 16:14
    * @return java.util.List<com.hy.model.RecommendDomain>
    */
-  List<RecommendDomain> queryAllRecommend();
+  List<RecommendDomain> query(RecommendDomain recommendDomain);
 }

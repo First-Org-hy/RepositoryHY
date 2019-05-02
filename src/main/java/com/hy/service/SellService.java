@@ -8,19 +8,20 @@ import java.util.List;
 
 public interface SellService {
 
-    int addSell(SellDomain sell);
+  Lable addSell(SellDomain sell);
 
-    int updateSell(SellDomain sell);
+  Lable update(SellDomain sell);
 
-    int deteleSell(SellDomain sell);
+  int deteleSell(SellDomain sell);
+  // 通过经纪人id查询某个经纪人的销售记录
+  // 根据楼盘id:housesId 查询销售信息
+  List<SellDomain> query(SellDomain sell);
 
-    List<SellDomain> querySellInfoByUserId(SellDomain sell);
+  List<SellDomain> querySellInfoByUserParId(SellDomain sell);
 
-    List<SellDomain> querySellInfoByUserParId(SellDomain sell);
+  Lable isBusSeller(String userId);
 
-    Lable isBusSeller(String userId);
+  List<SellDomain> queryBySeller(String userId);
 
-    List<SellDomain> queryBySeller(String userId);
-
-    List<HousesUserDomain> queryBySellId(String userId);
+  List<HousesUserDomain> queryBySellId(String userId);
 }

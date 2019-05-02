@@ -14,10 +14,10 @@ import java.util.List;
 public class HousesController {
   @Autowired private HousesService housesService;
 
+  // 驻点商务楼盘查询
   @ResponseBody
   @GetMapping(value = "query")
   public List<HousesDomain> queryHouses(HousesDomain housesDomain) {
-
     return housesService.queryHouses(housesDomain);
   }
 
