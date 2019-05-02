@@ -24,7 +24,6 @@ DROP TABLE IF EXISTS housecd.renting_house;
 DROP TABLE IF EXISTS housecd.order_record;
 DROP TABLE IF EXISTS housecd.house_dynamic;
 
-
 CREATE TABLE housecd.t_user(
   userId INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '用户id',
   userName VARCHAR(255) NOT NULL COMMENT '姓名',
@@ -267,8 +266,6 @@ CREATE TABLE housecd.houses_facilities(
  updateTime   TIMESTAMP	   COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-
-
  /*户型表 */
  CREATE TABLE housecd.house_type(
  houseTypeId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -348,7 +345,6 @@ CREATE TABLE housecd.renting_house(
  crtTime        TIMESTAMP	  COMMENT '创建时间',
  updateTime     TIMESTAMP	  COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
-
 
 /*预约看房表*/
 CREATE TABLE order_record(
