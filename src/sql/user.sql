@@ -127,8 +127,9 @@ CREATE TABLE housecd.sell(
   crtTime 	   TIMESTAMP 	COMMENT '创建时间',
   updateTime   TIMESTAMP 	COMMENT '更新时间'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
-
-/* 楼盘表 */
+  
+/* 楼盘表  // 普通用户 区域/价格/筛选 楼盘: areaId,总价,avgPrice(单价),户型,装修,面积,开盘时间,售卖状况,特色*/
+/* 楼盘表  // 普通用户 区域/价格/筛选 楼盘: areaId,sumPrice,avgPrice-maxPrice(单价),户型,fitment,areaJ,crtTime,houseState,housesSpclty*/
 CREATE TABLE housecd.houses(
  housesId	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  userId       VARCHAR(255) COMMENT '驻点商务ID',
@@ -150,7 +151,7 @@ CREATE TABLE housecd.houses(
  buildType    VARCHAR(255) COMMENT '建筑类型：',
  greenRate    VARCHAR(255) COMMENT '绿化率',
  companyW     VARCHAR(255) COMMENT '物业公司',
- openHouse    VARCHAR(255) COMMENT '最新开盘',
+ openHouse    VARCHAR(255) COMMENT '最新开盘  开盘时间',
  deadLine     VARCHAR(255) COMMENT '交房时间',
  avgPrice     VARCHAR(255) COMMENT '均价',
  investor     VARCHAR(255) COMMENT '投资商',
@@ -243,7 +244,7 @@ CREATE TABLE housecd.second_hand_house(
  housePicAddress VARCHAR(255) COMMENT '照片地址',
  houseAvmPrice  VARCHAR(255) COMMENT '单价',
  houseTolPrice  VARCHAR(255) COMMENT '总价',
- houseSou       VARCHAR(255) COMMENT '房源介绍',/*房源介绍 */
+ houseSou       VARCHAR(255) COMMENT '房源介绍',/*房源简介 */
  housePulId     VARCHAR(255) COMMENT '发布者',/*发布者 */
  relPhone       VARCHAR(255) COMMENT '联系电话',
  houseState     VARCHAR(255) COMMENT '是否上线：0上线 1下线 ',/*是否上线：上线 下线 */

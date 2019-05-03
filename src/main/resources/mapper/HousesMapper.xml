@@ -4,7 +4,6 @@
     <sql id="BASE_TABLE">
     housecd.houses
   </sql>
-
     <sql id="BASE_COLUMN">
     housesId, housesName, housesSpclty, houseState, pictureX, pictureS,
     pictureJ, mating, houseTypeId, areaZ, areaJ, areaS, developers,
@@ -12,7 +11,6 @@
     deadLine, avgPrice, investor, plotRatio, familyNum, carportNum, fitment,
     location, recommend, crtTime, updateTime
   </sql>
-
     <insert id="insert" parameterType="com.hy.model.HousesDomain">
         INSERT INTO
         <include refid="BASE_TABLE"/>
@@ -37,7 +35,6 @@
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
     </insert>
-
     <select id="selectHouses" parameterType="com.hy.model.HousesDomain" resultType="com.hy.model.HousesDomain">
         SELECT
         <include refid="BASE_COLUMN"/>
@@ -51,6 +48,50 @@
             AND userId = #{userId, jdbcType=VARCHAR}
         </if>
         ORDER BY updateTime DESC
+    </select>
+    <select id="queryAll" parameterType="com.hy.model.HousesDomain" resultType="com.hy.model.HousesDomain">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+        WHERE 1=1
+        <if test="areaId != null">
+            or areaId = #{areaId, jdbcType=VARCHAR}
+        </if>
+        <if test="avgPrice != null">
+            or ( avgPrice &gt;= #{avgPrice, jdbcType=VARCHAR}
+        </if>
+        <if test="avgPrice != null">
+            and avgPrice &lt;= #{maxPrice, jdbcType=VARCHAR})
+        </if>
+        <if test="housesType != null">
+            and housesId in (SELECT housesId from housecd.house_type
+            where houseTypeName like concat('%',#{maxPrice, jdbcType=VARCHAR},'%') )
+        </if>
+        <if test="fitment != null">
+            and fitment = #{fitment, jdbcType=VARCHAR})
+        </if>
+        <if test="areaJ != null">
+            and areaJ = #{areaJ, jdbcType=VARCHAR})
+        </if>
+        <if test="crtTime != null">
+            and crtTime = #{crtTime, jdbcType=VARCHAR})
+        </if>
+        <if test="houseState != null">
+            and houseState = #{houseState, jdbcType=VARCHAR})
+        </if>
+        <if test="housesSpclty != null">
+            and housesSpclty in (SELECT lableId from housecd.houses_spclty
+            where lableContext like concat('%',#{housesSpclty, jdbcType=VARCHAR},'%') )
+        </if>
+        ORDER BY
+        <if test="bigTOSmall != null">
+            avgPrice,
+        </if>
+        <if test="smallTOBig != null">
+            avgPrice ASC,
+        </if>
+        updateTime DESC
     </select>
 
 </mapper>

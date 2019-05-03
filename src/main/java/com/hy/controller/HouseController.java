@@ -34,21 +34,15 @@ public class HouseController {
   }
 
   @ResponseBody
-  @PostMapping("/addSecondHouse")
-  public Lable addSecondHouse(SecondHouseDomain house) {
+  @PostMapping("/addSecond")
+  public Lable addSecond(SecondHouseDomain house) {
     return houseService.addSecondHouse(house);
   }
 
   // 普通用户二手房查询:
   @ResponseBody
   @GetMapping("/querySecond")
-  public List<SecondHouseDomain> querySecondHouse(SecondHouseDomain House) {
-    return houseService.querySecondHouse(House);
-  }
-
-  @ResponseBody
-  @GetMapping("/querySecondsByUserId")
-  public List<SecondHouseDomain> querySecondsByUserId(String userId) {
+  public List<SecondHouseDomain> querySeconds(String userId) {
     return houseService.querySecondsByUserId(userId);
   }
 

@@ -15,6 +15,8 @@ public class HousesServiceImpl implements HousesService {
 
   @Autowired private HousesDao housesDao;
 
+  // 驻点商务楼盘查询: userId(驻点商务id)
+  // 普通用户楼盘查询
   @Override
   public List<HousesDomain> queryHouses(HousesDomain housesDomain) {
     return housesDao.selectHouses(housesDomain);
@@ -30,5 +32,12 @@ public class HousesServiceImpl implements HousesService {
     }
 
     return lable;
+  }
+
+  // 普通用户 区域/价格/筛选 楼盘: areaId,总价,avgPrice(单价),户型,装修,面积,开盘时间,售卖状况,特色
+  @Override
+  public List<HousesDomain> queryAll(HousesDomain housesDomain) {
+
+    return housesDao.queryAll(housesDomain);
   }
 }

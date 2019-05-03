@@ -37,6 +37,26 @@ public class HousesDomain {
   private String openHouse;
   private String deadLine;
   private String avgPrice;
+  private String maxPrice; // 最大价格,用于页面查询条件
+  private String sumPrice; // 总格,用于页面查询条件
+  private String bigTOSmall; // 排序
+  private String smallTOBig; // 排序
+  private String housesType; // 户型
+  //     包含:楼盘经纪人
+  private List<AppDomain> apps;
+  //     包含:楼盘动态
+  private List<HouseDynamicDomain> houseDynamics;
+  //     包含:楼盘户型
+  private List<HouseTypeDomain> houseType;
+  //     包含:楼盘配套设施
+  private List<HousesFacilitiesDomain> HousesFacilities;
+  //     包含:楼盘特点
+  private List<HousesSpcltyDomain> housesSpcltys;
+  //     包含:楼盘图片
+  private List<HousesPictureDomain> housesPictures;
+  //     包含:在售新房
+  private List<HouseDomain> house;
+
   private String investor;
   private String plotRatio;
   private String familyNum;
@@ -46,6 +66,102 @@ public class HousesDomain {
   private String recommend;
   private String crtTime;
   private String updateTime;
+
+  public List<AppDomain> getApps() {
+    return apps;
+  }
+
+  public void setApps(List<AppDomain> apps) {
+    this.apps = apps;
+  }
+
+  public String getBigTOSmall() {
+    return bigTOSmall;
+  }
+
+  public void setBigTOSmall(String bigTOSmall) {
+    this.bigTOSmall = bigTOSmall;
+  }
+
+  public String getSmallTOBig() {
+    return smallTOBig;
+  }
+
+  public void setSmallTOBig(String smallTOBig) {
+    this.smallTOBig = smallTOBig;
+  }
+
+  public String getHousesType() {
+    return housesType;
+  }
+
+  public void setHousesType(String housesType) {
+    this.housesType = housesType;
+  }
+
+  public List<HouseDynamicDomain> getHouseDynamics() {
+    return houseDynamics;
+  }
+
+  public void setHouseDynamics(List<HouseDynamicDomain> houseDynamics) {
+    this.houseDynamics = houseDynamics;
+  }
+
+  public List<HouseTypeDomain> getHouseType() {
+    return houseType;
+  }
+
+  public void setHouseType(List<HouseTypeDomain> houseType) {
+    this.houseType = houseType;
+  }
+
+  public List<HousesFacilitiesDomain> getHousesFacilities() {
+    return HousesFacilities;
+  }
+
+  public void setHousesFacilities(List<HousesFacilitiesDomain> housesFacilities) {
+    HousesFacilities = housesFacilities;
+  }
+
+  public List<HousesSpcltyDomain> getHousesSpcltys() {
+    return housesSpcltys;
+  }
+
+  public void setHousesSpcltys(List<HousesSpcltyDomain> housesSpcltys) {
+    this.housesSpcltys = housesSpcltys;
+  }
+
+  public List<HousesPictureDomain> getHousesPictures() {
+    return housesPictures;
+  }
+
+  public void setHousesPictures(List<HousesPictureDomain> housesPictures) {
+    this.housesPictures = housesPictures;
+  }
+
+  public List<HouseDomain> getHouse() {
+    return house;
+  }
+
+  public void setHouse(List<HouseDomain> house) {
+    this.house = house;
+  }
+
+  public String getSumPrice() {
+    return sumPrice;
+  }
+
+  public void setSumPrice(String sumPrice) {
+    this.sumPrice = sumPrice;
+  }
+
+  public String getMaxPrice() {
+    return maxPrice;
+  }
+
+  public void setMaxPrice(String maxPrice) {
+    this.maxPrice = maxPrice;
+  }
 
   public List<HousesSpcltyDomain> getHousesSpcltyLable() {
     return housesSpcltyLable;
