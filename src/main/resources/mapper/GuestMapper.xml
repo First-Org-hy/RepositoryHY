@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.dao.GuestDao">
+    <sql id="BASE_TABLE">
+      guest
+    </sql>
+    <sql id="BASE_COLUMN">
+      guestId, guestName, guestIdCard, guestPhone, housesId, housesName,houseTypeId, userParentId, userId,userName, guestComment, crtTime, updateTime
+    </sql>
+    <insert id="insert" parameterType="com.hy.model.GuestDomain">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guestId != null">
+                guestId,
+            </if>
+            <if test="guestName != null">
+                guestName,
+            </if>
+            <if test="guestIdCard != null">
+                guestIdCard,
+            </if>
+            <if test="guestPhone != null">
+                guestPhone,
+            </if>
+            <if test="housesId != null">
+                housesId,
+            </if>
+            <if test="housesName != null">
+                housesName,
+            </if>
+            <if test="houseTypeId != null">
+                houseTypeId,
+            </if>
+            <if test="userParentId != null">
+                userParentId,
+            </if>
+            <if test="userId != null">
+                userId,
+            </if>
+            <if test="userName != null">
+                userName,
+            </if>
+            <if test="guestComment != null">
+                guestComment,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="guestId != null">
+                #{guestId},
+            </if>
+            <if test="guestName != null">
+                #{guestName, jdbcType=VARCHAR},
+            </if>
+            <if test="guestIdCard != null">
+                #{guestIdCard, jdbcType=VARCHAR},
+            </if>
+            <if test="guestPhone != null">
+                #{guestPhone, jdbcType=VARCHAR},
+            </if>
+            <if test="housesId != null">
+                #{housesId, jdbcType=VARCHAR},
+            </if>
+            <if test="housesName != null">
+                #{housesName, jdbcType=VARCHAR},
+            </if>
+            <if test="houseTypeId != null">
+                #{houseTypeId, jdbcType=VARCHAR},
+            </if>
+            <if test="userParentId != null">
+                #{userParentId, jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId, jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName, jdbcType=VARCHAR},
+            </if>
+            <if test="guestComment != null">
+                #{guestComment, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+    <select id="query" parameterType="com.hy.model.GuestDomain" resultType="com.hy.model.GuestDomain">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+        where 1=1
+        <if test="guestName != null">
+            or guestName LIKE concat('%',#{guestName, jdbcType=VARCHAR},'%')
+        </if>
+        <if test="guestName != null">
+            or guestPhone LIKE concat('%',#{guestName, jdbcType=VARCHAR},'%')
+        </if>
+        <if test="guestName != null">
+            or housesName LIKE concat('%',#{guestName, jdbcType=VARCHAR},'%')
+        </if>
+        <if test="guestName != null">
+            or userName LIKE concat('%',#{guestName, jdbcType=VARCHAR},'%')
+        </if>
+        <if test="crtTime != null">
+            or crtTime &gt; #{crtTime}
+        </if>
+        <if test="updateTime != null">
+            or crtTime &lt; #{updateTime}
+        </if>
+        ORDER BY updateTime DESC
+    </select>
+    <update id="update" parameterType="com.hy.model.GuestDomain">
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        SET guestComment = #{guestComment}, updateTime = CURRENT_TIMESTAMP
+        WHERE guestId = #{guestId}
+    </update>
+    <delete id="del" parameterType="com.hy.model.GuestDomain">
+        delete from
+        <include refid="BASE_TABLE"/>
+        where guestId = #{guestId}
+    </delete>
+</mapper>
