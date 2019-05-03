@@ -69,6 +69,7 @@ public class SellServiceImpl implements SellService {
   // 根据楼盘id:housesId 查询销售信息
   @Override
   public List<SellDomain> query(SellDomain sell) {
+
     return selldao.query(sell);
   }
 
