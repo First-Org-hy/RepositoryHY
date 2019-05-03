@@ -39,6 +39,7 @@ public class HouseController {
     return houseService.addSecondHouse(house);
   }
 
+  // 普通用户二手房查询:
   @ResponseBody
   @GetMapping("/querySecond")
   public List<SecondHouseDomain> querySecondHouse(SecondHouseDomain House) {
@@ -51,6 +52,7 @@ public class HouseController {
     return houseService.querySecondsByUserId(userId);
   }
 
+  // 普通用户预约看房:orderName,orderTel,orderHouseName,orderHouseId
   @ResponseBody
   @PostMapping("/addOrderRecord")
   public Lable addOrderRecord(OrderRecordDomain order) {

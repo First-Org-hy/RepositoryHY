@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/** Created by yaohou on 18:16 2019/4/7. description: */
+/** Created by yaohou on 18:16 2019/4/7. description: 楼盘控制类 */
 @RestController
 @RequestMapping(value = "houses")
 public class HousesController {
   @Autowired private HousesService housesService;
 
-  // 驻点商务楼盘查询
+  // 驻点商务楼盘查询: userId(驻点商务id)
+  // 普通用户楼盘查询
+  // 普通用户 区域/价格/筛选 楼盘: areaId,总价,avgPrice(单价),户型,装修,面积,开盘时间,售卖状况,特色 TODO
   @ResponseBody
   @GetMapping(value = "query")
   public List<HousesDomain> queryHouses(HousesDomain housesDomain) {

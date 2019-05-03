@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /** Created by yaohou on 21:59 2019/3/21. description: 用户类 */
 @RestController
-@RequestMapping(value = "/advertising")
+@RequestMapping(value = "/ad")
 public class AdController {
 
   @Autowired private AdService adService;

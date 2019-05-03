@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hy.dao.HouseDao" >
-  <sql id="SECOND_HOUSE_TABLE">
+<mapper namespace="com.hy.dao.HouseDao">
+    <sql id="SECOND_HOUSE_TABLE">
     second_hand_house
   </sql>
 
-  <sql id="RENT_HOUSE_TABLE">
+    <sql id="RENT_HOUSE_TABLE">
     renting_house
   </sql>
 
-  <sql id="RENT_HOUSE_COLUMN">
+    <sql id="RENT_HOUSE_COLUMN">
         rentHouseId , houseName     , houseArea     , houseAddress  ,
         housePlot     , houseSize     , houseTypeId   , houseBound    ,
         houseFloor    , houseFixType  , rentType, houseType     , houseStyleId  ,
@@ -18,27 +18,27 @@
         crtTime       , updateTime
   </sql>
 
-  <sql id="ORDER__RECORD_TABLE">
+    <sql id="ORDER__RECORD_TABLE">
     order_record
   </sql>
 
-  <sql id="DYNAMIC_HOUSE_TABLE">
+    <sql id="DYNAMIC_HOUSE_TABLE">
     house_dynamic
   </sql>
 
-  <sql id="DYNAMIC_HOUSE_COLUMN">
+    <sql id="DYNAMIC_HOUSE_COLUMN">
     dynamicId, houseId, userId, content, crtTime, updateTime
   </sql>
 
-  <sql id="HOUSE_INFO_TABLE">
+    <sql id="HOUSE_INFO_TABLE">
     houses_info
   </sql>
 
-  <sql id="HOUSE_INFO_COLUMN">
+    <sql id="HOUSE_INFO_COLUMN">
     id, headline, programId, programName, picAddress, lableId, content, crtTime, updateTime
   </sql>
 
-  <sql id="SECOND_HOUSE_COLUMN">
+    <sql id="SECOND_HOUSE_COLUMN">
         secondHouseId , houseName     , houseArea     , houseAddress  ,
         housePlot     , houseSize     , houseTypeId   , houseBound    ,
         houseFloor    , houseFixType  , houseType     , houseStyleId  ,
@@ -47,357 +47,356 @@
         crtTime       , updateTime
   </sql>
 
-  <insert id="addSecondHouse" parameterType="com.hy.model.SecondHouseDomain">
-    INSERT INTO
-      <include refid="SECOND_HOUSE_TABLE"/>
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="houseName != null">
-        houseName,
-      </if>
-      <if test="houseArea != null">
-        houseArea,
-      </if>
-      <if test="houseAddress != null">
-        houseAddress,
-      </if>
-      <if test="housePlot != null">
-        housePlot,
-      </if>
-      <if test="houseSize != null">
-        houseSize,
-      </if>
-      <if test="houseTypeId != null">
-        houseTypeId,
-      </if>
-      <if test="houseBound != null">
-        houseBound,
-      </if>
-      <if test="houseFloor != null">
-        houseFloor,
-      </if>
-      <if test="houseFixType != null">
-        houseFixType,
-      </if>
-      <if test="houseType != null">
-        houseType,
-      </if>
-      <if test="houseStyleId != null">
-        houseStyleId,
-      </if>
-      <if test="housePicAddress != null">
-        housePicAddress,
-      </if>
-      <if test="houseAvmPrice != null">
-        houseAvmPrice,
-      </if>
-      <if test="houseTolPrice != null">
-        houseTolPrice,
-      </if>
-      <if test="houseSou != null">
-        houseSou,
-      </if>
-      <if test="houseState != null">
-        houseState,
-      </if>
-      <if test="housePulId != null">
-        housePulId,
-      </if>
-      <if test="relPhone != null">
-        relPhone,
-      </if>
-      crtTime, updateTime
-    </trim>
-    <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-      <if test="houseName != null">
-        #{houseName, jdbcType=VARCHAR},
-      </if>
-      <if test="houseArea != null">
-        #{houseArea, jdbcType=VARCHAR},
-      </if>
-      <if test="houseAddress != null">
-        #{houseAddress, jdbcType=VARCHAR},
-      </if>
-      <if test="housePlot != null">
-        #{housePlot, jdbcType=VARCHAR},
-      </if>
-      <if test="houseSize != null">
-        #{houseSize, jdbcType=VARCHAR},
-      </if>
-      <if test="houseTypeId != null">
-        #{houseTypeId, jdbcType=VARCHAR},
-      </if>
-      <if test="houseBound != null">
-        #{houseBound, jdbcType=VARCHAR},
-      </if>
-      <if test="houseFloor != null">
-        #{houseFloor, jdbcType=VARCHAR},
-      </if>
-      <if test="houseFixType != null">
-        #{houseFixType, jdbcType=VARCHAR},
-      </if>
-      <if test="houseType != null">
-        #{houseType, jdbcType=VARCHAR},
-      </if>
-      <if test="houseStyleId != null">
-        #{houseStyleId, jdbcType=VARCHAR},
-      </if>
-      <if test="housePicAddress != null">
-        #{housePicAddress, jdbcType=VARCHAR},
-      </if>
-      <if test="houseAvmPrice != null">
-        #{houseAvmPrice, jdbcType=VARCHAR},
-      </if>
-      <if test="houseTolPrice != null">
-        #{houseTolPrice, jdbcType=VARCHAR},
-      </if>
-      <if test="houseSou != null">
-        #{houseSou, jdbcType=VARCHAR},
-      </if>
-      <if test="houseState != null">
-        #{houseState, jdbcType=VARCHAR},
-      </if>
-      <if test="housePulId != null">
-        #{housePulId, jdbcType=VARCHAR},
-      </if>
-      <if test="relPhone != null">
-        #{relPhone, jdbcType=VARCHAR},
-      </if>
-      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
-    </trim>
-  </insert>
+    <insert id="addSecondHouse" parameterType="com.hy.model.SecondHouseDomain">
+        INSERT INTO
+        <include refid="SECOND_HOUSE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="houseName != null">
+                houseName,
+            </if>
+            <if test="houseArea != null">
+                houseArea,
+            </if>
+            <if test="houseAddress != null">
+                houseAddress,
+            </if>
+            <if test="housePlot != null">
+                housePlot,
+            </if>
+            <if test="houseSize != null">
+                houseSize,
+            </if>
+            <if test="houseTypeId != null">
+                houseTypeId,
+            </if>
+            <if test="houseBound != null">
+                houseBound,
+            </if>
+            <if test="houseFloor != null">
+                houseFloor,
+            </if>
+            <if test="houseFixType != null">
+                houseFixType,
+            </if>
+            <if test="houseType != null">
+                houseType,
+            </if>
+            <if test="houseStyleId != null">
+                houseStyleId,
+            </if>
+            <if test="housePicAddress != null">
+                housePicAddress,
+            </if>
+            <if test="houseAvmPrice != null">
+                houseAvmPrice,
+            </if>
+            <if test="houseTolPrice != null">
+                houseTolPrice,
+            </if>
+            <if test="houseSou != null">
+                houseSou,
+            </if>
+            <if test="houseState != null">
+                houseState,
+            </if>
+            <if test="housePulId != null">
+                housePulId,
+            </if>
+            <if test="relPhone != null">
+                relPhone,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="houseName != null">
+                #{houseName, jdbcType=VARCHAR},
+            </if>
+            <if test="houseArea != null">
+                #{houseArea, jdbcType=VARCHAR},
+            </if>
+            <if test="houseAddress != null">
+                #{houseAddress, jdbcType=VARCHAR},
+            </if>
+            <if test="housePlot != null">
+                #{housePlot, jdbcType=VARCHAR},
+            </if>
+            <if test="houseSize != null">
+                #{houseSize, jdbcType=VARCHAR},
+            </if>
+            <if test="houseTypeId != null">
+                #{houseTypeId, jdbcType=VARCHAR},
+            </if>
+            <if test="houseBound != null">
+                #{houseBound, jdbcType=VARCHAR},
+            </if>
+            <if test="houseFloor != null">
+                #{houseFloor, jdbcType=VARCHAR},
+            </if>
+            <if test="houseFixType != null">
+                #{houseFixType, jdbcType=VARCHAR},
+            </if>
+            <if test="houseType != null">
+                #{houseType, jdbcType=VARCHAR},
+            </if>
+            <if test="houseStyleId != null">
+                #{houseStyleId, jdbcType=VARCHAR},
+            </if>
+            <if test="housePicAddress != null">
+                #{housePicAddress, jdbcType=VARCHAR},
+            </if>
+            <if test="houseAvmPrice != null">
+                #{houseAvmPrice, jdbcType=VARCHAR},
+            </if>
+            <if test="houseTolPrice != null">
+                #{houseTolPrice, jdbcType=VARCHAR},
+            </if>
+            <if test="houseSou != null">
+                #{houseSou, jdbcType=VARCHAR},
+            </if>
+            <if test="houseState != null">
+                #{houseState, jdbcType=VARCHAR},
+            </if>
+            <if test="housePulId != null">
+                #{housePulId, jdbcType=VARCHAR},
+            </if>
+            <if test="relPhone != null">
+                #{relPhone, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
 
-  <insert id="addRentHouse" parameterType="com.hy.model.RentHouseDomain">
-    INSERT INTO
-    <include refid="RENT_HOUSE_TABLE"/>
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="houseName != null">
-        houseName,
-      </if>
-      <if test="houseArea != null">
-        houseArea,
-      </if>
-      <if test="houseAddress != null">
-        houseAddress,
-      </if>
-      <if test="housePlot != null">
-        housePlot,
-      </if>
-      <if test="houseSize != null">
-        houseSize,
-      </if>
-      <if test="houseTypeId != null">
-        houseTypeId,
-      </if>
-      <if test="houseBound != null">
-        houseBound,
-      </if>
-      <if test="houseFloor != null">
-        houseFloor,
-      </if>
-      <if test="houseFixType != null">
-        houseFixType,
-      </if>
-      <if test="rentType != null">
-        rentType,
-      </if>
-      <if test="houseType != null">
-        houseType,
-      </if>
-      <if test="houseStyleId != null">
-        houseStyleId,
-      </if>
-      <if test="housePicAddress != null">
-        housePicAddress,
-      </if>
-      <if test="houseMonPrice != null">
-        houseMonPrice,
-      </if>
-      <if test="houseYearPrice != null">
-        houseYearPrice,
-      </if>
-      <if test="houseSou != null">
-        houseSou,
-      </if>
-      <if test="houseState != null">
-        houseState,
-      </if>
-      <if test="housePulId != null">
-        housePulId,
-      </if>
-      <if test="relPhone != null">
-        relPhone,
-      </if>
-      crtTime, updateTime
-    </trim>
-    <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-      <if test="houseName != null">
-        #{houseName, jdbcType=VARCHAR},
-      </if>
-      <if test="houseArea != null">
-        #{houseArea, jdbcType=VARCHAR},
-      </if>
-      <if test="houseAddress != null">
-        #{houseAddress, jdbcType=VARCHAR},
-      </if>
-      <if test="housePlot != null">
-        #{housePlot, jdbcType=VARCHAR},
-      </if>
-      <if test="houseSize != null">
-        #{houseSize, jdbcType=VARCHAR},
-      </if>
-      <if test="houseTypeId != null">
-        #{houseTypeId, jdbcType=VARCHAR},
-      </if>
-      <if test="houseBound != null">
-        #{houseBound, jdbcType=VARCHAR},
-      </if>
-      <if test="houseFloor != null">
-        #{houseFloor, jdbcType=VARCHAR},
-      </if>
-      <if test="houseFixType != null">
-        #{houseFixType, jdbcType=VARCHAR},
-      </if>
-      <if test="rentType != null">
-        #{rentType, jdbcType=VARCHAR},
-      </if>
-      <if test="houseType != null">
-        #{houseType, jdbcType=VARCHAR},
-      </if>
-      <if test="houseStyleId != null">
-        #{houseStyleId, jdbcType=VARCHAR},
-      </if>
-      <if test="housePicAddress != null">
-        #{housePicAddress, jdbcType=VARCHAR},
-      </if>
-      <if test="houseMonPrice != null">
-        #{houseAvmPrice, jdbcType=VARCHAR},
-      </if>
-      <if test="houseYearPrice != null">
-        #{houseTolPrice, jdbcType=VARCHAR},
-      </if>
-      <if test="houseSou != null">
-        #{houseSou, jdbcType=VARCHAR},
-      </if>
-      <if test="houseState != null">
-        #{houseState, jdbcType=VARCHAR},
-      </if>
-      <if test="housePulId != null">
-        #{housePulId, jdbcType=VARCHAR},
-      </if>
-      <if test="relPhone != null">
-        #{relPhone, jdbcType=VARCHAR},
-      </if>
-      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
-    </trim>
-  </insert>
+    <insert id="addRentHouse" parameterType="com.hy.model.RentHouseDomain">
+        INSERT INTO
+        <include refid="RENT_HOUSE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="houseName != null">
+                houseName,
+            </if>
+            <if test="houseArea != null">
+                houseArea,
+            </if>
+            <if test="houseAddress != null">
+                houseAddress,
+            </if>
+            <if test="housePlot != null">
+                housePlot,
+            </if>
+            <if test="houseSize != null">
+                houseSize,
+            </if>
+            <if test="houseTypeId != null">
+                houseTypeId,
+            </if>
+            <if test="houseBound != null">
+                houseBound,
+            </if>
+            <if test="houseFloor != null">
+                houseFloor,
+            </if>
+            <if test="houseFixType != null">
+                houseFixType,
+            </if>
+            <if test="rentType != null">
+                rentType,
+            </if>
+            <if test="houseType != null">
+                houseType,
+            </if>
+            <if test="houseStyleId != null">
+                houseStyleId,
+            </if>
+            <if test="housePicAddress != null">
+                housePicAddress,
+            </if>
+            <if test="houseMonPrice != null">
+                houseMonPrice,
+            </if>
+            <if test="houseYearPrice != null">
+                houseYearPrice,
+            </if>
+            <if test="houseSou != null">
+                houseSou,
+            </if>
+            <if test="houseState != null">
+                houseState,
+            </if>
+            <if test="housePulId != null">
+                housePulId,
+            </if>
+            <if test="relPhone != null">
+                relPhone,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="houseName != null">
+                #{houseName, jdbcType=VARCHAR},
+            </if>
+            <if test="houseArea != null">
+                #{houseArea, jdbcType=VARCHAR},
+            </if>
+            <if test="houseAddress != null">
+                #{houseAddress, jdbcType=VARCHAR},
+            </if>
+            <if test="housePlot != null">
+                #{housePlot, jdbcType=VARCHAR},
+            </if>
+            <if test="houseSize != null">
+                #{houseSize, jdbcType=VARCHAR},
+            </if>
+            <if test="houseTypeId != null">
+                #{houseTypeId, jdbcType=VARCHAR},
+            </if>
+            <if test="houseBound != null">
+                #{houseBound, jdbcType=VARCHAR},
+            </if>
+            <if test="houseFloor != null">
+                #{houseFloor, jdbcType=VARCHAR},
+            </if>
+            <if test="houseFixType != null">
+                #{houseFixType, jdbcType=VARCHAR},
+            </if>
+            <if test="rentType != null">
+                #{rentType, jdbcType=VARCHAR},
+            </if>
+            <if test="houseType != null">
+                #{houseType, jdbcType=VARCHAR},
+            </if>
+            <if test="houseStyleId != null">
+                #{houseStyleId, jdbcType=VARCHAR},
+            </if>
+            <if test="housePicAddress != null">
+                #{housePicAddress, jdbcType=VARCHAR},
+            </if>
+            <if test="houseMonPrice != null">
+                #{houseAvmPrice, jdbcType=VARCHAR},
+            </if>
+            <if test="houseYearPrice != null">
+                #{houseTolPrice, jdbcType=VARCHAR},
+            </if>
+            <if test="houseSou != null">
+                #{houseSou, jdbcType=VARCHAR},
+            </if>
+            <if test="houseState != null">
+                #{houseState, jdbcType=VARCHAR},
+            </if>
+            <if test="housePulId != null">
+                #{housePulId, jdbcType=VARCHAR},
+            </if>
+            <if test="relPhone != null">
+                #{relPhone, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
 
-  <insert id="addHouseDynamic" parameterType="com.hy.model.HouseDynamicDomain">
-    INSERT INTO
-    <include refid="DYNAMIC_HOUSE_TABLE"/>
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="houseId != null">
-        houseId,
-      </if>
-      <if test="userId != null">
-        userId,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-      crtTime, updateTime
-    </trim>
-    <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-      <if test="houseId != null">
-        #{houseId, jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        #{userId, jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content, jdbcType=VARCHAR},
-      </if>
-      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
-    </trim>
-  </insert>
-
-  <select id="queryDyByHouseId" resultType="com.hy.model.HouseDynamicDomain">
-      SELECT
-        <include refid="DYNAMIC_HOUSE_COLUMN"/>
-      FROM
+    <insert id="addHouseDynamic" parameterType="com.hy.model.HouseDynamicDomain">
+        INSERT INTO
         <include refid="DYNAMIC_HOUSE_TABLE"/>
-      WHERE houseId = #{houseId} ORDER BY updateTime desc
-  </select>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="houseId != null">
+                houseId,
+            </if>
+            <if test="userId != null">
+                userId,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="houseId != null">
+                #{houseId, jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId, jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
 
+    <select id="queryDyByHouseId" resultType="com.hy.model.HouseDynamicDomain">
+        SELECT
+        <include refid="DYNAMIC_HOUSE_COLUMN"/>
+        FROM
+        <include refid="DYNAMIC_HOUSE_TABLE"/>
+        WHERE houseId = #{houseId} ORDER BY updateTime desc
+    </select>
 
-  <insert id="addHousesInfo" parameterType="com.hy.model.HousesInfoDomain">
-    INSERT INTO
-    <include refid="HOUSE_INFO_TABLE"/>
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="headline != null">
-        headline,
-      </if>
-      <if test="programId != null">
-        programId,
-      </if>
-      <if test="programName != null">
-        programName,
-      </if>
-      <if test="picAddress != null">
-        picAddress,
-      </if>
-      <if test="lableId != null">
-        lableId,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-      crtTime, updateTime
-    </trim>
-    <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-      <if test="headline != null">
-        #{headline, jdbcType=VARCHAR},
-      </if>
-      <if test="programId != null">
-        #{programId, jdbcType=VARCHAR},
-      </if>
-      <if test="programName != null">
-        #{programName, jdbcType=VARCHAR},
-      </if>
-      <if test="picAddress != null">
-        #{picAddress, jdbcType=VARCHAR},
-      </if>
-      <if test="lableId != null">
-        #{lableId, jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content, jdbcType=VARCHAR},
-      </if>
-      CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
-    </trim>
-  </insert>
+    <insert id="addHousesInfo" parameterType="com.hy.model.HousesInfoDomain">
+        INSERT INTO
+        <include refid="HOUSE_INFO_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="headline != null">
+                headline,
+            </if>
+            <if test="programId != null">
+                programId,
+            </if>
+            <if test="programName != null">
+                programName,
+            </if>
+            <if test="picAddress != null">
+                picAddress,
+            </if>
+            <if test="lableId != null">
+                lableId,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="headline != null">
+                #{headline, jdbcType=VARCHAR},
+            </if>
+            <if test="programId != null">
+                #{programId, jdbcType=VARCHAR},
+            </if>
+            <if test="programName != null">
+                #{programName, jdbcType=VARCHAR},
+            </if>
+            <if test="picAddress != null">
+                #{picAddress, jdbcType=VARCHAR},
+            </if>
+            <if test="lableId != null">
+                #{lableId, jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
 
-  <select id="queryHousesInfo" resultType="com.hy.model.HouseDynamicDomain">
-    SELECT
-    <include refid="HOUSE_INFO_COLUMN"/>
-    FROM
-    <include refid="HOUSE_INFO_TABLE"/>
-    ORDER BY updateTime desc
-  </select>
+    <select id="queryHousesInfo" resultType="com.hy.model.HouseDynamicDomain">
+        SELECT
+        <include refid="HOUSE_INFO_COLUMN"/>
+        FROM
+        <include refid="HOUSE_INFO_TABLE"/>
+        ORDER BY updateTime desc
+    </select>
 
-  <select id="querySecondsByUserId" resultType="com.hy.model.SecondHouseDomain">
-    SELECT
-    <include refid="SECOND_HOUSE_COLUMN"/>
-    FROM
-    <include refid="SECOND_HOUSE_TABLE"/>
-    WHERE housePulId  = #{userId} ORDER BY updateTime desc
-  </select>
+    <select id="querySecondsByUserId" resultType="com.hy.model.SecondHouseDomain">
+        SELECT
+        <include refid="SECOND_HOUSE_COLUMN"/>
+        FROM
+        <include refid="SECOND_HOUSE_TABLE"/>
+        WHERE housePulId = #{userId} ORDER BY updateTime desc
+    </select>
 
-  <select id="queryRentsByUserId" resultType="com.hy.model.RentHouseDomain">
-    SELECT
-    <include refid="RENT_HOUSE_COLUMN"/>
-    FROM
-    <include refid="RENT_HOUSE_TABLE"/>
-    WHERE housePulId  = #{userId} ORDER BY updateTime desc
-  </select>
+    <select id="queryRentsByUserId" resultType="com.hy.model.RentHouseDomain">
+        SELECT
+        <include refid="RENT_HOUSE_COLUMN"/>
+        FROM
+        <include refid="RENT_HOUSE_TABLE"/>
+        WHERE housePulId = #{userId} ORDER BY updateTime desc
+    </select>
 
 </mapper>

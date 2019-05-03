@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /** Created by yaohou on 22:14 2019/3/21. description: */
-@Service(value = "appService")
+@Service(value = "adService")
 public class AdServiceImpl implements AdService {
 
   @Autowired private AdDao adDao;

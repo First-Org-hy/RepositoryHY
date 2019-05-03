@@ -1,7 +1,5 @@
 package com.hy.model;
 
-import com.hy.common.Lable;
-
 import java.util.List;
 
 /** Created by yaohou on 17:19 2019/4/7. description:楼盘实体类 */
@@ -9,21 +7,21 @@ public class HousesDomain {
   private String housesId;
   private String userId; // 楼盘商务id
   private String housesName;
-  private String housesSpclty;
-  private List<Lable> housesSpcltyLable;
+  private String housesSpclty; // 特点，使用标签表
+  private List<HousesSpcltyDomain> housesSpcltyLable;
 
   private String houseState;
-  private String pictureX;
-  private List<Lable> pictureXLable;
+  private String pictureX; // 效果图
+  private List<HousesPictureDomain> pictureXLable;
 
-  private String pictureS;
-  private List<Lable> pictureSLable;
+  private String pictureS; // 实施图
+  private List<HousesPictureDomain> pictureSLable;
 
-  private String pictureJ;
-  private List<Lable> pictureJLable;
+  private String pictureJ; // 交通图
+  private List<HousesPictureDomain> pictureJLable;
 
   private String mating;
-  private List<Lable> matingLable;
+  private List<HousesFacilitiesDomain> matingLable;
 
   private String houseTypeId;
   private String areaZ;
@@ -48,6 +46,46 @@ public class HousesDomain {
   private String recommend;
   private String crtTime;
   private String updateTime;
+
+  public List<HousesSpcltyDomain> getHousesSpcltyLable() {
+    return housesSpcltyLable;
+  }
+
+  public void setHousesSpcltyLable(List<HousesSpcltyDomain> housesSpcltyLable) {
+    this.housesSpcltyLable = housesSpcltyLable;
+  }
+
+  public List<HousesPictureDomain> getPictureXLable() {
+    return pictureXLable;
+  }
+
+  public void setPictureXLable(List<HousesPictureDomain> pictureXLable) {
+    this.pictureXLable = pictureXLable;
+  }
+
+  public List<HousesPictureDomain> getPictureSLable() {
+    return pictureSLable;
+  }
+
+  public void setPictureSLable(List<HousesPictureDomain> pictureSLable) {
+    this.pictureSLable = pictureSLable;
+  }
+
+  public List<HousesPictureDomain> getPictureJLable() {
+    return pictureJLable;
+  }
+
+  public void setPictureJLable(List<HousesPictureDomain> pictureJLable) {
+    this.pictureJLable = pictureJLable;
+  }
+
+  public List<HousesFacilitiesDomain> getMatingLable() {
+    return matingLable;
+  }
+
+  public void setMatingLable(List<HousesFacilitiesDomain> matingLable) {
+    this.matingLable = matingLable;
+  }
 
   public String getUserId() {
     return userId;
@@ -81,14 +119,6 @@ public class HousesDomain {
     this.housesSpclty = housesSpclty;
   }
 
-  public List<Lable> getHousesSpcltyLable() {
-    return housesSpcltyLable;
-  }
-
-  public void setHousesSpcltyLable(List<Lable> housesSpcltyLable) {
-    this.housesSpcltyLable = housesSpcltyLable;
-  }
-
   public String getHouseState() {
     return houseState;
   }
@@ -105,28 +135,12 @@ public class HousesDomain {
     this.pictureX = pictureX;
   }
 
-  public List<Lable> getPictureXLable() {
-    return pictureXLable;
-  }
-
-  public void setPictureXLable(List<Lable> pictureXLable) {
-    this.pictureXLable = pictureXLable;
-  }
-
   public String getPictureS() {
     return pictureS;
   }
 
   public void setPictureS(String pictureS) {
     this.pictureS = pictureS;
-  }
-
-  public List<Lable> getPictureSLable() {
-    return pictureSLable;
-  }
-
-  public void setPictureSLable(List<Lable> pictureSLable) {
-    this.pictureSLable = pictureSLable;
   }
 
   public String getPictureJ() {
@@ -137,28 +151,12 @@ public class HousesDomain {
     this.pictureJ = pictureJ;
   }
 
-  public List<Lable> getPictureJLable() {
-    return pictureJLable;
-  }
-
-  public void setPictureJLable(List<Lable> pictureJLable) {
-    this.pictureJLable = pictureJLable;
-  }
-
   public String getMating() {
     return mating;
   }
 
   public void setMating(String mating) {
     this.mating = mating;
-  }
-
-  public List<Lable> getMatingLable() {
-    return matingLable;
-  }
-
-  public void setMatingLable(List<Lable> matingLable) {
-    this.matingLable = matingLable;
   }
 
   public String getHouseTypeId() {

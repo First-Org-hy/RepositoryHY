@@ -24,14 +24,6 @@ DROP TABLE IF EXISTS housecd.renting_house;
 DROP TABLE IF EXISTS housecd.order_record;
 DROP TABLE IF EXISTS housecd.house_dynamic;
 
-CREATE TABLE housecd.t_user(
-  userId INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '用户id',
-  userName VARCHAR(255) NOT NULL COMMENT '姓名',
-  PASSWORD VARCHAR(255) NOT NULL COMMENT '密码',
-  phone VARCHAR(255) NOT NULL COMMENT '电话'
-) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
-
-
 /*用户表*/
 CREATE TABLE housecd.app_info(
   userId 	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT, /*用户id */
@@ -51,7 +43,6 @@ CREATE TABLE housecd.app_info(
   crtTime     TIMESTAMP    COMMENT '创建时间',
   updateTime  TIMESTAMP	   COMMENT '更新时间'
 ) ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
-
 
 /*银行卡信息表 */
 CREATE TABLE housecd.bank_info(
@@ -138,7 +129,7 @@ CREATE TABLE housecd.sell(
   updateTime   TIMESTAMP 	COMMENT '更新时间'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
-/*客户表*/
+/*客户表:单独维护*/
 CREATE TABLE housecd.guest(
   guestId      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   guestName    VARCHAR(255) COMMENT '客户姓名',
@@ -186,8 +177,6 @@ CREATE TABLE housecd.houses_info(
  updateTime  TIMESTAMP	   COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-
-
 /*标签表 一个ID允许多个标签*/
 CREATE TABLE housecd.lable(
  lableId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -232,7 +221,7 @@ CREATE TABLE housecd.houses(
  updateTime   TIMESTAMP	   COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-/*楼盘商务关系表 (舍弃 ,楼盘表添加 驻点商务ID)*/
+/*楼盘商务关系表 (舍弃 ,楼盘表添加 驻点商务ID)
 CREATE TABLE houses_user(
 housesId     VARCHAR(255)  COMMENT '楼盘ID',
 userId       VARCHAR(255)  COMMENT '驻点商务ID',
@@ -240,7 +229,7 @@ crtTime      TIMESTAMP     COMMENT '创建时间',
 updateTime   TIMESTAMP	   COMMENT '更新时间',
 updateId  	 VARCHAR(255)  COMMENT '更新人id'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
-
+*/
 
 /*楼盘特点 一个ID允许多个标签*/
 CREATE TABLE housecd.houses_spclty(
@@ -337,7 +326,7 @@ CREATE TABLE housecd.renting_house(
  housePicAddress VARCHAR(255) COMMENT '照片地址',
  houseMonPrice   VARCHAR(255) COMMENT '房租租金 月',
  houseYearPrice  VARCHAR(255) COMMENT '房租租金 年',
- houseSou       VARCHAR(255) COMMENT '房源介绍',/*房源介绍 */
+ houseSou       VARCHAR(255) COMMENT '房源介绍',/*房源简介 */
  houseState     VARCHAR(255) COMMENT '是否已被租：0是 1否',
  housePulId     VARCHAR(255) COMMENT '发布者',/*发布者 */
  relPhone       VARCHAR(255) COMMENT '联系电话',
@@ -353,7 +342,7 @@ orderUsId      VARCHAR(255) COMMENT '预约人ID',
 orderName      VARCHAR(255) COMMENT '预约人姓名',
 orderTel       VARCHAR(255) COMMENT '预约人电话',
 orderHouseId   VARCHAR(255) COMMENT '预约楼盘Id',
-orderHouseName VARCHAR(255) COMMENT '预约楼盘名称',
+orderHouseName VARCHAR(255) COMMENT '预约楼盘名称',	`65938
 crtTime        TIMESTAMP	  COMMENT '创建时间',
 updateTime     TIMESTAMP	  COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
