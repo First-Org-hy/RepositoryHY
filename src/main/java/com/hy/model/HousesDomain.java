@@ -20,7 +20,7 @@ public class HousesDomain {
   private String pictureJ; // 交通图
   private List<HousesPictureDomain> pictureJLable;
 
-  private String mating;
+  private String mating; //配套设施
   private List<HousesFacilitiesDomain> matingLable;
 
   private String houseTypeId;
@@ -48,12 +48,6 @@ public class HousesDomain {
   private List<HouseDynamicDomain> houseDynamics;
   //     包含:楼盘户型
   private List<HouseTypeDomain> houseType;
-  //     包含:楼盘配套设施
-  private List<HousesFacilitiesDomain> HousesFacilities;
-  //     包含:楼盘特点
-  private List<HousesSpcltyDomain> housesSpcltys;
-  //     包含:楼盘图片
-  private List<HousesPictureDomain> housesPictures;
   //     包含:在售新房
   private List<HouseDomain> house;
 
@@ -115,29 +109,6 @@ public class HousesDomain {
     this.houseType = houseType;
   }
 
-  public List<HousesFacilitiesDomain> getHousesFacilities() {
-    return HousesFacilities;
-  }
-
-  public void setHousesFacilities(List<HousesFacilitiesDomain> housesFacilities) {
-    HousesFacilities = housesFacilities;
-  }
-
-  public List<HousesSpcltyDomain> getHousesSpcltys() {
-    return housesSpcltys;
-  }
-
-  public void setHousesSpcltys(List<HousesSpcltyDomain> housesSpcltys) {
-    this.housesSpcltys = housesSpcltys;
-  }
-
-  public List<HousesPictureDomain> getHousesPictures() {
-    return housesPictures;
-  }
-
-  public void setHousesPictures(List<HousesPictureDomain> housesPictures) {
-    this.housesPictures = housesPictures;
-  }
 
   public List<HouseDomain> getHouse() {
     return house;

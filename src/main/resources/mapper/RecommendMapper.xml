@@ -108,7 +108,7 @@
   </select>
 
     <select id="queryCompanyInfo" parameterType="String" resultType="com.hy.model.AppDomain">
-    SELECT A.userId, A.userName, A.userPhone  FROM APP_INFO A WHERE A.userId = #{userId}
+    SELECT A.userId, A.userName, A.userPhone  FROM APP_INFO A WHERE A.parentId = #{userId}
   </select>
 
     <select id="query" parameterType="com.hy.model.RecommendDomain" resultType="com.hy.model.RecommendDomain">

@@ -20,6 +20,7 @@ public interface AppDao {
   List<AppDomain> querySell(AppDomain app);
 
   // 用户管理-六种类型的用户查询，无需条件
+  // 楼盘查询时 经纪人集合查询
   List<AppDomain> query(AppDomain appDomain);
   // 用户管理-修改用户类型：userId，userType
   int update(AppDomain appDomain);

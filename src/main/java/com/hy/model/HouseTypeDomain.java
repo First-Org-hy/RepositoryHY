@@ -1,11 +1,17 @@
 package com.hy.model;
 
+import java.util.List;
+
 /** Created by yaohou on 12:08 2019/5/3. description: 户型表 */
 public class HouseTypeDomain {
   private String houseTypeId;
   private String houseTypeName; // 户型类型名称',
-  private String houseTypeSpci; // 户型类型特点', /*特点，使用标签表 */
-  private String houseTypePic; // 户型类型图片', /*特点，使用标签表 */
+  private String houseTypeSpci; // 户型类型特点 存放在集合中
+  private List<HousesSpcltyDomain> housesSpcltyLable;
+
+  private String houseTypePic; // 户型类型图片 存放在集合中
+  private List<HousesPictureDomain> pictureXLable;
+
   private String houseFTTB; // 楼栋',
   private String houseTypeNum; // 居室数目',
   private String houseSize; // 建筑面积',
@@ -14,6 +20,22 @@ public class HouseTypeDomain {
   private String houseType; // 分类：住宅',
   private String crtTime; // 创建时间',
   private String updateTime; // 更新时间'
+
+  public List<HousesSpcltyDomain> getHousesSpcltyLable() {
+    return housesSpcltyLable;
+  }
+
+  public void setHousesSpcltyLable(List<HousesSpcltyDomain> housesSpcltyLable) {
+    this.housesSpcltyLable = housesSpcltyLable;
+  }
+
+  public List<HousesPictureDomain> getPictureXLable() {
+    return pictureXLable;
+  }
+
+  public void setPictureXLable(List<HousesPictureDomain> pictureXLable) {
+    this.pictureXLable = pictureXLable;
+  }
 
   public String getHouseTypeId() {
     return houseTypeId;

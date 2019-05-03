@@ -287,7 +287,7 @@ orderUsId      VARCHAR(255) COMMENT '预约人ID',
 orderName      VARCHAR(255) COMMENT '预约人姓名',
 orderTel       VARCHAR(255) COMMENT '预约人电话',
 orderHouseId   VARCHAR(255) COMMENT '预约楼盘Id',
-orderHouseName VARCHAR(255) COMMENT '预约楼盘名称',	`65938
+orderHouseName VARCHAR(255) COMMENT '预约楼盘名称',
 crtTime        TIMESTAMP	  COMMENT '创建时间',
 updateTime     TIMESTAMP	  COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
