@@ -90,10 +90,10 @@
         UPDATE
         <include refid="BASE_TABLE"/>
         <if test="userName != null">
-            AND userName = #{userName, jdbcType=VARCHAR}
+            SET userName = #{userName, jdbcType=VARCHAR},
         </if>
         <if test="userPhone != null">
-            AND userPhone = #{userPhone, jdbcType=VARCHAR}
+            SET userPhone = #{userPhone, jdbcType=VARCHAR},
         </if>
         SET userType = #{userType}, updateTime = CURRENT_TIMESTAMP
         WHERE userId = #{userId}
