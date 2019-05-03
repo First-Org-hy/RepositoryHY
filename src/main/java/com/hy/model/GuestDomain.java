@@ -7,12 +7,30 @@ public class GuestDomain {
   private String guestIdCard; // 客户身份证号
   private String guestPhone; // 客户手机
   private String housesId; // 楼盘id
+  private String housesName; // 楼盘name
   private String houseTypeId; // 户型id
   private String userParentId; // 经纪公司id
   private String userId; // 经纪人id
+  private String userName; // 经纪人姓名
   private String guestComment; // 客户备注
   private String crtTime; // 创建时间
   private String updateTime; // 更新时间
+
+  public String getHousesName() {
+    return housesName;
+  }
+
+  public void setHousesName(String housesName) {
+    this.housesName = housesName;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
 
   public String getGuestId() {
     return guestId;
