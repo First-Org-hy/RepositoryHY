@@ -12,7 +12,7 @@
 <p th:text="'picture model ！, ' + ${name} + '!'">${name}</p>
 hello
 <p>图片:</p>
-<img src="${filename }"/>
+<img src="${filename}"/>
 bottom
 </body>
 </html>

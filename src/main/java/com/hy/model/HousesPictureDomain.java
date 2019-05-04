@@ -2,25 +2,25 @@ package com.hy.model;
 
 /** Created by yaohou on 12:21 2019/5/3. description:楼盘图片地址表 */
 public class HousesPictureDomain {
-  private String lableId; // 图片地址id',
-  private String lableContext; // 图片地址',
+  private String housesPictureId; // 图片地址id',
+  private String housesPicture; // 图片地址',
   private String crtTime; // 创建时间',
   private String updateTime; // 更新时间'
 
-  public String getLableId() {
-    return lableId;
+  public String getHousesPictureId() {
+    return housesPictureId;
   }
 
-  public void setLableId(String lableId) {
-    this.lableId = lableId;
+  public void setHousesPictureId(String housesPictureId) {
+    this.housesPictureId = housesPictureId;
   }
 
-  public String getLableContext() {
-    return lableContext;
+  public String getHousesPicture() {
+    return housesPicture;
   }
 
-  public void setLableContext(String lableContext) {
-    this.lableContext = lableContext;
+  public void setHousesPicture(String housesPicture) {
+    this.housesPicture = housesPicture;
   }
 
   public String getCrtTime() {

@@ -25,6 +25,43 @@ public class HouseTypeDomain {
     return housesSpcltyLable;
   }
 
+  public HouseTypeDomain() {}
+
+  public HouseTypeDomain(
+      String houseTypeId,
+      String houseTypeName,
+      String houseTypeSpci,
+      List<HousesSpcltyDomain> housesSpcltyLable,
+      String houseTypePic,
+      List<HousesPictureDomain> pictureXLable,
+      String houseFTTB,
+      String houseTypeNum,
+      String houseSize,
+      String houseAvmPrice,
+      String houseTolPrice,
+      String houseType,
+      String crtTime,
+      String updateTime) {
+    this.houseTypeId = houseTypeId;
+    this.houseTypeName = houseTypeName;
+    this.houseTypeSpci = houseTypeSpci;
+    this.housesSpcltyLable = housesSpcltyLable;
+    this.houseTypePic = houseTypePic;
+    this.pictureXLable = pictureXLable;
+    this.houseFTTB = houseFTTB;
+    this.houseTypeNum = houseTypeNum;
+    this.houseSize = houseSize;
+    this.houseAvmPrice = houseAvmPrice;
+    this.houseTolPrice = houseTolPrice;
+    this.houseType = houseType;
+    this.crtTime = crtTime;
+    this.updateTime = updateTime;
+  }
+
+  public HouseTypeDomain(String houseTypeId) {
+    this.houseTypeId = houseTypeId;
+  }
+
   public void setHousesSpcltyLable(List<HousesSpcltyDomain> housesSpcltyLable) {
     this.housesSpcltyLable = housesSpcltyLable;
   }

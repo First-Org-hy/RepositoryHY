@@ -38,6 +38,8 @@ public class FileController {
     String suffixName = fileName.substring(fileName.lastIndexOf(".")); // 后缀名
     String filePath = imgPath; // "D://home//housecd//img//"; // 上传后的路径
 
+    System.out.println(filePath);
+
     fileName = UUID.randomUUID() + suffixName; // 新文件名
     File dest = new File(filePath + fileName);
     if (!dest.getParentFile().exists()) {
@@ -48,7 +50,7 @@ public class FileController {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    String filename = imgfilename + fileName; // /home/housecd/img/
+    String filename = imgfilename + fileName; //   "/home/housecd/img/"  //home//housecd//img//
     model.addAttribute("filename", filename);
     model.addAttribute("name", "housecd");
     return "file";

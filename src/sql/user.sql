@@ -167,24 +167,24 @@ CREATE TABLE housecd.houses(
 
 /*楼盘特点 一个ID允许多个标签*/
 CREATE TABLE housecd.houses_spclty(
- lableId	  VARCHAR(255) COMMENT '楼盘特点id',
- lableContext VARCHAR(255) COMMENT '楼盘特点内容',
+ housesSpcltyId	  VARCHAR(255) COMMENT '楼盘特点id',
+ housesSpclty VARCHAR(255) COMMENT '楼盘特点内容',
  crtTime      TIMESTAMP    COMMENT '创建时间',
  updateTime   TIMESTAMP	   COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*楼盘图片地址表 一个ID允许多个标签*/
 CREATE TABLE housecd.houses_picture(
- lableId	  VARCHAR(255) COMMENT '图片地址id',
- lableContext VARCHAR(255) COMMENT '图片地址',
+ housesPictureId	  VARCHAR(255) COMMENT '图片地址id',
+ housesPicture VARCHAR(255) COMMENT '图片地址',
  crtTime      TIMESTAMP    COMMENT '创建时间',
  updateTime   TIMESTAMP	   COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
 /*楼盘配套设施表 一个ID允许多个标签*/
 CREATE TABLE housecd.houses_facilities(
- lableId	  VARCHAR(255) COMMENT '配套设置id',
- lableContext VARCHAR(255) COMMENT '图片地址',
+ housesFacilitiesId	  VARCHAR(255) COMMENT '配套设置id',
+ housesFacilities VARCHAR(255) COMMENT '图片地址',
  crtTime      TIMESTAMP    COMMENT '创建时间',
  updateTime   TIMESTAMP	   COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;

@@ -4,11 +4,17 @@
     <sql id="SECOND_HOUSE_TABLE">
     second_hand_house
   </sql>
-
+    <sql id="SECOND_HOUSE_COLUMN">
+        secondHouseId , houseName     , houseArea     , houseAddress  ,
+        housePlot     , houseSize     , houseTypeId   , houseBound    ,
+        houseFloor    , houseFixType  , houseType     , houseStyleId  ,
+        housePicAddress,houseAvmPrice , houseTolPrice , houseSou      ,
+        housePulId    , relPhone      , houseState    , sortWay       ,
+        crtTime       , updateTime
+    </sql>
     <sql id="RENT_HOUSE_TABLE">
     renting_house
   </sql>
-
     <sql id="RENT_HOUSE_COLUMN">
         rentHouseId , houseName     , houseArea     , houseAddress  ,
         housePlot     , houseSize     , houseTypeId   , houseBound    ,
@@ -17,35 +23,74 @@
         houseState,   housePulId    , relPhone      , houseState    , sortWay       ,
         crtTime       , updateTime
   </sql>
-
     <sql id="ORDER__RECORD_TABLE">
     order_record
   </sql>
-
     <sql id="DYNAMIC_HOUSE_TABLE">
     house_dynamic
   </sql>
-
     <sql id="DYNAMIC_HOUSE_COLUMN">
     dynamicId, houseId, userId, content, crtTime, updateTime
   </sql>
-
     <sql id="HOUSE_INFO_TABLE">
     houses_info
   </sql>
-
     <sql id="HOUSE_INFO_COLUMN">
     id, headline, programId, programName, picAddress, lableId, content, crtTime, updateTime
   </sql>
-
-    <sql id="SECOND_HOUSE_COLUMN">
-        secondHouseId , houseName     , houseArea     , houseAddress  ,
-        housePlot     , houseSize     , houseTypeId   , houseBound    ,
-        houseFloor    , houseFixType  , houseType     , houseStyleId  ,
-        housePicAddress,houseAvmPrice , houseTolPrice , houseSou      ,
-        housePulId    , relPhone      , houseState    , sortWay       ,
-        crtTime       , updateTime
+    <sql id="ORDER_RECORD_TABLE">
+    order_record
   </sql>
+    <sql id="ORDER_RECORD_COLUMN">
+    orderId, orderUsId, orderName, orderTel, orderHouseId, orderHouseName, crtTime, updateTime
+  </sql>
+
+    <insert id="addOrderRecord" parameterType="com.hy.model.OrderRecordDomain">
+        INSERT INTO
+        <include refid="ORDER_RECORD_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                orderId,
+            </if>
+            <if test="orderUsId != null">
+                orderUsId,
+            </if>
+            <if test="orderName != null">
+                orderName,
+            </if>
+            <if test="orderTel != null">
+                orderTel,
+            </if>
+            <if test="orderHouseId != null">
+                orderHouseId,
+            </if>
+            <if test="orderHouseName != null">
+                orderHouseName,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                #{orderId},
+            </if>
+            <if test="orderUsId != null">
+                #{orderUsId, jdbcType=VARCHAR},
+            </if>
+            <if test="orderName != null">
+                #{orderName, jdbcType=VARCHAR},
+            </if>
+            <if test="orderTel != null">
+                #{orderTel, jdbcType=VARCHAR},
+            </if>
+            <if test="orderHouseId != null">
+                #{orderHouseId, jdbcType=VARCHAR},
+            </if>
+            <if test="orderHouseName != null">
+                #{orderHouseName, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
 
     <insert id="addSecondHouse" parameterType="com.hy.model.SecondHouseDomain">
         INSERT INTO
@@ -165,7 +210,6 @@
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
     </insert>
-
     <insert id="addRentHouse" parameterType="com.hy.model.RentHouseDomain">
         INSERT INTO
         <include refid="RENT_HOUSE_TABLE"/>
@@ -290,7 +334,6 @@
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
     </insert>
-
     <insert id="addHouseDynamic" parameterType="com.hy.model.HouseDynamicDomain">
         INSERT INTO
         <include refid="DYNAMIC_HOUSE_TABLE"/>
@@ -319,15 +362,6 @@
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
     </insert>
-
-    <select id="queryDyByHouseId" resultType="com.hy.model.HouseDynamicDomain">
-        SELECT
-        <include refid="DYNAMIC_HOUSE_COLUMN"/>
-        FROM
-        <include refid="DYNAMIC_HOUSE_TABLE"/>
-        WHERE houseId = #{houseId} ORDER BY updateTime desc
-    </select>
-
     <insert id="addHousesInfo" parameterType="com.hy.model.HousesInfoDomain">
         INSERT INTO
         <include refid="HOUSE_INFO_TABLE"/>
@@ -374,29 +408,64 @@
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
     </insert>
-
-    <select id="queryHousesInfo" resultType="com.hy.model.HouseDynamicDomain">
+    <select id="queryDyByHouseId" resultType="com.hy.model.HouseDynamicDomain">
+        SELECT
+        <include refid="DYNAMIC_HOUSE_COLUMN"/>
+        FROM
+        <include refid="DYNAMIC_HOUSE_TABLE"/>
+        WHERE houseId = #{houseId} ORDER BY updateTime desc
+    </select>
+    <select id="queryHousesInfo" resultType="com.hy.model.HousesInfoDomain">
         SELECT
         <include refid="HOUSE_INFO_COLUMN"/>
         FROM
         <include refid="HOUSE_INFO_TABLE"/>
         ORDER BY updateTime desc
     </select>
-
-    <select id="querySecondsByUserId" resultType="com.hy.model.SecondHouseDomain">
+    <select id="querySecondsByUserId" parameterType="com.hy.model.SecondHouseDomain"
+            resultType="com.hy.model.SecondHouseDomain">
         SELECT
         <include refid="SECOND_HOUSE_COLUMN"/>
         FROM
         <include refid="SECOND_HOUSE_TABLE"/>
-        WHERE housePulId = #{userId} ORDER BY updateTime desc
+        WHERE 1=1
+        <if test="housePulId != null">
+            AND housePulId = #{housePulId, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime desc
     </select>
-
-    <select id="queryRentsByUserId" resultType="com.hy.model.RentHouseDomain">
+    <select id="queryRentHouse" parameterType="com.hy.model.RentHouseDomain"
+            resultType="com.hy.model.RentHouseDomain">
         SELECT
         <include refid="RENT_HOUSE_COLUMN"/>
         FROM
         <include refid="RENT_HOUSE_TABLE"/>
-        WHERE housePulId = #{userId} ORDER BY updateTime desc
+        WHERE 1=1
+        <if test="rentHouseId != null">
+            AND rentHouseId = #{rentHouseId, jdbcType=VARCHAR}
+        </if>
+        <if test="houseName != null">
+            AND houseName = #{houseName, jdbcType=VARCHAR}
+        </if>
+        <if test="houseAddress != null">
+            AND houseAddress = #{houseAddress, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime desc
+    </select>
+    <select id="queryRentsByUserId" parameterType="com.hy.model.RentHouseDomain"
+            resultType="com.hy.model.RentHouseDomain">
+        SELECT
+        <include refid="RENT_HOUSE_COLUMN"/>
+        FROM
+        <include refid="RENT_HOUSE_TABLE"/>
+        WHERE 1=1
+        <if test="housePulId != null">
+            and housePulId = #{housePulId}
+        </if>
+        ORDER BY updateTime desc
+    </select>
+    <select id="queryhouseType" resultType="com.hy.model.HouseTypeDomain">
+        SELECT DISTINCT houseTypeName FROM housecd.house_type ORDER BY updateTime desc
     </select>
 
 </mapper>

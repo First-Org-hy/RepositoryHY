@@ -21,16 +21,18 @@ public class HouseController {
     return houseService.addRentHouse(house);
   }
 
+  // 普通用户租房查询
   @ResponseBody
   @GetMapping("/queryRent")
   public List<RentHouseDomain> queryRentHouse(RentHouseDomain House) {
     return houseService.queryRentHouse(House);
   }
 
+  // 我发布的租房查询
   @ResponseBody
   @GetMapping("/queryRentsByUserId")
-  public List<RentHouseDomain> queryRentsByUserId(String userId) {
-    return houseService.queryRentsByUserId(userId);
+  public List<RentHouseDomain> queryRentsByUserId(RentHouseDomain rentHouseDomain) {
+    return houseService.queryRentsByUserId(rentHouseDomain);
   }
 
   @ResponseBody
@@ -42,8 +44,8 @@ public class HouseController {
   // 普通用户二手房查询:
   @ResponseBody
   @GetMapping("/querySecond")
-  public List<SecondHouseDomain> querySeconds(String userId) {
-    return houseService.querySecondsByUserId(userId);
+  public List<SecondHouseDomain> querySeconds(SecondHouseDomain secondHouseDomain) {
+    return houseService.querySecondsByUserId(secondHouseDomain);
   }
 
   // 普通用户预约看房:orderName,orderTel,orderHouseName,orderHouseId
@@ -65,6 +67,7 @@ public class HouseController {
     return houseService.addHouseDynamic(house);
   }
 
+  // 楼盘咨询查询
   @ResponseBody
   @GetMapping("/queryHousesInfo")
   public List<HousesInfoDomain> queryHousesInfo() {
@@ -81,5 +84,12 @@ public class HouseController {
   @PostMapping("/delByUserId")
   public int delBrokerByUserId(AppDomain app) {
     return 0;
+  }
+
+  // 查询所有户型
+  @ResponseBody
+  @GetMapping(value = "queryhouseType")
+  public List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain) {
+    return houseService.queryhouseType(houseTypeDomain);
   }
 }

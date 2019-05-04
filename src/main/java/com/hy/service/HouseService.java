@@ -13,13 +13,14 @@ public interface HouseService {
 
   List<RentHouseDomain> queryRentHouse(RentHouseDomain house);
 
-  List<RentHouseDomain> queryRentsByUserId(String userId);
+  List<RentHouseDomain> queryRentsByUserId(RentHouseDomain rentHouseDomain);
 
   Lable addSecondHouse(SecondHouseDomain house);
 
   List<SecondHouseDomain> querySecondHouse(SecondHouseDomain house);
 
-  List<SecondHouseDomain> querySecondsByUserId(String userId);
+  // 普通用户二手房查询:
+  List<SecondHouseDomain> querySecondsByUserId(SecondHouseDomain secondHouseDomain);
 
   Lable addOrderRecord(OrderRecordDomain order);
 
@@ -29,14 +30,9 @@ public interface HouseService {
 
   Lable addHousesInfo(HousesInfoDomain houseInfo);
 
+  // 楼盘咨询查询
   List<HousesInfoDomain> queryHousesInfo();
 
-  /**
-   * 驻点商务楼盘查询
-   *
-   * @author yaohou
-   * @date 2019/5/2 15:13
-   * @return java.util.List<com.hy.model.HousesDomain>
-   */
-  List<HousesDomain> queryByUserId(AppDomain appDomain);
+  // 查询所有户型
+  List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain);
 }

@@ -11,6 +11,16 @@
     deadLine, avgPrice, investor, plotRatio, familyNum, carportNum, fitment,
     location, recommend, crtTime, updateTime
   </sql>
+    <sql id="HOUSES_SPCLTY_TABLE">
+        houses_spclty
+    </sql>
+    <sql id="HOUSES_SPCLTY_COLUMN">
+        housesSpcltyId, housesSpclty, crtTime, updateTime
+    </sql>
+    <sql id="HOUSE_TYPE_COLUMN">
+        houseTypeId, housesId, houseTypeName, houseTypeSpci, houseTypePic, houseFTTB, houseTypeNum, houseSize, houseAvmPrice, houseTolPrice, houseType, crtTime, updateTime
+    </sql>
+
     <insert id="insert" parameterType="com.hy.model.HousesDomain">
         INSERT INTO
         <include refid="BASE_TABLE"/>
@@ -35,6 +45,97 @@
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
     </insert>
+    <insert id="insertHouseSpcl" parameterType="com.hy.model.HousesSpcltyDomain">
+        INSERT INTO houses_spclty
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                lableId,
+            </if>
+            <if test="lableContext != null">
+                lableContext,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                #{lableId, jdbcType=VARCHAR},
+            </if>
+            <if test="lableContext != null">
+                #{lableContext, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+    <insert id="insertHousePic" parameterType="com.hy.model.HousesPictureDomain">
+        INSERT INTO houses_picture
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                lableId,
+            </if>
+            <if test="lableContext != null">
+                lableContext,
+            </if>
+
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                #{lableId, jdbcType=VARCHAR},
+            </if>
+            <if test="lableContext != null">
+                #{lableContext, jdbcType=VARCHAR},
+            </if>
+
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+    <insert id="insertHouseMat" parameterType="com.hy.model.HousesFacilitiesDomain">
+        INSERT INTO houses_facilities
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                lableId,
+            </if>
+            <if test="lableContext != null">
+                lableContext,
+            </if>
+
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                #{lableId, jdbcType=VARCHAR},
+            </if>
+            <if test="lableContext != null">
+                #{lableContext, jdbcType=VARCHAR},
+            </if>
+
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+    <insert id="insertHouseType" parameterType="com.hy.model.HouseTypeDomain">
+        INSERT INTO house_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                lableId,
+            </if>
+            <if test="lableContext != null">
+                lableContext,
+            </if>
+
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                #{lableId, jdbcType=VARCHAR},
+            </if>
+            <if test="lableContext != null">
+                #{lableContext, jdbcType=VARCHAR},
+            </if>
+
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+
     <select id="selectHouses" parameterType="com.hy.model.HousesDomain" resultType="com.hy.model.HousesDomain">
         SELECT
         <include refid="BASE_COLUMN"/>
@@ -103,55 +204,6 @@
         </if>
         updateTime DESC
     </select>
-
-    <insert id="insertHouseSpcl" parameterType="com.hy.model.HousesSpcltyDomain">
-        INSERT INTO houses_spclty
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                lableId,
-            </if>
-            <if test="lableContext != null">
-                lableContext,
-            </if>
-
-            crtTime, updateTime
-        </trim>
-        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                #{lableId, jdbcType=VARCHAR},
-            </if>
-            <if test="lableContext != null">
-                #{lableContext, jdbcType=VARCHAR},
-            </if>
-
-            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
-        </trim>
-    </insert>
-
-    <insert id="insertHousePic" parameterType="com.hy.model.HousesPictureDomain">
-        INSERT INTO houses_picture
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                lableId,
-            </if>
-            <if test="lableContext != null">
-                lableContext,
-            </if>
-
-            crtTime, updateTime
-        </trim>
-        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                #{lableId, jdbcType=VARCHAR},
-            </if>
-            <if test="lableContext != null">
-                #{lableContext, jdbcType=VARCHAR},
-            </if>
-
-            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
-        </trim>
-    </insert>
-
     <select id="queryHouseId" parameterType="com.hy.model.HousesDomain" resultType="String">
         SELECT
         housesId
@@ -165,55 +217,6 @@
             AND developers = #{userId, jdbcType=VARCHAR}
         </if>
     </select>
-
-    <insert id="insertHouseMat" parameterType="com.hy.model.HousesFacilitiesDomain">
-        INSERT INTO houses_facilities
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                lableId,
-            </if>
-            <if test="lableContext != null">
-                lableContext,
-            </if>
-
-            crtTime, updateTime
-        </trim>
-        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                #{lableId, jdbcType=VARCHAR},
-            </if>
-            <if test="lableContext != null">
-                #{lableContext, jdbcType=VARCHAR},
-            </if>
-
-            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
-        </trim>
-    </insert>
-
-    <insert id="insertHouseType" parameterType="com.hy.model.HouseTypeDomain">
-        INSERT INTO house_type
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                lableId,
-            </if>
-            <if test="lableContext != null">
-                lableContext,
-            </if>
-
-            crtTime, updateTime
-        </trim>
-        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                #{lableId, jdbcType=VARCHAR},
-            </if>
-            <if test="lableContext != null">
-                #{lableContext, jdbcType=VARCHAR},
-            </if>
-
-            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
-        </trim>
-    </insert>
-
     <select id="querySpc" parameterType="String" resultType="com.hy.model.HousesSpcltyDomain">
         SELECT
         *
@@ -224,7 +227,6 @@
             AND lableId = #{spc, jdbcType=VARCHAR}
         </if>
     </select>
-
     <select id="queryPic" parameterType="String" resultType="com.hy.model.HousesPictureDomain">
         SELECT
         *
@@ -235,7 +237,6 @@
             AND lableId = #{pic, jdbcType=VARCHAR}
         </if>
     </select>
-
     <select id="queryMat" parameterType="String" resultType="com.hy.model.HousesFacilitiesDomain">
         SELECT
         *
@@ -246,15 +247,19 @@
             AND lableId = #{pic, jdbcType=VARCHAR}
         </if>
     </select>
-
-    <select id="queryType" parameterType="String" resultType="com.hy.model.HouseTypeDomain">
+    <select id="queryType" parameterType="com.hy.model.HouseTypeDomain" resultType="com.hy.model.HouseTypeDomain">
         SELECT
-        *
+        <include refid="HOUSE_TYPE_COLUMN"/>
         FROM
         house_type
         WHERE 1=1
-        <if test="housesId != null">
-            AND housesId = #{housesId, jdbcType=VARCHAR}
+        <if test="houseTypeId != null">
+            AND houseTypeId = #{houseTypeId}
         </if>
+    </select>
+    <select id="querySpclty" resultType="com.hy.model.HousesSpcltyDomain">
+        select
+        DISTINCT housesSpclty
+        from housecd.houses_spclty
     </select>
 </mapper>

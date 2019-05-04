@@ -2,6 +2,7 @@ package com.hy.controller;
 
 import com.hy.common.Lable;
 import com.hy.model.HousesDomain;
+import com.hy.model.HousesSpcltyDomain;
 import com.hy.service.HousesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,12 @@ public class HousesController {
     return housesService.queryHouses(housesDomain);
   }
 
+  // 楼盘特点查询，所有特点去重
+  @ResponseBody
+  @GetMapping("/querySpclty")
+  public List<HousesSpcltyDomain> querySpclty() {
+    return housesService.querySpclty();
+  }
   // 普通用户 区域/价格/筛选 楼盘: areaId,总价,avgPrice(单价),排序,户型,装修,面积,开盘时间,售卖状况,特色
   //
   // areaId,sumPrice,avgPrice-maxPrice(单价),housesType,fitment,areaJ,crtTime,houseState,housesSpclty*/

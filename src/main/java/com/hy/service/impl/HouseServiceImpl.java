@@ -23,17 +23,25 @@ public class HouseServiceImpl implements HouseService {
   /**
    * 发布租房信息
    *
-   * @param house
+   * @param rentHouseDomain
    * @return
    */
   @Override
-  public Lable addRentHouse(RentHouseDomain house) {
+  public Lable addRentHouse(RentHouseDomain rentHouseDomain) {
     Lable lable = new Lable();
-    int i = houseDao.addRentHouse(house);
-    if (i == 1) {
-      lable.setId("1");
-      lable.setMessage("租房信息发布成功");
+    if (houseDao.queryRentHouse(rentHouseDomain).size() != 0) {
+      lable.setId("12");
+      lable.setMessage("租房信息发布已存在");
+    } else {
+      if (houseDao.addRentHouse(rentHouseDomain) == 1) {
+        lable.setId("1");
+        lable.setMessage("租房信息发布成功");
+      } else {
+        lable.setId("0");
+        lable.setMessage("租房信息发布失败");
+      }
     }
+
     return lable;
   }
 
@@ -51,12 +59,12 @@ public class HouseServiceImpl implements HouseService {
   /**
    * 查询用户发布的所有租房
    *
-   * @param userId
+   * @param rentHouseDomain
    * @return
    */
   @Override
-  public List<RentHouseDomain> queryRentsByUserId(String userId) {
-    return houseDao.queryRentsByUserId(userId);
+  public List<RentHouseDomain> queryRentsByUserId(RentHouseDomain rentHouseDomain) {
+    return houseDao.queryRentsByUserId(rentHouseDomain);
   }
 
   /**
@@ -93,12 +101,12 @@ public class HouseServiceImpl implements HouseService {
   /**
    * 查询用户发布的所有二手房
    *
-   * @param userId
+   * @param secondHouseDomain
    * @return
    */
   @Override
-  public List<SecondHouseDomain> querySecondsByUserId(String userId) {
-    return houseDao.querySecondsByUserId(userId);
+  public List<SecondHouseDomain> querySecondsByUserId(SecondHouseDomain secondHouseDomain) {
+    return houseDao.querySecondsByUserId(secondHouseDomain);
   }
 
   /**
@@ -163,18 +171,15 @@ public class HouseServiceImpl implements HouseService {
     return lable;
   }
 
-  /**
-   * 房产资讯查询
-   *
-   * @return
-   */
+  // 房产资讯查询
   @Override
   public List<HousesInfoDomain> queryHousesInfo() {
     return houseDao.queryHousesInfo();
   }
 
+  // 查询所有户型
   @Override
-  public List<HousesDomain> queryByUserId(AppDomain appDomain) {
-    return null;
+  public List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain) {
+    return houseDao.queryhouseType(houseTypeDomain);
   }
 }
