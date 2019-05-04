@@ -1,5 +1,6 @@
 package com.hy.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,12 @@ import java.util.UUID;
 @Controller
 public class FileController {
 
+  @Value("${img.path}")
+  private String imgPath;
+
+  @Value("${img.filename}")
+  private String imgfilename;
+
   @GetMapping(value = "/file")
   public String file() {
     return "file";
@@ -29,7 +36,8 @@ public class FileController {
     }
     String fileName = file.getOriginalFilename(); // 文件名
     String suffixName = fileName.substring(fileName.lastIndexOf(".")); // 后缀名
-    String filePath = "D://home//housecd//img//"; // 上传后的路径
+    String filePath = imgPath; // "D://home//housecd//img//"; // 上传后的路径
+
     fileName = UUID.randomUUID() + suffixName; // 新文件名
     File dest = new File(filePath + fileName);
     if (!dest.getParentFile().exists()) {
@@ -40,7 +48,7 @@ public class FileController {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    String filename = "/home/housecd/img/" + fileName; //    //home//housecd//img//
+    String filename = imgfilename + fileName; // /home/housecd/img/
     model.addAttribute("filename", filename);
     model.addAttribute("name", "housecd");
     return "file";

@@ -1,3 +1,9 @@
+img:
+  path: E://home//housecd//img//
+  pathfile: file:E:/home/housecd/img/
+  pathpatterns: /home/housecd/img/**
+  filename: /home/housecd/img/
+
 server:
   port: 7001
   tomcat.uri-encoding: UTF-8

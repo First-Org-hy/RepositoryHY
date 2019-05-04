@@ -34,7 +34,7 @@ CREATE TABLE housecd.app_info(
   userPhone   VARCHAR(255) COMMENT '用户手机号',
   userType    CHAR(1) 	   COMMENT '用户类型：1系统管理员，2编辑，3楼盘商务，4经济公司，5经纪人，6普通用户',
   -- userComment VARCHAR(255) COMMENT '客户备注',
-  housesId    VARCHAR(255) COMMENT '客户推荐楼盘',
+  housesId    VARCHAR(255) COMMENT '客户推荐楼盘,楼盘id',
   houseTypeId VARCHAR(50)  COMMENT '客户推荐户型',
   companyName VARCHAR(255) COMMENT '公司名称',
   parentId 	  VARCHAR(255) COMMENT '所属公司id',
