@@ -73,4 +73,9 @@ public class AppServiceImpl implements AppService {
     }
     return lable;
   }
+
+  @Override
+  public List<AppDomain> queryById(AppDomain app) {
+    return appDao.queryById(app);
+  }
 }

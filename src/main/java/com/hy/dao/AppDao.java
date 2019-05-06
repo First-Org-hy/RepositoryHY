@@ -26,4 +26,6 @@ public interface AppDao {
   int update(AppDomain appDomain);
   // 删除用户: userId
   int del(AppDomain appDomain);
+  // 微信登录:仅用appid校验是否已有该用户
+  List<AppDomain> queryById(AppDomain app);
 }

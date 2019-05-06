@@ -4,7 +4,7 @@
     <title>hello</title>
 </head>
 <body>
-<form action="/fileUpload" method="post" enctype="multipart/form-data">
+<form action="/ " method="post" enctype="multipart/form-data">
     <label>upload picture </label>
     <input type="file" name="file"/>
     <input type="submit" value="upload"/>

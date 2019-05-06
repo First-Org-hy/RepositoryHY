@@ -25,4 +25,6 @@ public interface AppService {
   Lable update(AppDomain appDomain);
   // 删除用户: userId
   Lable del(AppDomain appDomain);
+  // 微信登录:仅用appid校验是否已有该用户
+  List<AppDomain> queryById(AppDomain app);
 }
