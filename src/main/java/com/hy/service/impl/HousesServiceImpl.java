@@ -236,7 +236,6 @@ public class HousesServiceImpl implements HousesService {
       return lable;
   }
 
-
   //更新楼盘信息
   @Override
   public Lable updateHouses(HousesDomain housesDomain) {
