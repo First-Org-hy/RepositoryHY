@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.dao.InfoDao">
+    <sql id="BASE_TABLE">
+      houses_info
+    </sql>
+    <sql id="BASE_COLUMN">
+    Id, headline, programId, programName, picAddress, lableId, content, crtTime, updateTime
+    </sql>
+    <sql id="HOUSE_DYNAMIC_TABLE">
+        house_dynamic
+    </sql>
+    <sql id="HOUSE_DYNAMIC_COLUMN">
+        dynamicId, houseId, userId, content, crtTime, updateTime
+    </sql>
+    <sql id="INFO_LABLE_TABLE">
+        info_lable
+    </sql>
+    <sql id="INFO_LABLE_COLUMN">
+        lableId,lableContext, crtTime, updateTime
+    </sql>
+    <sql id="INFO_PICTURE_TABLE">
+        info_picture
+    </sql>
+    <sql id="INFO_PICTURE_COLUMN">
+        infoPictureId,infoPicture, crtTime, updateTime
+    </sql>
+
+    <insert id="addInfo" parameterType="com.hy.model.HousesInfoDomain">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="Id != null">
+                Id,
+            </if>
+            <if test="headline != null">
+                headline,
+            </if>
+            <if test="programId != null">
+                programId,
+            </if>
+            <if test="programName != null">
+                programName,
+            </if>
+            <if test="picAddress != null">
+                picAddress,
+            </if>
+            <if test="lableId != null">
+                lableId,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="Id != null">
+                #{Id},
+            </if>
+            <if test="headline != null">
+                #{headline, jdbcType=VARCHAR},
+            </if>
+            <if test="programId != null">
+                #{programId, jdbcType=VARCHAR},
+            </if>
+            <if test="programName != null">
+                #{programName, jdbcType=VARCHAR},
+            </if>
+            <if test="picAddress != null">
+                #{picAddress, jdbcType=VARCHAR},
+            </if>
+            <if test="lableId != null">
+                #{lableId, jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+    <update id="updateInfo" parameterType="com.hy.model.HousesInfoDomain">
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        <if test="userName != null">
+            AND userName = #{userName, jdbcType=VARCHAR}
+        </if>
+        <if test="userPhone != null">
+            AND userPhone = #{userPhone, jdbcType=VARCHAR}
+        </if>
+        updateTime = CURRENT_TIMESTAMP
+        WHERE Id = #{Id}
+    </update>
+    <select id="queryInfo" parameterType="com.hy.model.HousesInfoDomain" resultType="com.hy.model.HousesInfoDomain">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+        where 1=1
+        <if test="id != null">
+            AND id = #{id, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime DESC
+    </select>
+    <delete id="delInfo" parameterType="com.hy.model.HousesInfoDomain">
+        delete from
+        <include refid="BASE_TABLE"/>
+        where id = #{id}
+    </delete>
+
+    <insert id="addDynamic" parameterType="com.hy.model.HouseDynamicDomain">
+        INSERT INTO
+        <include refid="HOUSE_DYNAMIC_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dynamicId != null">
+                dynamicId,
+            </if>
+            <if test="houseId != null">
+                houseId,
+            </if>
+            <if test="userId != null">
+                userId,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="dynamicId != null">
+                #{dynamicId},
+            </if>
+            <if test="houseId != null">
+                #{houseId, jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId, jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+    <update id="updateDynamic" parameterType="com.hy.model.HouseDynamicDomain">
+        UPDATE
+        <include refid="HOUSE_DYNAMIC_TABLE"/>
+        <if test="dynamicId != null">
+            AND dynamicId = #{dynamicId, jdbcType=VARCHAR}
+        </if>
+
+        updateTime = CURRENT_TIMESTAMP
+        WHERE dynamicId = #{dynamicId}
+    </update>
+    <select id="queryDynamic" parameterType="com.hy.model.HouseDynamicDomain"
+            resultType="com.hy.model.HouseDynamicDomain">
+        SELECT
+        <include refid="HOUSE_DYNAMIC_COLUMN"/>
+        FROM
+        <include refid="HOUSE_DYNAMIC_TABLE"/>
+        where 1=1
+        <if test="dynamicId != null">
+            AND dynamicId = #{dynamicId, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime DESC
+    </select>
+    <delete id="delDynamic" parameterType="com.hy.model.HouseDynamicDomain">
+        delete from
+        <include refid="HOUSE_DYNAMIC_TABLE"/>
+        where dynamicId = #{dynamicId}
+    </delete>
+
+    <insert id="addLable" parameterType="com.hy.model.InfoLableDomain">
+        INSERT INTO
+        <include refid="INFO_LABLE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                lableId,
+            </if>
+            <if test="lableContext != null">
+                lableContext,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="lableId != null">
+                #{lableId},
+            </if>
+            <if test="lableContext != null">
+                #{lableContext, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+    <select id="queryLable" parameterType="com.hy.model.InfoLableDomain"
+            resultType="com.hy.model.InfoLableDomain">
+        SELECT
+        <include refid="INFO_LABLE_COLUMN"/>
+        FROM
+        <include refid="INFO_LABLE_TABLE"/>
+        where 1=1
+        <if test="lableId != null">
+            AND lableId = #{lableId, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime DESC
+    </select>
+    <delete id="delLable" parameterType="com.hy.model.HouseDynamicDomain">
+        delete from
+        <include refid="INFO_LABLE_TABLE"/>
+        where lableId = #{lableId}
+    </delete>
+
+    <insert id="addPic" parameterType="com.hy.model.InfoPictureDomain">
+        INSERT INTO
+        <include refid="INFO_PICTURE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="infoPictureId != null">
+                infoPictureId,
+            </if>
+            <if test="infoPicture != null">
+                infoPicture,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="infoPictureId != null">
+                #{infoPictureId},
+            </if>
+            <if test="infoPicture != null">
+                #{infoPicture, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+    <select id="queryPic" parameterType="com.hy.model.InfoPictureDomain"
+            resultType="com.hy.model.InfoPictureDomain">
+        SELECT
+        <include refid="INFO_PICTURE_COLUMN"/>
+        FROM
+        <include refid="INFO_PICTURE_TABLE"/>
+        where 1=1
+        <if test="infoPictureId != null">
+            AND infoPictureId = #{infoPictureId, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime DESC
+    </select>
+    <delete id="delPic" parameterType="com.hy.model.InfoPictureDomain">
+        delete from
+        <include refid="INFO_PICTURE_TABLE"/>
+        where infoPictureId = #{infoPictureId}
+    </delete>
+
+</mapper>

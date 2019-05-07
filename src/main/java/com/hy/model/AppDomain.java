@@ -21,6 +21,50 @@ public class AppDomain {
   private Date crtTime;
   private Date updateTime;
 
+  public AppDomain(String appName, String appId, String appSecret, String userName) {
+    this.appName = appName;
+    this.appId = appId;
+    this.appSecret = appSecret;
+    this.userName = userName;
+  }
+
+  public AppDomain() {}
+
+  public AppDomain(
+      String userId,
+      String appName,
+      String appId,
+      String appSecret,
+      String userName,
+      String userIdCard,
+      String userPhone,
+      String userType,
+      String housesId,
+      String houseTypeId,
+      String companyName,
+      String parentId,
+      String userState,
+      Date crtTime,
+      Date updateTime,
+      List<SellDomain> sellList) {
+    this.userId = userId;
+    this.appName = appName;
+    this.appId = appId;
+    this.appSecret = appSecret;
+    this.userName = userName;
+    this.userIdCard = userIdCard;
+    this.userPhone = userPhone;
+    this.userType = userType;
+    this.housesId = housesId;
+    this.houseTypeId = houseTypeId;
+    this.companyName = companyName;
+    this.parentId = parentId;
+    this.userState = userState;
+    this.crtTime = crtTime;
+    this.updateTime = updateTime;
+    this.sellList = sellList;
+  }
+
   private List<SellDomain> sellList; // 销售信息
 
   public List<SellDomain> getSellList() {

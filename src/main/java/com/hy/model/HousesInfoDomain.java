@@ -1,95 +1,108 @@
 package com.hy.model;
 
 import java.sql.Date;
+import java.util.List;
 
-/**
- * Created by shakaiyue on 22:10 2019/4/17.
- * description:楼盘资讯实体类
- */
+/** Created by shakaiyue on 22:10 2019/4/17. description:楼盘资讯实体类 */
 public class HousesInfoDomain {
 
-    private Integer id;
-    private String headline;         // 标题
-    private String programId;        // 栏目Id
-    private String programName;      // 栏目名称
-    private String picAddress;       // 标题图片地址
-    private String lableId;          // 标签
-    private String content;          // 内容
-    private Date crtTime;            // 创建时间
-    private Date updateTime;         // 更新时间
+  private String id;
+  private String headline; // 标题
+  private String programId; // 栏目Id
+  private String programName; // 栏目名称
+  private String picAddress; // 标题图片地址
+  private List<InfoPictureDomain> infoPictureDomains;
+  private String lableId; // 标签
+  private List<InfoLableDomain> infoLableDomains;
+  private String content; // 内容
+  private Date crtTime; // 创建时间
+  private Date updateTime; // 更新时间
 
+  public List<InfoPictureDomain> getInfoPictureDomains() {
+    return infoPictureDomains;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public void setInfoPictureDomains(List<InfoPictureDomain> infoPictureDomains) {
+    this.infoPictureDomains = infoPictureDomains;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public List<InfoLableDomain> getInfoLableDomains() {
+    return infoLableDomains;
+  }
 
-    public String getHeadline() {
-        return headline;
-    }
+  public void setInfoLableDomains(List<InfoLableDomain> infoLableDomains) {
+    this.infoLableDomains = infoLableDomains;
+  }
 
-    public void setHeadline(String headline) {
-        this.headline = headline;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public String getProgramId() {
-        return programId;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public void setProgramId(String programId) {
-        this.programId = programId;
-    }
+  public String getHeadline() {
+    return headline;
+  }
 
-    public String getProgramName() {
-        return programName;
-    }
+  public void setHeadline(String headline) {
+    this.headline = headline;
+  }
 
-    public void setProgramName(String programName) {
-        this.programName = programName;
-    }
+  public String getProgramId() {
+    return programId;
+  }
 
-    public String getPicAddress() {
-        return picAddress;
-    }
+  public void setProgramId(String programId) {
+    this.programId = programId;
+  }
 
-    public void setPicAddress(String picAddress) {
-        this.picAddress = picAddress;
-    }
+  public String getProgramName() {
+    return programName;
+  }
 
-    public String getLableId() {
-        return lableId;
-    }
+  public void setProgramName(String programName) {
+    this.programName = programName;
+  }
 
-    public void setLableId(String lableId) {
-        this.lableId = lableId;
-    }
+  public String getPicAddress() {
+    return picAddress;
+  }
 
-    public String getContent() {
-        return content;
-    }
+  public void setPicAddress(String picAddress) {
+    this.picAddress = picAddress;
+  }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+  public String getLableId() {
+    return lableId;
+  }
 
-    public Date getCrtTime() {
-        return crtTime;
-    }
+  public void setLableId(String lableId) {
+    this.lableId = lableId;
+  }
 
-    public void setCrtTime(Date crtTime) {
-        this.crtTime = crtTime;
-    }
+  public String getContent() {
+    return content;
+  }
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+  public void setContent(String content) {
+    this.content = content;
+  }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+  public Date getCrtTime() {
+    return crtTime;
+  }
 
+  public void setCrtTime(Date crtTime) {
+    this.crtTime = crtTime;
+  }
 
+  public Date getUpdateTime() {
+    return updateTime;
+  }
+
+  public void setUpdateTime(Date updateTime) {
+    this.updateTime = updateTime;
+  }
 }

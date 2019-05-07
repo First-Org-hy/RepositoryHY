@@ -15,6 +15,7 @@ public class AppController {
 
   @Autowired private AppService appService;
 
+  // 新增用户
   @ResponseBody
   @PostMapping("/add")
   public int addApp(AppDomain app) {
@@ -26,6 +27,13 @@ public class AppController {
   @GetMapping("/query")
   public List<AppDomain> query(AppDomain appDomain) {
     return appService.query(appDomain);
+  }
+
+  // 后台登录
+  @ResponseBody
+  @GetMapping("/login")
+  public List<AppDomain> queryLogin(AppDomain appDomain) {
+    return appService.queryById(appDomain);
   }
 
   // 用户管理-修改用户类型：userId，userType
@@ -42,6 +50,7 @@ public class AppController {
     return appService.del(appDomain);
   }
 
+  // 删除用户
   @ResponseBody
   @PostMapping("/delByUserId")
   public int delBrokerByUserId(AppDomain app) {

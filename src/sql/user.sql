@@ -23,6 +23,10 @@ DROP TABLE IF EXISTS housecd.renting_house;
 DROP TABLE IF EXISTS housecd.order_record;
 DROP TABLE IF EXISTS housecd.house_dynamic;
 
+ad_picture
+info_picture
+info_lable
+
 /*用户表*/
 CREATE TABLE housecd.app_info(
   userId 	  INT NOT NULL PRIMARY KEY AUTO_INCREMENT, /*用户id */
@@ -321,6 +325,14 @@ CREATE TABLE housecd.ad(
  updateTime  TIMESTAMP	  COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
+/*广告图片地址表 一个ID允许多个标签*/
+CREATE TABLE housecd.ad_picture(
+ infoPictureId	  VARCHAR(255) COMMENT '图片地址id',
+ infoPicture VARCHAR(255) COMMENT '图片地址',
+ crtTime      TIMESTAMP    COMMENT '创建时间',
+ updateTime   TIMESTAMP	   COMMENT '更新时间'
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
+
 /*区域表 */
 CREATE TABLE housecd.area(
   areaId	 INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -335,22 +347,29 @@ CREATE TABLE housecd.houses_info(
  headline    VARCHAR(255) COMMENT '标题',
  programId   VARCHAR(255) COMMENT '栏目Id',
  programName VARCHAR(255) COMMENT '栏目名称',
- picAddress  VARCHAR(255) COMMENT '标题图片地址',
+ picAddress  VARCHAR(255) COMMENT '标题图片地址 关联 info_picture 资讯图片表',
  lableId     VARCHAR(255) COMMENT '标签',
  content     VARCHAR(4000) COMMENT '内容',
  crtTime     TIMESTAMP     COMMENT '创建时间',
  updateTime  TIMESTAMP	   COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
+/*资讯图片地址表 一个ID允许多个标签*/
+CREATE TABLE housecd.info_picture(
+ infoPictureId	  VARCHAR(255) COMMENT '图片地址id',
+ infoPicture VARCHAR(255) COMMENT '图片地址',
+ crtTime      TIMESTAMP    COMMENT '创建时间',
+ updateTime   TIMESTAMP	   COMMENT '更新时间'
+)ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
 
-/*标签表 一个ID允许多个标签(舍弃 )
-CREATE TABLE housecd.lable(
+/*资讯标签表 一个ID允许多个标签(舍弃 )*/
+CREATE TABLE housecd.info_lable(
  lableId	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  lableContext    VARCHAR(4000) COMMENT '标签内容',
  crtTime         TIMESTAMP     COMMENT '创建时间',
  updateTime      TIMESTAMP	   COMMENT '更新时间'
 )ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;
-*/
+
 
 /*楼盘商务关系表 (舍弃 ,楼盘表添加 驻点商务ID)
 CREATE TABLE houses_user(
