@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /** Created by yaohou on 20:36 2019/5/5. description: */
@@ -62,7 +63,8 @@ public class WxCheckController {
       result.put("openid", openid);
       System.out.println("session_key:" + session_key);
       AppDomain app = new AppDomain(nickName, openid, "", nickName);
-      if (openid != null && appService.queryById(app).size() != 0) {
+      List<AppDomain> appDomains = appService.queryById(app);
+      if (openid != null && appDomains.size() != 0) {
         loginResult = "success";
       } else {
         loginResult = "faild";
