@@ -1,7 +1,6 @@
 package com.hy.dao;
 
 import com.hy.model.*;
-
 import java.util.List;
 
 /** Created by yaohou on 17:59 2019/4/7. description: */
@@ -44,4 +43,34 @@ public interface HousesDao {
 
   // 楼盘特点查询，所有特点去重
   List<HousesSpcltyDomain> querySpclty();
+
+  //删除楼盘信息
+  int delHouses(HousesDomain housesDomain);
+
+  //删除楼盘特点
+  int delSpc(String  housesSpclty);
+
+  //删除楼盘图片
+  int delPic(String housesPicture);
+
+  //删除楼盘配套设施
+  int delMat(String housesFacilities);
+
+  //删除楼盘户型
+  int delType(String houseType);
+
+  //更新楼盘信息
+  int updateHouses(HousesDomain housesDomain);
+
+  //更新楼盘特点信息
+  int updateHouseSpcl(HousesSpcltyDomain housesSpcltyDomain);
+
+  //更新楼盘图片信息
+  int updateHousePic(HousesPictureDomain housesPictureDomain);
+
+  //更新楼盘配套设施信息
+  int updateHouseMat(HousesFacilitiesDomain housesFacilitiesDomain);
+
+  //更新楼盘户型信息
+  int updateHouseType(HouseTypeDomain houseTypeDomain);
 }

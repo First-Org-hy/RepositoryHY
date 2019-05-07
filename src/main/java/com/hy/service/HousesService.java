@@ -19,4 +19,10 @@ public interface HousesService {
 
   // 楼盘特点查询，所有特点去重
   List<HousesSpcltyDomain> querySpclty();
+
+  //删除楼盘信息
+  Lable delHouses(HousesDomain housesDomain);
+
+  //更新楼盘信息
+  Lable updateHouses(HousesDomain housesDomain);
 }

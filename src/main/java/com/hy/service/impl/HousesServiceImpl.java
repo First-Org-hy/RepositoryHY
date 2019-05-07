@@ -55,14 +55,14 @@ public class HousesServiceImpl implements HousesService {
     houses.setPictureJ(picJ);
 
     // 新增楼盘特点
-    if (houses.getHousesSpcltyLable() != null) {
+    if (houses.getHousesSpcltyLable().size() > 0) {
       for (HousesSpcltyDomain spcl : houses.getHousesSpcltyLable()) {
         spcl.setHousesSpcltyId(housesId);
         housesDao.insertHouseSpcl(spcl);
       }
     }
     // 新增楼盘效果图
-    if (houses.getPictureXLable() != null) {
+    if (houses.getPictureXLable().size() > 0) {
       for (HousesPictureDomain pic : houses.getPictureXLable()) {
         pic.setHousesPictureId(picX);
         housesDao.insertHousePic(pic);
@@ -70,7 +70,7 @@ public class HousesServiceImpl implements HousesService {
     }
 
     // 新增楼盘实施图
-    if (houses.getPictureSLable() != null) {
+    if (houses.getPictureSLable().size() > 0) {
       for (HousesPictureDomain pic : houses.getPictureSLable()) {
         pic.setHousesPictureId(picS);
         housesDao.insertHousePic(pic);
@@ -78,7 +78,7 @@ public class HousesServiceImpl implements HousesService {
     }
 
     // 新增楼盘交通图
-    if (houses.getPictureJLable() != null) {
+    if (houses.getPictureJLable().size() > 0) {
       for (HousesPictureDomain pic : houses.getPictureJLable()) {
         pic.setHousesPictureId(picJ);
         housesDao.insertHousePic(pic);
@@ -86,14 +86,14 @@ public class HousesServiceImpl implements HousesService {
     }
 
     // 新增楼盘配套设施
-    if (houses.getMatingLable() != null) {
+    if (houses.getMatingLable().size() > 0) {
       for (HousesFacilitiesDomain mating : houses.getMatingLable()) {
         housesDao.insertHouseMat(mating);
       }
     }
 
     // 新增楼盘户型
-    if (houses.getHouseType() != null) {
+    if (houses.getHouseType().size() >  0) {
       for (HouseTypeDomain type : houses.getHouseType()) {
         housesDao.insertHouseType(type);
         String spcId = "HU" + housesId;
@@ -180,5 +180,152 @@ public class HousesServiceImpl implements HousesService {
   @Override
   public List<HousesSpcltyDomain> querySpclty() {
     return housesDao.querySpclty();
+  }
+
+  //删除楼盘信息
+  @Override
+  public Lable delHouses(HousesDomain houses) {
+      Lable lable = new Lable();
+      if(houses.getHousesId() != null){
+          int a = housesDao.delHouses(houses);
+          //删除楼盘特点
+          if(houses.getHousesSpclty() != null  ){
+              housesDao.delSpc(houses.getHousesSpclty());
+          }
+          //删除楼盘效果图
+          if(houses.getPictureX() != null  ){
+              housesDao.delPic(houses.getPictureX());
+          }
+          //删除楼盘实施图
+          if(houses.getPictureS() != null  ){
+              housesDao.delPic(houses.getPictureS());
+          }
+          //删除楼盘交通图
+          if(houses.getPictureJ() != null  ){
+              housesDao.delPic(houses.getPictureJ());
+          }
+          //删除楼盘配套设施
+          if(houses.getMating() != null  ){
+              housesDao.delMat(houses.getMating());
+          }
+          //删除楼盘户型
+          if(houses.getHouseType().size() > 0){
+              for(HouseTypeDomain type : houses.getHouseType()){
+                  housesDao.delType(type.getHouseTypeId());
+                  if(type.getPictureXLable().size() > 0 ){
+                      housesDao.delPic(type.getHouseTypePic());
+                  }
+                  if(type.getHousesSpcltyLable().size() > 0 ){
+                      housesDao.delSpc(type.getHouseTypeSpci());
+                  }
+              }
+
+          }
+          if(a > 0){
+              lable.setId("1");
+              lable.setMessage("删除成功");
+
+          }else{
+              lable.setId("0");
+              lable.setMessage("删除失败");
+          }
+      }else{
+          lable.setId("0");
+          lable.setMessage("houseId为空，删除失败");
+      }
+      return lable;
+  }
+
+  //更新楼盘信息
+  @Override
+  public Lable updateHouses(HousesDomain housesDomain) {
+      Lable lable = new Lable();
+      if(housesDomain.getHousesId() != null){
+          int a = housesDao.updateHouses(housesDomain);
+
+          if(a > 0 ){
+              lable.setId("1");
+              lable.setMessage("修改成功");
+          }else{
+              lable.setId("0");
+              lable.setMessage("修改失败");
+          }
+          String housesId = housesDomain.getHousesId();
+          String picX = "X" + housesId; // 效果图Id
+          String picS = "S" + housesId; // 实施图Id
+          String picJ = "J" + housesId; // 交通图Id
+          housesDomain.setHousesSpclty(housesId);
+          housesDomain.setMating(housesId);
+          housesDomain.setPictureX(picX);
+          housesDomain.setPictureS(picS);
+          housesDomain.setPictureJ(picJ);
+
+
+          // 修改楼盘特点
+          if (housesDomain.getHousesSpcltyLable().size() > 0) {
+              for (HousesSpcltyDomain spcl : housesDomain.getHousesSpcltyLable()) {
+                  spcl.setHousesSpcltyId(housesId);
+                  housesDao.updateHouseSpcl(spcl);
+              }
+          }
+          // 新增楼盘效果图
+          if (housesDomain.getPictureXLable().size() > 0) {
+              for (HousesPictureDomain pic : housesDomain.getPictureXLable()) {
+                  pic.setHousesPictureId(picX);
+                  housesDao.updateHousePic(pic);
+              }
+          }
+          // 修改楼盘实施图
+          if (housesDomain.getPictureSLable().size() > 0) {
+              for (HousesPictureDomain pic : housesDomain.getPictureSLable()) {
+                  pic.setHousesPictureId(picS);
+                  housesDao.updateHousePic(pic);
+              }
+          }
+
+          // 修改楼盘交通图
+          if (housesDomain.getPictureJLable().size() > 0) {
+              for (HousesPictureDomain pic : housesDomain.getPictureJLable()) {
+                  pic.setHousesPictureId(picJ);
+                  housesDao.updateHousePic(pic);
+              }
+          }
+
+          // 修改楼盘配套设施
+          if (housesDomain.getMatingLable().size() > 0) {
+              for (HousesFacilitiesDomain mating : housesDomain.getMatingLable()) {
+                  housesDao.updateHouseMat(mating);
+              }
+          }
+
+          // 新增楼盘户型
+          if (housesDomain.getHouseType().size() >  0) {
+              for (HouseTypeDomain type : housesDomain.getHouseType()) {
+                  housesDao.updateHouseType(type);
+                  String spcId = "HU" + housesId;
+                  type.setHouseTypeSpci(spcId);
+
+                  //修改户型特点
+                  if (type.getHousesSpcltyLable().size() != 0) {
+                      for (HousesSpcltyDomain spc : type.getHousesSpcltyLable()) {
+                          spc.setHousesSpcltyId(spcId);
+                          housesDao.updateHouseSpcl(spc);
+                      }
+                  }
+
+                  type.setHouseTypePic(spcId);
+                  if (type.getPictureXLable().size() != 0) {
+                      for (HousesPictureDomain pic : housesDomain.getPictureJLable()) {
+                          pic.setHousesPictureId(spcId);
+                          housesDao.updateHousePic(pic);
+                      }
+                  }
+              }
+          }
+
+      }
+
+
+      return lable;
   }
 }

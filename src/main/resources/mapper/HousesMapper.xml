@@ -5,7 +5,7 @@
     housecd.houses
   </sql>
     <sql id="BASE_COLUMN">
-    housesId, housesName, housesSpclty, houseState, pictureX, pictureS,
+    housesId, userId, housesName, housesSpclty, houseState, pictureX, pictureS,
     pictureJ, mating, houseTypeId, areaZ, areaJ, areaS, developers,
     housesAddrss, period, areaId, buildType, greenRate, companyW, openHouse,
     deadLine, avgPrice, investor, plotRatio, familyNum, carportNum, fitment,
@@ -25,21 +25,182 @@
         INSERT INTO
         <include refid="BASE_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="housesId != null">
-                housesId,
+            <if test="userId != null">
+                userId,
             </if>
             <if test="housesName != null">
                 housesName,
             </if>
-
+            <if test="housesSpclty != null">
+                housesSpclty,
+            </if>
+            <if test="houseState != null">
+                houseState,
+            </if>
+            <if test="pictureX != null">
+                pictureX,
+            </if>
+            <if test="pictureS != null">
+                pictureS,
+            </if>
+            <if test="pictureJ != null">
+                pictureJ,
+            </if>
+            <if test="mating != null">
+                mating,
+            </if>
+            <if test="houseTypeId != null">
+                houseTypeId,
+            </if>
+            <if test="areaZ != null">
+                areaZ,
+            </if>
+            <if test="areaJ != null">
+                areaJ,
+            </if>
+            <if test="areaS != null">
+                areaS,
+            </if>
+            <if test="developers != null">
+                developers,
+            </if>
+            <if test="housesAddrss != null">
+                housesAddrss,
+            </if>
+            <if test="period != null">
+                period,
+            </if>
+            <if test="areaId != null">
+                areaId,
+            </if>
+            <if test="buildType != null">
+                buildType,
+            </if>
+            <if test="greenRate != null">
+                greenRate,
+            </if>
+            <if test="companyW != null">
+                companyW,
+            </if>
+            <if test="openHouse != null">
+                openHouse,
+            </if>
+            <if test="deadLine != null">
+                deadLine,
+            </if>
+            <if test="avgPrice != null">
+                avgPrice,
+            </if>
+            <if test="investor != null">
+                investor,
+            </if>
+            <if test="plotRatio != null">
+                plotRatio,
+            </if>
+            <if test="familyNum != null">
+                familyNum,
+            </if>
+            <if test="carportNum != null">
+                carportNum,
+            </if>
+            <if test="fitment != null">
+                deadLine,
+            </if>
+            <if test="location != null">
+                location,
+            </if>
+            <if test="recommend != null">
+                recommend,
+            </if>
             crtTime, updateTime
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="housesId != null">
-                #{housesId, jdbcType=VARCHAR},
+            <if test="userId != null">
+                #{userId, jdbcType=VARCHAR},
             </if>
             <if test="housesName != null">
                 #{housesName, jdbcType=VARCHAR},
+            </if>
+            <if test="housesSpclty != null">
+                #{housesSpclty, jdbcType=VARCHAR},
+            </if>
+            <if test="houseState != null">
+                #{houseState, jdbcType=VARCHAR},
+            </if>
+            <if test="pictureX != null">
+                #{pictureX, jdbcType=VARCHAR},
+            </if>
+            <if test="pictureS != null">
+                #{pictureS, jdbcType=VARCHAR},
+            </if>
+            <if test="pictureJ != null">
+                #{pictureJ, jdbcType=VARCHAR},
+            </if>
+            <if test="mating != null">
+                #{mating, jdbcType=VARCHAR},
+            </if>
+            <if test="houseTypeId != null">
+                #{houseTypeId, jdbcType=VARCHAR},
+            </if>
+            <if test="areaZ != null">
+                #{areaZ, jdbcType=VARCHAR},
+            </if>
+            <if test="areaJ != null">
+                #{areaJ, jdbcType=VARCHAR},
+            </if>
+            <if test="areaS != null">
+                #{areaS, jdbcType=VARCHAR},
+            </if>
+            <if test="developers != null">
+                #{developers, jdbcType=VARCHAR},
+            </if>
+            <if test="housesAddrss != null">
+                #{housesAddrss, jdbcType=VARCHAR},
+            </if>
+            <if test="period != null">
+                #{period, jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                #{areaId, jdbcType=VARCHAR},
+            </if>
+            <if test="buildType != null">
+                #{buildType, jdbcType=VARCHAR},
+            </if>
+            <if test="greenRate != null">
+                #{greenRate, jdbcType=VARCHAR},
+            </if>
+            <if test="companyW != null">
+                #{companyW, jdbcType=VARCHAR},
+            </if>
+            <if test="openHouse != null">
+                #{openHouse, jdbcType=VARCHAR},
+            </if>
+            <if test="deadLine != null">
+                #{deadLine, jdbcType=VARCHAR},
+            </if>
+            <if test="avgPrice != null">
+                #{avgPrice, jdbcType=VARCHAR},
+            </if>
+            <if test="investor != null">
+                #{investor, jdbcType=VARCHAR},
+            </if>
+            <if test="plotRatio != null">
+                #{plotRatio, jdbcType=VARCHAR},
+            </if>
+            <if test="familyNum != null">
+                #{familyNum, jdbcType=VARCHAR},
+            </if>
+            <if test="carportNum != null">
+                #{carportNum, jdbcType=VARCHAR},
+            </if>
+            <if test="fitment != null">
+                #{fitment, jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location, jdbcType=VARCHAR},
+            </if>
+            <if test="recommend != null">
+                #{recommend, jdbcType=VARCHAR},
             </if>
 
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
@@ -48,20 +209,20 @@
     <insert id="insertHouseSpcl" parameterType="com.hy.model.HousesSpcltyDomain">
         INSERT INTO houses_spclty
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                lableId,
+            <if test="housesSpcltyId != null">
+                housesSpcltyId,
             </if>
-            <if test="lableContext != null">
-                lableContext,
+            <if test="housesSpclty != null">
+                housesSpclty,
             </if>
             crtTime, updateTime
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                #{lableId, jdbcType=VARCHAR},
+            <if test="housesSpcltyId != null">
+                #{housesSpcltyId, jdbcType=VARCHAR},
             </if>
-            <if test="lableContext != null">
-                #{lableContext, jdbcType=VARCHAR},
+            <if test="housesSpclty != null">
+                #{housesSpclty, jdbcType=VARCHAR},
             </if>
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
@@ -69,21 +230,20 @@
     <insert id="insertHousePic" parameterType="com.hy.model.HousesPictureDomain">
         INSERT INTO houses_picture
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                lableId,
+            <if test="housesPictureId != null">
+                housesPictureId,
             </if>
-            <if test="lableContext != null">
-                lableContext,
+            <if test="housesPicture != null">
+                housesPicture,
             </if>
-
             crtTime, updateTime
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                #{lableId, jdbcType=VARCHAR},
+            <if test="housesPictureId != null">
+                #{housesPictureId, jdbcType=VARCHAR},
             </if>
-            <if test="lableContext != null">
-                #{lableContext, jdbcType=VARCHAR},
+            <if test="housesPicture != null">
+                #{housesPicture, jdbcType=VARCHAR},
             </if>
 
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
@@ -92,21 +252,21 @@
     <insert id="insertHouseMat" parameterType="com.hy.model.HousesFacilitiesDomain">
         INSERT INTO houses_facilities
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                lableId,
+            <if test="housesFacilitiesId != null">
+                housesFacilitiesId,
             </if>
-            <if test="lableContext != null">
-                lableContext,
+            <if test="housesFacilities != null">
+                housesFacilities,
             </if>
 
             crtTime, updateTime
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                #{lableId, jdbcType=VARCHAR},
+            <if test="housesFacilitiesId != null">
+                #{housesFacilitiesId, jdbcType=VARCHAR},
             </if>
-            <if test="lableContext != null">
-                #{lableContext, jdbcType=VARCHAR},
+            <if test="housesFacilities != null">
+                #{housesFacilities, jdbcType=VARCHAR},
             </if>
 
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
@@ -115,23 +275,69 @@
     <insert id="insertHouseType" parameterType="com.hy.model.HouseTypeDomain">
         INSERT INTO house_type
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                lableId,
+            <if test="houseTypeId != null">
+                houseTypeId,
             </if>
-            <if test="lableContext != null">
-                lableContext,
+            <if test="houseTypeName != null">
+                houseTypeName,
             </if>
-
+            <if test="houseTypeSpci != null">
+                houseTypeSpci,
+            </if>
+            <if test="houseTypePic != null">
+                houseTypePic,
+            </if>
+            <if test="houseFTTB != null">
+                houseFTTB,
+            </if>
+            <if test="houseTypeNum != null">
+                houseTypeNum,
+            </if>
+            <if test="houseSize != null">
+                houseSize,
+            </if>
+            <if test="houseAvmPrice != null">
+                houseAvmPrice,
+            </if>
+            <if test="houseTolPrice != null">
+                houseTolPrice,
+            </if>
+            <if test="houseType != null">
+                houseType,
+            </if>
             crtTime, updateTime
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="lableId != null">
-                #{lableId, jdbcType=VARCHAR},
+            <if test="houseTypeId != null">
+                #{houseTypeId, jdbcType=VARCHAR},
             </if>
-            <if test="lableContext != null">
-                #{lableContext, jdbcType=VARCHAR},
+            <if test="houseTypeName != null">
+                #{houseTypeName, jdbcType=VARCHAR},
             </if>
-
+            <if test="houseTypeSpci != null">
+                #{houseTypeSpci, jdbcType=VARCHAR},
+            </if>
+            <if test="houseTypePic != null">
+                #{houseTypePic, jdbcType=VARCHAR},
+            </if>
+            <if test="houseFTTB != null">
+                #{houseFTTB, jdbcType=VARCHAR},
+            </if>
+            <if test="houseTypeNum != null">
+                #{houseTypeNum, jdbcType=VARCHAR},
+            </if>
+            <if test="houseSize != null">
+                #{houseSize, jdbcType=VARCHAR},
+            </if>
+            <if test="houseAvmPrice != null">
+                #{houseAvmPrice, jdbcType=VARCHAR},
+            </if>
+            <if test="houseTolPrice != null">
+                #{houseTolPrice, jdbcType=VARCHAR},
+            </if>
+            <if test="houseType != null">
+                #{houseType, jdbcType=VARCHAR},
+            </if>
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
     </insert>
@@ -224,7 +430,7 @@
         houses_spclty
         WHERE 1=1
         <if test="spc != null">
-            AND lableId = #{spc, jdbcType=VARCHAR}
+            AND housesSpcltyId = #{spc, jdbcType=VARCHAR}
         </if>
     </select>
     <select id="queryPic" parameterType="String" resultType="com.hy.model.HousesPictureDomain">
@@ -234,7 +440,7 @@
         houses_picture
         WHERE 1=1
         <if test="pic != null">
-            AND lableId = #{pic, jdbcType=VARCHAR}
+            AND housesPictureId = #{pic, jdbcType=VARCHAR}
         </if>
     </select>
     <select id="queryMat" parameterType="String" resultType="com.hy.model.HousesFacilitiesDomain">
@@ -244,7 +450,7 @@
         houses_facilities
         WHERE 1=1
         <if test="mat != null">
-            AND lableId = #{pic, jdbcType=VARCHAR}
+            AND housesFacilitiesId = #{mat, jdbcType=VARCHAR}
         </if>
     </select>
     <select id="queryType" parameterType="com.hy.model.HouseTypeDomain" resultType="com.hy.model.HouseTypeDomain">
@@ -262,4 +468,174 @@
         DISTINCT housesSpclty
         from housecd.houses_spclty
     </select>
+
+    <delete id="delHouses" parameterType="com.hy.model.HousesDomain" >
+        DELETE from houses h where h.housesId =  #{housesId}
+    </delete>
+    <delete id="delSpc" parameterType="String" >
+        DELETE from houses_spclty h where h.housesSpcltyId =  #{housesSpclty}
+    </delete>
+    <delete id="delPic" parameterType="String" >
+        DELETE from houses_picture h where h.housesPictureId =  #{housesPicture}
+    </delete>
+    <delete id="delMat" parameterType="String" >
+        DELETE from houses_facilities h where h.housesFacilitiesId =  #{housesFacilities}
+    </delete>
+    <delete id="delType" parameterType="String" >
+        DELETE from house_type h where h.houseTypeId =  #{houseType}
+    </delete>
+
+    <update id="updateHouses" parameterType="com.hy.model.HousesDomain" >
+        UPDATE
+        <include refid="BASE_TABLE"/>
+        <if test="userId != null">
+            SET userId = #{userId, jdbcType=VARCHAR},
+        </if>
+        <if test="housesName != null">
+            SET housesName = #{housesName, jdbcType=VARCHAR},
+        </if>
+        <if test="housesSpclty != null">
+            SET housesSpclty = #{housesSpclty, jdbcType=VARCHAR},
+        </if>
+        <if test="houseState != null">
+            SET houseState = #{houseState, jdbcType=VARCHAR},
+        </if>
+        <if test="pictureX != null">
+            SET pictureX = #{pictureX, jdbcType=VARCHAR},
+        </if>
+        <if test="pictureS != null">
+            SET pictureS = #{pictureS, jdbcType=VARCHAR},
+        </if>
+        <if test="pictureJ != null">
+            SET pictureJ = #{pictureJ, jdbcType=VARCHAR},
+        </if>
+        <if test="mating != null">
+            SET mating = #{mating, jdbcType=VARCHAR},
+        </if>
+        <if test="houseTypeId != null">
+            SET houseTypeId = #{houseTypeId, jdbcType=VARCHAR},
+        </if>
+        <if test="areaZ != null">
+            SET areaZ = #{areaZ, jdbcType=VARCHAR},
+        </if>
+        <if test="areaJ != null">
+            SET areaJ = #{areaJ, jdbcType=VARCHAR},
+        </if>
+        <if test="areaS != null">
+            SET areaS = #{areaS, jdbcType=VARCHAR},
+        </if>
+        <if test="developers != null">
+            SET developers = #{developers, jdbcType=VARCHAR},
+        </if>
+        <if test="housesAddrss != null">
+            SET housesAddrss = #{housesAddrss, jdbcType=VARCHAR},
+        </if>
+        <if test="period != null">
+            SET period = #{period, jdbcType=VARCHAR},
+        </if>
+        <if test="areaId != null">
+            SET areaId = #{areaId, jdbcType=VARCHAR},
+        </if>
+        <if test="buildType != null">
+            SET buildType = #{buildType, jdbcType=VARCHAR},
+        </if>
+        <if test="greenRate != null">
+            SET greenRate = #{greenRate, jdbcType=VARCHAR},
+        </if>
+        <if test="companyW != null">
+            SET companyW = #{companyW, jdbcType=VARCHAR},
+        </if>
+        <if test="openHouse != null">
+            SET openHouse = #{openHouse, jdbcType=VARCHAR},
+        </if>
+        <if test="deadLine != null">
+            SET deadLine = #{deadLine, jdbcType=VARCHAR},
+        </if>
+        <if test="avgPrice != null">
+            SET avgPrice = #{avgPrice, jdbcType=VARCHAR},
+        </if>
+        <if test="investor != null">
+            SET investor = #{investor, jdbcType=VARCHAR},
+        </if>
+        <if test="plotRatio != null">
+            SET plotRatio = #{plotRatio, jdbcType=VARCHAR},
+        </if>
+        <if test="familyNum != null">
+            SET familyNum = #{familyNum, jdbcType=VARCHAR},
+        </if>
+        <if test="carportNum != null">
+            SET carportNum = #{carportNum, jdbcType=VARCHAR},
+        </if>
+        <if test="fitment != null">
+            SET fitment = #{fitment, jdbcType=VARCHAR},
+        </if>
+        <if test="location != null">
+            SET location = #{location, jdbcType=VARCHAR},
+        </if>
+        <if test="recommend != null">
+            SET recommend = #{recommend, jdbcType=VARCHAR},
+        </if>
+        SET  updateTime = CURRENT_TIMESTAMP
+        WHERE  housesId = #{housesId}
+    </update>
+
+    <update id="updateHouseSpcl" parameterType="com.hy.model.HousesSpcltyDomain" >
+        UPDATE houses_spclty
+        <if test="housesSpclty != null">
+            SET housesSpclty = #{housesSpclty, jdbcType=VARCHAR},
+        </if>
+        SET  updateTime = CURRENT_TIMESTAMP
+        WHERE housesSpcltyId = #{housesSpcltyId}
+    </update>
+
+    <update id="updateHousePic" parameterType="com.hy.model.HousesPictureDomain" >
+        UPDATE houses_picture
+        <if test="housesPicture != null">
+            SET housesPicture = #{housesPicture, jdbcType=VARCHAR},
+        </if>
+        SET  updateTime = CURRENT_TIMESTAMP
+        WHERE housesPictureId = #{housesPictureId}
+    </update>
+
+    <update id="updateHouseMat" parameterType="com.hy.model.HousesFacilitiesDomain" >
+        UPDATE houses_facilities
+        <if test="housesFacilities != null">
+            SET housesFacilities = #{housesFacilities, jdbcType=VARCHAR},
+        </if>
+        SET  updateTime = CURRENT_TIMESTAMP
+        WHERE housesFacilitiesId = #{housesFacilitiesId}
+    </update>
+
+    <update id="updateHouseType" parameterType="com.hy.model.HouseTypeDomain" >
+        UPDATE house_type
+        <if test="houseTypeName != null">
+            SET houseTypeName = #{houseTypeName, jdbcType=VARCHAR},
+        </if>
+        <if test="houseTypeSpci != null">
+            SET houseTypeSpci = #{houhouseTypeSpcisesFacilities, jdbcType=VARCHAR},
+        </if>
+        <if test="houseTypePic != null">
+            SET houseTypePic = #{houseTypePic, jdbcType=VARCHAR},
+        </if>
+        <if test="houseFTTB != null">
+            SET houseFTTB = #{houseFTTB, jdbcType=VARCHAR},
+        </if>
+        <if test="houseTypeNum != null">
+            SET houseTypeNum = #{houseTypeNum, jdbcType=VARCHAR},
+        </if>
+        <if test="houseSize != null">
+            SET houseSize = #{houseSize, jdbcType=VARCHAR},
+        </if>
+        <if test="houseAvmPrice != null">
+            SET houseAvmPrice = #{houseAvmPrice, jdbcType=VARCHAR},
+        </if>
+        <if test="houseTolPrice != null">
+            SET houseTolPrice = #{houseTolPrice, jdbcType=VARCHAR},
+        </if>
+        <if test="houseType != null">
+            SET houseType = #{houseType, jdbcType=VARCHAR},
+        </if>
+        SET  updateTime = CURRENT_TIMESTAMP
+        WHERE houseTypeId = #{houseTypeId}
+    </update>
 </mapper>
