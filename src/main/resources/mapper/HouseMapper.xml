@@ -482,4 +482,18 @@
         ORDER BY updateTime desc
     </select>
 
+    <select id="queryNew" parameterType="com.hy.model.HouseDomain" resultType="com.hy.model.HouseDomain" >
+        select distinct n.housesId as housesId, h.housesName as housesName,t.houseTypeName as houseTypeName,n.houseTypeId as houseTypeId from newHouse n
+        left join house_type t on n.houseTypeId = t.houseTypeId
+        left join houses h on n.housesId = h.housesId
+        where 1=1
+        <if test="housesName != null">
+            and h.housesName like "%"+#{housesName}+"%"
+        </if>
+        <if test="houseTypeName != null">
+            and t.houseTypeName like "%"+#{houseTypeName}+"%"
+        </if>
+        order by n.updateTime desc
+
+    </select>
 </mapper>

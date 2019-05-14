@@ -187,4 +187,29 @@ public class HouseServiceImpl implements HouseService {
   public List<HouseTypeDomain> houseType(HouseTypeDomain houseTypeDomain) {
     return houseDao.houseType(houseTypeDomain);
   }
+
+
+  //新房管理-查询
+  @Override
+  public List<HouseDomain> queryNew(HouseDomain houseDomain) {
+    List<HouseDomain> houses = houseDao.queryNew(houseDomain);
+    for(HouseDomain house : houses){
+
+      //查询同一楼盘下的所有新房-条件：楼盘ID
+      HouseDomain h = new HouseDomain();
+      h.setHousesId(house.getHousesId());
+      List<HouseDomain> hs = houseDao.queryNewByHousesId(h);
+      if(hs.size() > 0){
+        house.setHouses(hs);
+      }
+      //查询登记数量 0:登记数量
+      house.setHouseNumTol(houseDao.countHouse("0"));
+      //查询在售数量 1:在售数量
+      house.setHouseSellNum(houseDao.countHouse("1"));
+      //查询在售数量 2:已售数量
+      house.setHouseRemainNum(houseDao.countHouse("2"));
+    }
+    return houses;
+  }
+
 }

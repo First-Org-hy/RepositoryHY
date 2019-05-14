@@ -99,5 +99,10 @@ public class HouseController {
     return houseService.houseType(houseTypeDomain);
   }
 
-  //
+  // 新房管理-查询新房
+  @ResponseBody
+  @GetMapping(value = "queryNew")
+  public List<HouseDomain> queryNew(HouseDomain houseDomain) {
+    return houseService.queryNew(houseDomain);
+  }
 }

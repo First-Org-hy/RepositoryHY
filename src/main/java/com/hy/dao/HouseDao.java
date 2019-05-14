@@ -36,4 +36,10 @@ public interface HouseDao {
   List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain);
   // 查询户型
   List<HouseTypeDomain> houseType(HouseTypeDomain houseTypeDomain);
+  //新房管理-查询：根据楼盘iD  Distinct  条件：户型名称 houseTypeName， 楼盘名称 houseName
+  List<HouseDomain> queryNew(HouseDomain houseDomain);
+  //新房管理-查询每个楼盘下的所有新房
+  List<HouseDomain> queryNewByHousesId(HouseDomain houseDomain);
+  //新房管理-房屋数量查询 0：登记数量  1：在售  2：已售出
+  int countHouse(String st);
 }
