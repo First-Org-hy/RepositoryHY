@@ -92,4 +92,12 @@ public class HouseController {
   public List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain) {
     return houseService.queryhouseType(houseTypeDomain);
   }
+  // 查看某户型
+  @ResponseBody
+  @GetMapping(value = "houseType")
+  public List<HouseTypeDomain> houseType(HouseTypeDomain houseTypeDomain) {
+    return houseService.houseType(houseTypeDomain);
+  }
+
+  //
 }

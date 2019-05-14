@@ -44,6 +44,10 @@
     <sql id="ORDER_RECORD_COLUMN">
     orderId, orderUsId, orderName, orderTel, orderHouseId, orderHouseName, crtTime, updateTime
   </sql>
+    <sql id="HOUSE_TYPE_COLUMN">
+        houseTypeId, housesId, houseTypeName, houseTypeSpci, houseTypePic, houseFTTB, houseTypeNum, houseSize, houseAvmPrice, houseTolPrice, houseType, crtTime, updateTime
+    </sql>
+
 
     <insert id="addOrderRecord" parameterType="com.hy.model.OrderRecordDomain">
         INSERT INTO
@@ -466,6 +470,16 @@
     </select>
     <select id="queryhouseType" resultType="com.hy.model.HouseTypeDomain">
         SELECT DISTINCT houseTypeName FROM housecd.house_type ORDER BY updateTime desc
+    </select>
+    <select id="houseType" parameterType="com.hy.model.HouseTypeDomain" resultType="com.hy.model.HouseTypeDomain">
+        SELECT
+        <include refid="HOUSE_TYPE_COLUMN"/>
+        FROM housecd.house_type
+        WHERE 1=1
+        <if test="houseTypeId != null">
+            and houseTypeId = #{houseTypeId}
+        </if>
+        ORDER BY updateTime desc
     </select>
 
 </mapper>

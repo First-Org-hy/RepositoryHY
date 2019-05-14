@@ -1,31 +1,29 @@
 CREATE DATABASE housecd;
-DROP TABLE IF EXISTS housecd.t_user;
 DROP TABLE IF EXISTS housecd.app_info;
-DROP TABLE IF EXISTS housecd.bank_info;
-DROP TABLE IF EXISTS housecd.recommend;
-DROP TABLE IF EXISTS housecd.brokerage;
-DROP TABLE IF EXISTS housecd.brokerage_param;
-DROP TABLE IF EXISTS housecd.sell;
-DROP TABLE IF EXISTS housecd.guest;
 DROP TABLE IF EXISTS housecd.area;
 DROP TABLE IF EXISTS housecd.ad;
-DROP TABLE IF EXISTS housecd.houses_info;
-DROP TABLE IF EXISTS housecd.lable;
+DROP TABLE IF EXISTS housecd.ad_picture;
+DROP TABLE IF EXISTS housecd.bank_info;
+DROP TABLE IF EXISTS housecd.brokerage;
+DROP TABLE IF EXISTS housecd.brokerage_param;
+DROP TABLE IF EXISTS housecd.guest;
 DROP TABLE IF EXISTS housecd.houses;
 DROP TABLE IF EXISTS housecd.houses_user;
 DROP TABLE IF EXISTS housecd.houses_spclty;
 DROP TABLE IF EXISTS housecd.houses_picture;
 DROP TABLE IF EXISTS housecd.houses_facilities;
 DROP TABLE IF EXISTS housecd.house_type;
-DROP TABLE IF EXISTS housecd.newHouse;
-DROP TABLE IF EXISTS housecd.second_hand_house;
-DROP TABLE IF EXISTS housecd.renting_house;
-DROP TABLE IF EXISTS housecd.order_record;
 DROP TABLE IF EXISTS housecd.house_dynamic;
-
-ad_picture
-info_picture
-info_lable
+DROP TABLE IF EXISTS housecd.houses_info;
+DROP TABLE IF EXISTS housecd.info_picture;
+DROP TABLE IF EXISTS housecd.info_lable;
+DROP TABLE IF EXISTS housecd.lable;
+DROP TABLE IF EXISTS housecd.newHouse;
+DROP TABLE IF EXISTS housecd.order_record;
+DROP TABLE IF EXISTS housecd.recommend;
+DROP TABLE IF EXISTS housecd.renting_house;
+DROP TABLE IF EXISTS housecd.sell;
+DROP TABLE IF EXISTS housecd.second_hand_house;
 
 /*用户表*/
 CREATE TABLE housecd.app_info(
@@ -124,7 +122,7 @@ CREATE TABLE housecd.sell(
   price	       DECIMAL   	COMMENT '单价',
   totalPrice   DECIMAL   	COMMENT '总价',
   picAddress   VARCHAR(255) COMMENT '图片地址',
-  sellState    CHAR(1)   	COMMENT '图片地址：0 待审核，1 审核通过 ',
+  sellState    CHAR(1)   	COMMENT '图片地址：0 待审核，1 审核通过，2 审核不通过',
   dealState    CHAR(1)   	COMMENT '交易状态:1.看房，2.交定金 3. 交首付 4.银行房贷 5.购买完成 6. 未购买',
   brokerage	   DECIMAL      COMMENT '佣金',
   brokerState  CHAR(1)   	COMMENT '佣金状态',

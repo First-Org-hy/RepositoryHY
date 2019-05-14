@@ -182,4 +182,9 @@ public class HouseServiceImpl implements HouseService {
   public List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain) {
     return houseDao.queryhouseType(houseTypeDomain);
   }
+
+  @Override
+  public List<HouseTypeDomain> houseType(HouseTypeDomain houseTypeDomain) {
+    return houseDao.houseType(houseTypeDomain);
+  }
 }

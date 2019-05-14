@@ -34,4 +34,6 @@ public interface HouseDao {
   List<HousesInfoDomain> queryHousesInfo();
   // 查询所有户型
   List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain);
+  // 查询户型
+  List<HouseTypeDomain> houseType(HouseTypeDomain houseTypeDomain);
 }

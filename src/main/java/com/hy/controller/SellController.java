@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/** Created by shakaiyue on 14:28 2019/4/7. description: */
+/** Created by shakaiyue on 14:28 2019/4/7. description:销售服务 */
 @RestController
 @RequestMapping(value = "/sell")
 public class SellController {
@@ -30,7 +30,7 @@ public class SellController {
   }
   // 楼盘商务,修改销售状态
   @ResponseBody
-  @PutMapping("update")
+  @PutMapping("/update")
   public Lable update(SellDomain sellDomain) {
     return sellService.update(sellDomain);
   }
@@ -42,19 +42,19 @@ public class SellController {
   }
 
   @ResponseBody
-  @GetMapping(value = "isBusSeller")
+  @GetMapping(value = "/isBusSeller")
   public Lable isBusSeller(String userId) {
     return sellService.isBusSeller(userId);
   }
 
   @ResponseBody
-  @GetMapping(value = "queryBySeller")
+  @GetMapping(value = "/queryBySeller")
   public List<SellDomain> queryBySeller(String userId) {
     return sellService.queryBySeller(userId);
   }
 
   @ResponseBody
-  @GetMapping(value = "queryBySellId")
+  @GetMapping(value = "/queryBySellId")
   public List<HousesUserDomain> queryBySellId(String userId) {
     return sellService.queryBySellId(userId);
   }
