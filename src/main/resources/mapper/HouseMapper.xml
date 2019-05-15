@@ -483,7 +483,8 @@
     </select>
 
     <select id="queryNew" parameterType="com.hy.model.HouseDomain" resultType="com.hy.model.HouseDomain" >
-        select distinct n.housesId as housesId, h.housesName as housesName,t.houseTypeName as houseTypeName,n.houseTypeId as houseTypeId from newHouse n
+        select distinct n.housesId as housesId, h.housesName as housesName,t.houseTypeName as houseTypeName,
+        n.houseTypeId as houseTypeId from newHouse n
         left join house_type t on n.houseTypeId = t.houseTypeId
         left join houses h on n.housesId = h.housesId
         where 1=1
@@ -494,6 +495,99 @@
             and t.houseTypeName like "%"+#{houseTypeName}+"%"
         </if>
         order by n.updateTime desc
-
     </select>
+
+    <select id="queryNewByHousesId" parameterType="com.hy.model.HouseDomain" resultType="com.hy.model.HouseDomain" >
+        select * from newHouse n where 1=1
+        <if test="housesId != null">
+            and  n.housesId =  {housesId}
+        </if>
+    </select>
+
+    <select id="countHouse" parameterType="com.hy.model.HouseDomain" resultType="int">
+        select count(*) from newHouse n where 1=1
+        <if test="housesId != null">
+            and  n.housesId =  {housesId}
+        </if>
+        <if test="houseSellSt != null">
+          <if test="houseSellSt != '0'">
+              and  n.houseSellSt =  {houseSellSt}
+          </if>
+        </if>
+    </select>
+    <insert id="addNewHouse" parameterType="com.hy.model.HouseDomain" >
+        INSERT INTO
+        newHouse
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="houseArea != null">
+                houseArea,
+            </if>
+            <if test="housesId != null">
+                housesId,
+            </if>
+            <if test="houseTypeId != null">
+                houseTypeId,
+            </if>
+            <if test="houseName != null">
+                houseName,
+            </if>
+            <if test="houseSellSt != null">
+                houseSellSt,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="houseArea != null">
+                #{houseArea, jdbcType=VARCHAR},
+            </if>
+            <if test="housesId != null">
+                #{housesId, jdbcType=VARCHAR},
+            </if>
+            <if test="houseTypeId != null">
+                #{houseTypeId, jdbcType=VARCHAR},
+            </if>
+            <if test="houseName != null">
+                #{houseName, jdbcType=VARCHAR},
+            </if>
+            <if test="houseSellSt != null">
+                #{houseSellSt, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+
+    <update id="upNewHouse" parameterType="com.hy.model.HouseDomain" >
+        UPDATE newHouse
+        <if test="houseArea != null">
+            SET houseArea = #{houseArea, jdbcType=VARCHAR},
+        </if>
+        <if test="housesId != null">
+            SET housesId = #{housesId, jdbcType=VARCHAR},
+        </if>
+        <if test="houseTypeId != null">
+            SET houseTypeId = #{houseTypeId, jdbcType=VARCHAR},
+        </if>
+        <if test="houseName != null">
+            SET houseName = #{houseName, jdbcType=VARCHAR},
+        </if>
+        <if test="houseSellSt != null">
+            SET houseSellSt = #{houseSellSt, jdbcType=VARCHAR},
+        </if>
+        SET  updateTime = CURRENT_TIMESTAMP
+        WHERE Id = #{Id}
+    </update>
+
+    <delete id="deNewHouse" parameterType="com.hy.model.HouseDomain" >
+        DELETE from newHouse h where 1=1
+        <if test="housesId != null">
+            h.housesId =  #{housesId}
+        </if>
+    </delete>
+
+    <delete id="deNewHouseById" parameterType="com.hy.model.HouseDomain" >
+        DELETE from newHouse h where 1=1
+        <if test="Id != null">
+            h.Id =  #{Id}
+        </if>
+    </delete>
 </mapper>

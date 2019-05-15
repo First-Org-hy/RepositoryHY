@@ -203,13 +203,117 @@ public class HouseServiceImpl implements HouseService {
         house.setHouses(hs);
       }
       //查询登记数量 0:登记数量
-      house.setHouseNumTol(houseDao.countHouse("0"));
+      h.setHouseSellSt("0");
+      house.setHouseNumTol(houseDao.countHouse(h));
       //查询在售数量 1:在售数量
-      house.setHouseSellNum(houseDao.countHouse("1"));
+      h.setHouseSellSt("1");
+      house.setHouseSellNum(houseDao.countHouse(h));
       //查询在售数量 2:已售数量
-      house.setHouseRemainNum(houseDao.countHouse("2"));
+      h.setHouseSellSt("2");
+      house.setHouseRemainNum(houseDao.countHouse(h));
     }
     return houses;
   }
 
+  //新房管理-新增
+  @Override
+  public Lable addNewHouse(HouseDomain houseDomain) {
+    Lable lable = new Lable();
+    HouseDomain h = new HouseDomain();
+    h.setHouseArea(houseDomain.getHouseArea());
+    h.setHousesId(houseDomain.getHousesId());
+    h.setHouseTypeId(houseDomain.getHouseTypeId());
+    List<HouseDomain> houses = houseDomain.getHouses();
+    int i = 0;
+    if(houses.size() > 0){
+      for(HouseDomain house : houses){
+        h.setHouseName(house.getHouseName());
+        h.setHouseSellSt("1");
+        houseDao.addNewHouse(h);
+        i++;
+      }
+    }else{
+      houseDao.addNewHouse(h);
+      i++;
+    }
+    if (i > 0) {
+      lable.setId("1");
+      lable.setMessage("新房添加成功");
+    }else{
+      lable.setId("0");
+      lable.setMessage("新房添加失败");
+    }
+    return lable;
+  }
+
+  //新房管理-修改
+  @Override
+  public Lable upNewHouse(HouseDomain houseDomain) {
+    Lable lable = new Lable();
+    if(houseDomain.getId() == null){
+      lable.setId("0");
+      lable.setMessage("ID为空，新房修改失败");
+    }else {
+      HouseDomain h = new HouseDomain();
+      h.setHouseArea(houseDomain.getHouseArea());
+      h.setHousesId(houseDomain.getHousesId());
+      h.setHouseTypeId(houseDomain.getHouseTypeId());
+      List<HouseDomain> houses = houseDomain.getHouses();
+      int i = 0;
+      if (houses.size() > 0) {
+        for (HouseDomain house : houses) {
+          h.setId(house.getId());
+          h.setHouseName(house.getHouseName());
+          h.setHouseSellSt(house.getHouseSellSt());
+          houseDao.upNewHouse(h);
+          i++;
+        }
+      } else {
+        houseDao.upNewHouse(h);
+        i++;
+      }
+      if (i > 0) {
+        lable.setId("1");
+        lable.setMessage("新房修改成功");
+      } else {
+        lable.setId("0");
+        lable.setMessage("新房修改失败");
+      }
+    }
+    return lable;
+  }
+
+  //新房管理-删除整个楼盘下的新房
+  @Override
+  public Lable deNewHouse(HouseDomain houseDomain) {
+    Lable lable = new Lable();
+    if(houseDomain.getHousesId() != null){
+      int i = houseDao.deNewHouse(houseDomain);
+      if (i > 0) {
+        lable.setId("1");
+        lable.setMessage("新房删除成功");
+      }else{
+        lable.setId("2");
+        lable.setMessage("新房删除失败");
+      }
+    }
+    return lable;
+  }
+
+  //新房管理-删除某个新房
+  @Override
+  public Lable deNewHouseById(HouseDomain houseDomain) {
+    Lable lable = new Lable();
+    if(houseDomain.getId() != null){
+      int i = houseDao.deNewHouseById(houseDomain);
+      if (i > 0) {
+        lable.setId("1");
+        lable.setMessage("新房删除成功");
+      }else{
+        lable.setId("2");
+        lable.setMessage("新房删除失败");
+      }
+    }
+    return lable;
+  }
 }

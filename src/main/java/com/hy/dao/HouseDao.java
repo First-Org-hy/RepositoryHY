@@ -41,5 +41,17 @@ public interface HouseDao {
   //新房管理-查询每个楼盘下的所有新房
   List<HouseDomain> queryNewByHousesId(HouseDomain houseDomain);
   //新房管理-房屋数量查询 0：登记数量  1：在售  2：已售出
-  int countHouse(String st);
+  int countHouse(HouseDomain houseDomain);
+  //新房管理-新增
+  int addNewHouse(HouseDomain houseDomain);
+
+  //新房管理-修改
+  int upNewHouse(HouseDomain houseDomain);
+
+  //新房管理-删除整个楼盘下的新房
+  int deNewHouse(HouseDomain houseDomain);
+
+  //新房管理-删除某个新房
+  int deNewHouseById(HouseDomain houseDomain);
 }
+
