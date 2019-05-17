@@ -103,18 +103,18 @@
         <include refid="BASE_COLUMN"/>
         FROM
         <include refid="BASE_TABLE"/>
-        where 1=1
+        where
         <if test="userPhone != null">
-            AND userPhone = #{userPhone, jdbcType=VARCHAR}
+            userPhone = #{userPhone, jdbcType=VARCHAR}
         </if>
         <if test="userPhone != null">
-            AND userName = #{userPhone, jdbcType=VARCHAR}
+            OR userName = #{userPhone, jdbcType=VARCHAR}
         </if>
         <if test="userPhone != null">
-            AND appId = #{userPhone, jdbcType=VARCHAR}
+            OR appId = #{userPhone, jdbcType=VARCHAR}
         </if>
         <if test="userPhone != null">
-            AND userType = #{userPhone, jdbcType=VARCHAR}
+            OR userType = #{userPhone, jdbcType=VARCHAR}
         </if>
         ORDER BY updateTime DESC
     </select>

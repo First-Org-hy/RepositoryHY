@@ -1,5 +1,6 @@
 package com.hy.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.hy.common.Lable;
 import com.hy.model.AppDomain;
 import com.hy.service.AppService;
@@ -25,8 +26,11 @@ public class AppController {
   // 用户管理-六种类型的用户查询，无需条件
   @ResponseBody
   @GetMapping("/query")
-  public List<AppDomain> query(AppDomain appDomain) {
-    return appService.query(appDomain);
+  public PageInfo<AppDomain> query(
+      AppDomain appDomain,
+      @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+      @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return appService.query(appDomain, pageNum, pageSize);
   }
 
   // 后台登录

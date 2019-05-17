@@ -1,5 +1,6 @@
 package com.hy.service;
 
+import com.github.pagehelper.PageInfo;
 import com.hy.common.Lable;
 import com.hy.model.AppDomain;
 
@@ -20,7 +21,7 @@ public interface AppService {
    */
   List<AppDomain> querySell(AppDomain app);
   // 用户管理-六种类型的用户查询，无需条件
-  List<AppDomain> query(AppDomain appDomain);
+  PageInfo<AppDomain> query(AppDomain appDomain, int pageNum, int pageSize);
   // 用户管理-修改用户类型：userId，userType
   Lable update(AppDomain appDomain);
   // 删除用户: userId
