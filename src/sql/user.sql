@@ -224,7 +224,8 @@ CREATE TABLE housecd.newHouse(
  houseArea	  VARCHAR(255) COMMENT '区域',
  housesId     VARCHAR(255) COMMENT '楼盘ID',
  houseTypeId	VARCHAR(255) COMMENT '户型：楼盘下的户型',
- houseId	    VARCHAR(255) COMMENT '新房id： 添加新房： 10栋1单元1楼,10栋1单元1楼',
+ houseName	  VARCHAR(255) COMMENT '新房名称：eg：10栋1单元1楼,10栋1单元1楼',
+ houseSellSt  VARCHAR(255) COMMENT '新房状态，1：在售，2：已售出',
  crtTime      TIMESTAMP	  COMMENT '创建时间',
  updateTime   TIMESTAMP	  COMMENT '更新时间'
 ) ENGINE=INNODB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8;

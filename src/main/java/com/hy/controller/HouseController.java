@@ -99,5 +99,40 @@ public class HouseController {
     return houseService.houseType(houseTypeDomain);
   }
 
-  //
+  // 新房管理-查询新房信息
+  @ResponseBody
+  @GetMapping(value = "queryNew")
+  public List<HouseDomain> queryNew(HouseDomain houseDomain) {
+    return houseService.queryNew(houseDomain);
+  }
+
+  //新房管理-增加新房
+  @ResponseBody
+  @PostMapping("/addNewHouse")
+  public Lable addNewHouse(HouseDomain house) {
+    return houseService.addNewHouse(house);
+  }
+
+  //新房管理-编辑新房
+  @ResponseBody
+  @PostMapping("/upNewHouse")
+  public Lable upNewHouse(HouseDomain house) {
+    return houseService.upNewHouse(house);
+  }
+
+  //新房管理-删除整个楼盘下的新房
+  @ResponseBody
+  @PostMapping("/deNewHouse")
+  public Lable deNewHouse(HouseDomain house) {
+    return houseService.deNewHouse(house);
+  }
+
+  //新房管理-删除某个新房
+  @ResponseBody
+  @PostMapping("/deNewHouseById")
+  public Lable deNewHouseById(HouseDomain house) {
+    return houseService.deNewHouseById(house);
+  }
+
+
 }

@@ -17,7 +17,8 @@ public class test {
         // System.out.println(s);
         //teststring();
         //test2();
-        test3();
+        //test3();
+        test4();
     }
 
 
@@ -84,5 +85,11 @@ public class test {
         System.out.println("1987-01-01 与 2010-01-01 相隔 " + daysBetween + " 天");
         System.out.println(cc);
 
+    }
+
+    public static void test4(){
+        String a = "";
+        a = a.replace("/",".");
+        System.out.println(a+  "   " + a );
     }
 }

@@ -37,4 +37,14 @@ public interface HouseService {
   List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain);
   // 查询户型
   List<HouseTypeDomain> houseType(HouseTypeDomain houseTypeDomain);
+  //查询新房
+  List<HouseDomain> queryNew(HouseDomain houseDomain);
+  //增加新房
+  Lable addNewHouse(HouseDomain houseDomain);
+  //修改新房
+  Lable upNewHouse(HouseDomain houseDomain);
+  //删除新房
+  Lable deNewHouse(HouseDomain houseDomain);
+  //删除新房
+  Lable deNewHouseById(HouseDomain houseDomain);
 }
