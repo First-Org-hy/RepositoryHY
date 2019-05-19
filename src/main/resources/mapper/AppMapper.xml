@@ -93,9 +93,9 @@
             SET userName = #{userName, jdbcType=VARCHAR},
         </if>
         <if test="userPhone != null">
-            SET userPhone = #{userPhone, jdbcType=VARCHAR},
+            userPhone = #{userPhone, jdbcType=VARCHAR},
         </if>
-        SET userType = #{userType}, updateTime = CURRENT_TIMESTAMP
+        userType = #{userType}, updateTime = CURRENT_TIMESTAMP
         WHERE userId = #{userId}
     </update>
     <select id="query" parameterType="com.hy.model.AppDomain" resultType="com.hy.model.AppDomain">

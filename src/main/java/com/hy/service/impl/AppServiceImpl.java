@@ -72,7 +72,7 @@ public class AppServiceImpl implements AppService {
     } else {
       lable = new Lable("0", "修改失败");
     }
-    return null;
+    return lable;
   }
   // 删除用户: userId
   @Override
