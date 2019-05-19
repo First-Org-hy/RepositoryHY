@@ -19,7 +19,7 @@ public class AppController {
   // 新增用户
   @ResponseBody
   @PostMapping("/add")
-  public int addApp(AppDomain app) {
+  public Lable addApp(AppDomain app) {
     return appService.addApp(app);
   }
 

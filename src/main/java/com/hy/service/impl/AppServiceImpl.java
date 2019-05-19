@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /** Created by yaohou on 22:14 2019/3/21. description: */
@@ -26,13 +25,15 @@ public class AppServiceImpl implements AppService {
   @Autowired private SellDao sellDao;
 
   @Override
-  public int addApp(AppDomain app) {
-
-    Date createDate = new Date();
-    java.sql.Date sqlDate = new java.sql.Date(createDate.getTime());
-    app.setCrtTime(sqlDate);
-
-    return appDao.insert(app);
+  public Lable addApp(AppDomain app) {
+    logger.info("请求信息:" + JSON.toJSONString(app));
+    Lable lable = null;
+    if (appDao.insert(app) == 1) {
+      lable = new Lable("1", "新增成功");
+    } else {
+      lable = new Lable("0", "新增失败");
+    }
+    return lable;
   }
 
   @Override

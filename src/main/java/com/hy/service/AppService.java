@@ -8,7 +8,7 @@ import java.util.List;
 
 /** Created by yaohou on 22:04 2019/3/21. description: */
 public interface AppService {
-  int addApp(AppDomain app);
+  Lable addApp(AppDomain app);
 
   int delBrokerByUserId(AppDomain app);
 
