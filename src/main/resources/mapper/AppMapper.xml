@@ -103,18 +103,19 @@
         <include refid="BASE_COLUMN"/>
         FROM
         <include refid="BASE_TABLE"/>
-        where
+
         <if test="userPhone != null">
-            userPhone = #{userPhone, jdbcType=VARCHAR}
+            where
+            userPhone like concat('%',#{userPhone, jdbcType=VARCHAR},'%')
         </if>
         <if test="userPhone != null">
-            OR userName = #{userPhone, jdbcType=VARCHAR}
+            OR userName like concat('%',#{userPhone, jdbcType=VARCHAR},'%')
         </if>
         <if test="userPhone != null">
-            OR appId = #{userPhone, jdbcType=VARCHAR}
+            OR appId like concat('%',#{userPhone, jdbcType=VARCHAR},'%')
         </if>
         <if test="userPhone != null">
-            OR userType = #{userPhone, jdbcType=VARCHAR}
+            OR userType like concat('%',#{userPhone, jdbcType=VARCHAR},'%')
         </if>
         ORDER BY updateTime DESC
     </select>

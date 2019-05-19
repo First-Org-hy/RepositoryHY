@@ -28,11 +28,13 @@
 整合日志: 完成hy
 登录功能: 完成 待测试
 上传下载: 完成 待测试
-后端接口: TODO
-接口测试: TODO
+
 
     20190517
 登录功能: 完成 待测试
 上传下载: 完成 待测试
 后端接口: TODO
 接口测试: TODO
+
+日志/分页 : 参考 AppController / AppServicesImpl  的 query 方法.
+SQL : 更新 newHouse
