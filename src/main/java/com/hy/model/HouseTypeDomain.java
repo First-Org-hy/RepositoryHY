@@ -5,6 +5,7 @@ import java.util.List;
 /** Created by yaohou on 12:08 2019/5/3. description: 户型表 */
 public class HouseTypeDomain {
   private String houseTypeId;
+  private String housesId; // 楼盘id
   private String houseTypeName; // 户型类型名称',
   private String houseTypeSpci; // 户型类型特点 存放在集合中
   private List<HousesSpcltyDomain> housesSpcltyLable;
@@ -29,6 +30,7 @@ public class HouseTypeDomain {
 
   public HouseTypeDomain(
       String houseTypeId,
+      String housesId,
       String houseTypeName,
       String houseTypeSpci,
       List<HousesSpcltyDomain> housesSpcltyLable,
@@ -43,6 +45,7 @@ public class HouseTypeDomain {
       String crtTime,
       String updateTime) {
     this.houseTypeId = houseTypeId;
+    this.housesId = housesId;
     this.houseTypeName = houseTypeName;
     this.houseTypeSpci = houseTypeSpci;
     this.housesSpcltyLable = housesSpcltyLable;
@@ -56,6 +59,14 @@ public class HouseTypeDomain {
     this.houseType = houseType;
     this.crtTime = crtTime;
     this.updateTime = updateTime;
+  }
+
+  public String getHousesId() {
+    return housesId;
+  }
+
+  public void setHousesId(String housesId) {
+    this.housesId = housesId;
   }
 
   public HouseTypeDomain(String houseTypeId) {

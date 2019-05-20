@@ -128,6 +128,9 @@
         <if test="appId != null">
             AND appId = #{appId, jdbcType=VARCHAR}
         </if>
+        <if test="housesId != null">
+            AND housesId = #{housesId, jdbcType=VARCHAR}
+        </if>
         ORDER BY updateTime DESC
     </select>
     <delete id="del" parameterType="com.hy.model.AppDomain">

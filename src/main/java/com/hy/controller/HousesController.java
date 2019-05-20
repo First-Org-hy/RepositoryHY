@@ -45,25 +45,24 @@ public class HousesController {
     return housesService.queryAll(housesDomain);
   }
 
-  //新增楼盘信息
+  // 新增楼盘信息
   @ResponseBody
   @PostMapping(value = "add")
-  public Lable addHouses(HousesDomain housesDomain) {
+  public Lable addHouses(@RequestBody HousesDomain housesDomain) {
     return housesService.addHouses(housesDomain);
   }
 
-  //删除楼盘信息
+  // 删除楼盘信息
   @ResponseBody
-  @PostMapping(value = "delete")
+  @DeleteMapping(value = "delete")
   public Lable delHouses(HousesDomain housesDomain) {
     return housesService.delHouses(housesDomain);
   }
 
-  //修改楼盘信息
+  // 修改楼盘信息
   @ResponseBody
-  @PostMapping(value = "update")
+  @PutMapping(value = "update")
   public Lable updateHouses(HousesDomain housesDomain) {
     return housesService.updateHouses(housesDomain);
   }
-
 }
