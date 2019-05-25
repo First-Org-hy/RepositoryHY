@@ -115,7 +115,7 @@
         SET guestComment = #{guestComment}, updateTime = CURRENT_TIMESTAMP
         WHERE guestId = #{guestId}
     </update>
-    <delete id="del" parameterType="com.hy.model.GuestDomain">
+    <delete id="delete" parameterType="com.hy.model.GuestDomain">
         delete from
         <include refid="BASE_TABLE"/>
         where guestId = #{guestId}

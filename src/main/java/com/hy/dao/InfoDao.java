@@ -31,9 +31,11 @@ public interface InfoDao {
 
   List<InfoPictureDomain> queryPic(String id);
 
+  List<HousesInfoDomain> queryIdByHead(HousesInfoDomain housesInfoDomain);
+
   List<InfoLableDomain> queryLable(String id);
 
-  int delLable(String lableId);
+  int delLable(InfoLableDomain infoLableDomain);
 
-  int delPic(String picAddress);
+  int delPic(InfoPictureDomain infoPictureDomain);
 }

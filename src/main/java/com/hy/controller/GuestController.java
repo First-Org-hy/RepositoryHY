@@ -37,7 +37,7 @@ public class GuestController {
 
   // 客户管理删除客户信息：guestId
   @ResponseBody
-  @DeleteMapping("del")
+  @DeleteMapping("/del")
   public Lable delete(GuestDomain guestDomain) {
     return guestService.delete(guestDomain);
   }

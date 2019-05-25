@@ -57,11 +57,13 @@ public class HousesServiceImpl implements HousesService {
         houses.setPictureX(picX);
         houses.setPictureS(picS);
         houses.setPictureJ(picJ);
+        houses.setMating(housesId);
+        houses.setHousesType(housesId);
 
+        houses.setHousesSpclty(housesId);
         // 新增楼盘特点
         if (houses.getHousesSpcltyLable() != null && houses.getHousesSpcltyLable().size() > 0) {
           for (HousesSpcltyDomain spcl : houses.getHousesSpcltyLable()) {
-            houses.setHousesSpclty(housesId);
             spcl.setHousesSpcltyId(housesId);
             housesDao.insertHouseSpcl(spcl);
           }
@@ -69,7 +71,6 @@ public class HousesServiceImpl implements HousesService {
         // 新增楼盘效果图
         if (houses.getPictureXLable().size() > 0) {
           for (HousesPictureDomain pic : houses.getPictureXLable()) {
-            houses.setPictureX(picX);
             pic.setHousesPictureId(picX);
             housesDao.insertHousePic(pic);
           }
@@ -78,7 +79,6 @@ public class HousesServiceImpl implements HousesService {
         // 新增楼盘实施图
         if (houses.getPictureSLable() != null && houses.getPictureSLable().size() > 0) {
           for (HousesPictureDomain pic : houses.getPictureSLable()) {
-            houses.setPictureS(picS);
             pic.setHousesPictureId(picS);
             housesDao.insertHousePic(pic);
           }
@@ -87,16 +87,13 @@ public class HousesServiceImpl implements HousesService {
         // 新增楼盘交通图
         if (houses.getPictureJLable() != null && houses.getPictureJLable().size() > 0) {
           for (HousesPictureDomain pic : houses.getPictureJLable()) {
-            houses.setPictureJ(picJ);
             pic.setHousesPictureId(picJ);
             housesDao.insertHousePic(pic);
           }
         }
-
         // 新增楼盘配套设施
         if (houses.getMatingLable() != null && houses.getMatingLable().size() > 0) {
           for (HousesFacilitiesDomain mating : houses.getMatingLable()) {
-            houses.setMating(housesId);
             mating.setHousesFacilitiesId(housesId);
             housesDao.insertHouseMat(mating);
           }
@@ -106,7 +103,6 @@ public class HousesServiceImpl implements HousesService {
         if (houses.getHouseType() != null && houses.getHouseType().size() > 0) {
           for (HouseTypeDomain type : houses.getHouseType()) {
             String spcId = "HU" + housesId;
-            houses.setHousesType(housesId);
             type.setHousesId(housesId);
             type.setHouseTypeSpci(spcId);
             if (type.getHousesSpcltyLable() != null && type.getHousesSpcltyLable().size() != 0) {
@@ -330,7 +326,7 @@ public class HousesServiceImpl implements HousesService {
         }
       } catch (Exception e) {
         lable = new Lable("0", "修改失败");
-        e.printStackTrace();
+        logger.error("楼盘修改失败:" + e);
       }
       if (a > 0) {
         lable = new Lable("1", "修改成功");

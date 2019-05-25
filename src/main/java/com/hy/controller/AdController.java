@@ -17,7 +17,7 @@ public class AdController {
 
   @ResponseBody
   @PostMapping("/add")
-  public Lable addApp(AdDomain adDomain) {
+  public Lable addApp(@RequestBody AdDomain adDomain) {
     return adService.addAd(adDomain);
   }
 
@@ -35,7 +35,7 @@ public class AdController {
 
   @ResponseBody
   @PutMapping("/update")
-  public Lable updateApp(AdDomain adDomain) {
+  public Lable updateApp(@RequestBody AdDomain adDomain) {
     return adService.updateApp(adDomain);
   }
 }

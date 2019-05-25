@@ -10,7 +10,6 @@ import com.hy.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 /** Created by yaohou on 22:16 2019/5/6. description: */
@@ -33,24 +32,35 @@ public class InfoServiceImpl implements InfoService {
   @Override
   public Lable addInfo(HousesInfoDomain housesInfoDomain) {
     Lable lable = null;
+    if (infoDao.queryIdByHead(housesInfoDomain) != null
+        && infoDao.queryIdByHead(housesInfoDomain).size() > 0) {
+      return new Lable("0", "已存在");
+    }
+
     if (infoDao.addInfo(housesInfoDomain) != 0) {
       lable = new Lable("1", "增加成功");
     } else {
       lable = new Lable("2", "增加失败");
     }
-    List<String> picList = Arrays.asList(housesInfoDomain.getPicAddress().split(","));
-    if (picList.size() != 0) {
-      for (String pic : picList) {
-        infoDao.addPic(new InfoPictureDomain(housesInfoDomain.getId(), pic));
+    List<HousesInfoDomain> housesInfoDomains = infoDao.queryIdByHead(housesInfoDomain);
+    HousesInfoDomain housesInfo = housesInfoDomains.get(0);
+    housesInfoDomain.setId(housesInfo.getId());
+    housesInfoDomain.setPicAddress(housesInfo.getId());
+    housesInfoDomain.setLableId(housesInfo.getId());
+    if (housesInfoDomain.getInfoPictureDomains() != null
+        && housesInfoDomain.getInfoPictureDomains().size() != 0) {
+      for (InfoPictureDomain pic : housesInfoDomain.getInfoPictureDomains()) {
+        infoDao.addPic(new InfoPictureDomain(housesInfoDomain.getId(), pic.getInfoPicture()));
       }
     }
 
-    List<String> labList = Arrays.asList(housesInfoDomain.getLableId().split(","));
-    if (labList.size() != 0) {
-      for (String lab : labList) {
-        infoDao.addLable(new InfoLableDomain(housesInfoDomain.getLableId(), lab));
+    if (housesInfoDomain.getInfoLableDomains() != null
+        && housesInfoDomain.getInfoLableDomains().size() != 0) {
+      for (InfoLableDomain lab : housesInfoDomain.getInfoLableDomains()) {
+        infoDao.addLable(new InfoLableDomain(housesInfoDomain.getLableId(), lab.getLableContext()));
       }
     }
+    infoDao.updateInfo(housesInfoDomain);
 
     return lable;
   }
@@ -58,13 +68,27 @@ public class InfoServiceImpl implements InfoService {
   // 资讯删除
   @Override
   public Lable delInfo(HousesInfoDomain housesInfoDomain) {
+
     Lable lable = null;
-    infoDao.delPic(housesInfoDomain.getPicAddress());
-    infoDao.delLable(housesInfoDomain.getLableId());
-    if (infoDao.delInfo(housesInfoDomain) != 0) {
-      lable = new Lable("1", "删除成功");
-    } else {
-      lable = new Lable("2", "删除失败");
+    if (housesInfoDomain.getId() != null) {
+
+      if (housesInfoDomain.getInfoLableDomains() != null
+          && housesInfoDomain.getInfoLableDomains().size() > 0) {
+        for (InfoLableDomain lableDomain : housesInfoDomain.getInfoLableDomains()) {
+          infoDao.delLable(lableDomain);
+        }
+      }
+      if (housesInfoDomain.getInfoPictureDomains() != null
+          && housesInfoDomain.getInfoPictureDomains().size() > 0) {
+        for (InfoPictureDomain pictureDomain : housesInfoDomain.getInfoPictureDomains()) {
+          infoDao.delPic(pictureDomain);
+        }
+      }
+      if (infoDao.delInfo(housesInfoDomain) != 0) {
+        lable = new Lable("1", "删除成功");
+      } else {
+        lable = new Lable("2", "删除失败");
+      }
     }
     return lable;
   }
@@ -73,7 +97,25 @@ public class InfoServiceImpl implements InfoService {
   @Override
   public Lable updateInfo(HousesInfoDomain housesInfoDomain) {
     Lable lable = null;
-    if (infoDao.updateInfo(housesInfoDomain) != 0) {
+    int num = 0;
+    if (housesInfoDomain.getId() != null) {
+      num = infoDao.updateInfo(housesInfoDomain);
+      if (housesInfoDomain.getInfoLableDomains() != null
+          && housesInfoDomain.getInfoLableDomains().size() > 0) {
+        infoDao.delLable(housesInfoDomain.getInfoLableDomains().get(0));
+        for (InfoLableDomain lableDomain : housesInfoDomain.getInfoLableDomains()) {
+          infoDao.addLable(lableDomain);
+        }
+      }
+      if (housesInfoDomain.getInfoPictureDomains() != null
+          && housesInfoDomain.getInfoPictureDomains().size() > 0) {
+        infoDao.delPic(housesInfoDomain.getInfoPictureDomains().get(0));
+        for (InfoPictureDomain pictureDomain : housesInfoDomain.getInfoPictureDomains()) {
+          infoDao.addPic(pictureDomain);
+        }
+      }
+    }
+    if (num != 0) {
       lable = new Lable("1", "修改成功");
     } else {
       lable = new Lable("2", "修改失败");
