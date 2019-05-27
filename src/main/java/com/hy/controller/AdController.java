@@ -30,7 +30,7 @@ public class AdController {
   @ResponseBody
   @GetMapping("/query")
   public PageInfo<AdDomain> queryApp(AdDomain adDomain ,
-                                     @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+        @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
   @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
     return adService.queryAd(adDomain, pageNum, pageSize);
   }
