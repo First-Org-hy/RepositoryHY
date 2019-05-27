@@ -28,7 +28,7 @@ public class InfoController {
   // 资讯新增
   @ResponseBody
   @PostMapping("/addInfo")
-  public Lable addInfo(HousesInfoDomain housesInfoDomain) {
+  public Lable addInfo(@RequestBody HousesInfoDomain housesInfoDomain) {
     return infoService.addInfo(housesInfoDomain);
   }
 
@@ -42,7 +42,7 @@ public class InfoController {
   // 资讯修改
   @ResponseBody
   @PutMapping("/updateInfo")
-  public Lable updateInfo(HousesInfoDomain housesInfoDomain) {
+  public Lable updateInfo(@RequestBody HousesInfoDomain housesInfoDomain) {
     return infoService.updateInfo(housesInfoDomain);
   }
 

@@ -429,6 +429,7 @@
             AND developers = #{developers, jdbcType=VARCHAR}
         </if>
     </select>
+
     <select id="querySpc" parameterType="String" resultType="com.hy.model.HousesSpcltyDomain">
         SELECT
         *

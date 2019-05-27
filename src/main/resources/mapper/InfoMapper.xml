@@ -30,9 +30,7 @@
         INSERT INTO
         <include refid="BASE_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="Id != null">
-                Id,
-            </if>
+
             <if test="headline != null">
                 headline,
             </if>
@@ -54,9 +52,7 @@
             crtTime, updateTime
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="Id != null">
-                #{Id},
-            </if>
+
             <if test="headline != null">
                 #{headline, jdbcType=VARCHAR},
             </if>
@@ -81,14 +77,27 @@
     <update id="updateInfo" parameterType="com.hy.model.HousesInfoDomain">
         UPDATE
         <include refid="BASE_TABLE"/>
-        <if test="userName != null">
-            AND userName = #{userName, jdbcType=VARCHAR}
+        SET
+        <if test="headline != null">
+            headline = #{headline, jdbcType=VARCHAR},
         </if>
-        <if test="userPhone != null">
-            AND userPhone = #{userPhone, jdbcType=VARCHAR}
+        <if test="programId != null">
+            programId = #{programId, jdbcType=VARCHAR},
+        </if>
+        <if test="programName != null">
+            programName = #{programName, jdbcType=VARCHAR},
+        </if>
+        <if test="picAddress != null">
+            picAddress = #{picAddress, jdbcType=VARCHAR},
+        </if>
+        <if test="lableId != null">
+            lableId = #{lableId, jdbcType=VARCHAR},
+        </if>
+        <if test="content != null">
+            content = #{content, jdbcType=VARCHAR},
         </if>
         updateTime = CURRENT_TIMESTAMP
-        WHERE Id = #{Id}
+        WHERE Id = #{id}
     </update>
     <select id="queryInfo" parameterType="com.hy.model.HousesInfoDomain" resultType="com.hy.model.HousesInfoDomain">
         SELECT
@@ -101,6 +110,19 @@
         </if>
         ORDER BY updateTime DESC
     </select>
+
+    <select id="queryIdByHead" parameterType="com.hy.model.HousesInfoDomain" resultType="com.hy.model.HousesInfoDomain">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+        where 1=1
+        <if test="headline != null">
+            AND headline = #{headline, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime DESC
+    </select>
+
     <delete id="delInfo" parameterType="com.hy.model.HousesInfoDomain">
         delete from
         <include refid="BASE_TABLE"/>
@@ -199,12 +221,12 @@
         FROM
         <include refid="INFO_LABLE_TABLE"/>
         where 1=1
-        <if test="lableId != null">
-            AND lableId = #{lableId, jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            AND lableId = #{id, jdbcType=VARCHAR}
         </if>
         ORDER BY updateTime DESC
     </select>
-    <delete id="delLable" parameterType="com.hy.model.HouseDynamicDomain">
+    <delete id="delLable" parameterType="com.hy.model.InfoLableDomain">
         delete from
         <include refid="INFO_LABLE_TABLE"/>
         where lableId = #{lableId}
@@ -232,15 +254,15 @@
             CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
         </trim>
     </insert>
-    <select id="queryPic" parameterType="com.hy.model.InfoPictureDomain"
+    <select id="queryPic" parameterType="String"
             resultType="com.hy.model.InfoPictureDomain">
         SELECT
         <include refid="INFO_PICTURE_COLUMN"/>
         FROM
         <include refid="INFO_PICTURE_TABLE"/>
         where 1=1
-        <if test="infoPictureId != null">
-            AND infoPictureId = #{infoPictureId, jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            AND infoPictureId = #{id, jdbcType=VARCHAR}
         </if>
         ORDER BY updateTime DESC
     </select>

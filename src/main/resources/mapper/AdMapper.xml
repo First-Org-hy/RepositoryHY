@@ -4,6 +4,12 @@
     <sql id="BASE_TABLE">
       ad
     </sql>
+    <sql id="AD_PICTURE">
+      ad_picture
+    </sql>
+    <sql id="AD_PICTURE_COLUMN">
+        infoPictureId,infoPicture, crtTime, updateTime
+    </sql>
     <sql id="BASE_COLUMN">
     adId, adName, adAddress, adPicture, startTime, deadLine, crtTime, updateTime
     </sql>
@@ -56,17 +62,18 @@
     <update id="update" parameterType="com.hy.model.AdDomain">
         UPDATE
         <include refid="BASE_TABLE"/>
+        SET
         <if test="adName != null">
-            AND adName = #{adName, jdbcType=VARCHAR},
+            adName = #{adName, jdbcType=VARCHAR},
         </if>
         <if test="adAddress != null">
-            AND adAddress = #{adAddress, jdbcType=VARCHAR},
+            adAddress = #{adAddress, jdbcType=VARCHAR},
         </if>
         <if test="startTime != null">
-            AND startTime = #{startTime, jdbcType=VARCHAR},
+            startTime = #{startTime, jdbcType=VARCHAR},
         </if>
         <if test="deadLine != null">
-            AND deadLine = #{deadLine, jdbcType=VARCHAR},
+            deadLine = #{deadLine, jdbcType=VARCHAR},
         </if>
         updateTime = CURRENT_TIMESTAMP
         WHERE adId = #{adId}
@@ -82,9 +89,59 @@
         </if>
         ORDER BY updateTime DESC
     </select>
+    <select id="queryIdAdName" parameterType="com.hy.model.AdDomain" resultType="com.hy.model.AdDomain">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+        where 1=1
+        <if test="adName != null">
+            AND adName = #{adName, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime DESC
+    </select>
     <delete id="del" parameterType="com.hy.model.AdDomain">
         delete from
         <include refid="BASE_TABLE"/>
         where adId = #{adId}
     </delete>
+    <insert id="addAdPicture" parameterType="com.hy.model.InfoPictureDomain">
+        INSERT INTO
+        <include refid="AD_PICTURE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="infoPictureId != null">
+                infoPictureId,
+            </if>
+            <if test="infoPicture != null">
+                infoPicture,
+            </if>
+            crtTime, updateTime
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="infoPictureId != null">
+                #{infoPictureId},
+            </if>
+            <if test="infoPicture != null">
+                #{infoPicture, jdbcType=VARCHAR},
+            </if>
+            CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        </trim>
+    </insert>
+    <delete id="delPic" parameterType="com.hy.model.InfoPictureDomain">
+        delete from
+        <include refid="AD_PICTURE"/>
+        where infoPictureId = #{infoPictureId}
+    </delete>
+    <select id="queryPic" parameterType="String"
+            resultType="com.hy.model.InfoPictureDomain">
+        SELECT
+        <include refid="AD_PICTURE_COLUMN"/>
+        FROM
+        <include refid="AD_PICTURE"/>
+        where 1=1
+        <if test="_parameter != null">
+            AND infoPictureId = #{id, jdbcType=VARCHAR}
+        </if>
+        ORDER BY updateTime DESC
+    </select>
 </mapper>
