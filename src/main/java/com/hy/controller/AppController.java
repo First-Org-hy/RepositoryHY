@@ -64,7 +64,9 @@ public class AppController {
   // 根据公司id： parentId 查询
   @ResponseBody
   @GetMapping("/querySell")
-  public List<AppDomain> querySell(AppDomain app) {
-    return appService.querySell(app);
+  public PageInfo<AppDomain> querySell(AppDomain app,
+            @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return appService.querySell(app, pageNum, pageSize);
   }
 }

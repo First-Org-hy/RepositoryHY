@@ -6,7 +6,7 @@ import com.hy.model.SellDomain;
 import com.hy.service.SellService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 /** Created by shakaiyue on 14:28 2019/4/7. description:销售服务 */
@@ -25,8 +25,10 @@ public class SellController {
   // 根据楼盘id:housesId 查询销售信息
   @ResponseBody
   @GetMapping("/query")
-  public List<SellDomain> query(SellDomain sell) {
-    return sellService.query(sell);
+  public PageInfo<SellDomain> query(SellDomain sell,
+                                    @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                    @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return sellService.query(sell, pageNum, pageSize);
   }
   // 楼盘商务,修改销售状态
   @ResponseBody
@@ -37,8 +39,10 @@ public class SellController {
 
   @ResponseBody
   @GetMapping("/queryByUserParId")
-  public List<SellDomain> querySellInfoByUserParId(SellDomain sell) {
-    return sellService.querySellInfoByUserParId(sell);
+  public PageInfo<SellDomain> querySellInfoByUserParId(SellDomain sell,
+                                                       @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                                       @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return sellService.querySellInfoByUserParId(sell, pageNum, pageSize);
   }
 
   @ResponseBody
@@ -49,13 +53,17 @@ public class SellController {
 
   @ResponseBody
   @GetMapping(value = "/queryBySeller")
-  public List<SellDomain> queryBySeller(String userId) {
-    return sellService.queryBySeller(userId);
+  public PageInfo<SellDomain> queryBySeller(String userId,
+                                            @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return sellService.queryBySeller(userId, pageNum, pageSize);
   }
 
   @ResponseBody
   @GetMapping(value = "/queryBySellId")
-  public List<HousesUserDomain> queryBySellId(String userId) {
-    return sellService.queryBySellId(userId);
+  public PageInfo<HousesUserDomain> queryBySellId(String userId,
+                                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return sellService.queryBySellId(userId, pageNum, pageSize);
   }
 }

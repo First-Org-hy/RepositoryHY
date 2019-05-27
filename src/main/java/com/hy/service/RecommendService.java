@@ -3,7 +3,7 @@ package com.hy.service;
 import com.hy.common.Lable;
 import com.hy.model.AppDomain;
 import com.hy.model.RecommendDomain;
-
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 /** Created by yaohou on 16:13 2019/4/3. description: */
@@ -18,15 +18,15 @@ public interface RecommendService {
    */
   Lable addRecommend(RecommendDomain recommend);
 
-  List<RecommendDomain> queryRecoInfoByUserId(AppDomain app);
+  PageInfo<RecommendDomain> queryRecoInfoByUserId(AppDomain app, int pageNum, int pageSize);
 
-  List<RecommendDomain> queryRecoInfoByUserParId(AppDomain app);
+  PageInfo<RecommendDomain> queryRecoInfoByUserParId(AppDomain app, int pageNum, int pageSize);
 
-  List<RecommendDomain> queryRecoInfoByGuestName(RecommendDomain reMend);
+  PageInfo<RecommendDomain> queryRecoInfoByGuestName(RecommendDomain reMend, int pageNum, int pageSize);
 
   Lable isRecommendOfCom(String userId, String userParId);
 
-  List<AppDomain> queryCompanyInfo(String userId);
+  PageInfo<AppDomain> queryCompanyInfo(String userId, int pageNum, int pageSize);
 
   /**
    * 查询所有推荐人信息
@@ -35,5 +35,5 @@ public interface RecommendService {
    * @date 2019/5/1 16:10
    * @return java.util.List<com.hy.model.RecommendDomain>
    */
-  List<RecommendDomain> query(RecommendDomain recommendDomain);
+  PageInfo<RecommendDomain> query(RecommendDomain recommendDomain, int pageNum, int pageSize);
 }

@@ -5,7 +5,7 @@ import com.hy.model.*;
 import com.hy.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 /** Created by shakaiyue on 21:59 2019/4/12. description:新房，二手房，租房 Controller */
@@ -24,15 +24,19 @@ public class HouseController {
   // 普通用户租房查询
   @ResponseBody
   @GetMapping("/queryRent")
-  public List<RentHouseDomain> queryRentHouse(RentHouseDomain House) {
-    return houseService.queryRentHouse(House);
+  public PageInfo<RentHouseDomain> queryRentHouse(RentHouseDomain House,
+                                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return houseService.queryRentHouse(House, pageNum, pageSize);
   }
 
   // 我发布的租房查询
   @ResponseBody
   @GetMapping("/queryRentsByUserId")
-  public List<RentHouseDomain> queryRentsByUserId(RentHouseDomain rentHouseDomain) {
-    return houseService.queryRentsByUserId(rentHouseDomain);
+  public PageInfo<RentHouseDomain> queryRentsByUserId(RentHouseDomain rentHouseDomain,
+                                                      @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                                      @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return houseService.queryRentsByUserId(rentHouseDomain, pageNum, pageSize);
   }
 
   @ResponseBody
@@ -44,8 +48,10 @@ public class HouseController {
   // 普通用户二手房查询:
   @ResponseBody
   @GetMapping("/querySecond")
-  public List<SecondHouseDomain> querySeconds(SecondHouseDomain secondHouseDomain) {
-    return houseService.querySecondsByUserId(secondHouseDomain);
+  public PageInfo<SecondHouseDomain> querySeconds(SecondHouseDomain secondHouseDomain,
+                                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return houseService.querySecondsByUserId(secondHouseDomain, pageNum, pageSize);
   }
 
   // 普通用户预约看房:orderName,orderTel,orderHouseName,orderHouseId
@@ -57,8 +63,10 @@ public class HouseController {
 
   @ResponseBody
   @GetMapping("/queryDyByHouseId")
-  public List<HouseDynamicDomain> queryDyByHouseId(String houseId) {
-    return houseService.queryDyByHouseId(houseId);
+  public PageInfo<HouseDynamicDomain> queryDyByHouseId(String houseId,
+                                                   @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                                   @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return houseService.queryDyByHouseId(houseId, pageNum, pageSize);
   }
 
   @ResponseBody
@@ -70,8 +78,9 @@ public class HouseController {
   // 楼盘咨询查询
   @ResponseBody
   @GetMapping("/queryHousesInfo")
-  public List<HousesInfoDomain> queryHousesInfo() {
-    return houseService.queryHousesInfo();
+  public PageInfo<HousesInfoDomain> queryHousesInfo(  @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return houseService.queryHousesInfo(pageNum, pageSize);
   }
 
   @ResponseBody
@@ -102,8 +111,10 @@ public class HouseController {
   // 新房管理-查询新房信息
   @ResponseBody
   @GetMapping(value = "queryNew")
-  public List<HouseDomain> queryNew(HouseDomain houseDomain) {
-    return houseService.queryNew(houseDomain);
+  public PageInfo<HouseDomain> queryNew(HouseDomain houseDomain,
+                                        @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                        @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return houseService.queryNew(houseDomain, pageNum, pageSize);
   }
 
   //新房管理-增加新房

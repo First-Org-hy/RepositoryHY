@@ -1,6 +1,8 @@
 package com.hy.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hy.common.Lable;
 import com.hy.dao.AppDao;
 import com.hy.dao.HouseDao;
@@ -30,9 +32,12 @@ public class HousesServiceImpl implements HousesService {
   // 驻点商务楼盘查询: userId(驻点商务id)
   // 普通用户楼盘查询
   @Override
-  public List<HousesDomain> queryHouses(HousesDomain housesDomain) {
+  public PageInfo<HousesDomain> queryHouses(HousesDomain housesDomain, int pageNum, int pageSize) {
     logger.info("HousesServiceImpl - queryHouses 楼盘查询请求参数:" + JSON.toJSONString(housesDomain));
-    return housesDao.selectHouses(housesDomain);
+    PageHelper.startPage(pageNum, pageSize);
+    List<HousesDomain> housesDomains = housesDao.selectHouses(housesDomain);
+    logger.info("普通用户楼盘查询:" + JSON.toJSONString(housesDomains));
+    return new PageInfo(housesDomains);
   }
 
   @Transactional
@@ -145,8 +150,9 @@ public class HousesServiceImpl implements HousesService {
 
   // 普通用户 区域/价格/筛选 楼盘: areaId,总价,avgPrice(单价),户型,装修,面积,开盘时间,售卖状况,特色
   @Override
-  public List<HousesDomain> queryAll(HousesDomain housesDomain) {
+  public PageInfo<HousesDomain> queryAll(HousesDomain housesDomain, int pageNum, int pageSize) {
     logger.info("HousesServiceImpl - queryAll 楼盘查询请求参数:" + JSON.toJSONString(housesDomain));
+    PageHelper.startPage(pageNum, pageSize);
     List<HousesDomain> houses = housesDao.queryAll(housesDomain);
     if (houses.size() != 0) {
       for (HousesDomain house : houses) {
@@ -200,14 +206,18 @@ public class HousesServiceImpl implements HousesService {
         house.setHouseDynamics(dys);
       }
     }
-    return houses;
+    logger.info("普通用户楼盘查询:" + JSON.toJSONString(houses));
+    return new PageInfo(houses);
   }
 
   // 楼盘所有特点查询，所有特点去重
   @Override
-  public List<HousesSpcltyDomain> querySpclty() {
+  public PageInfo<HousesSpcltyDomain> querySpclty(int pageNum, int pageSize) {
     logger.info("HousesServiceImpl - querySplty 楼盘特点查询 无请求参数:");
-    return housesDao.querySpclty();
+    PageHelper.startPage(pageNum, pageSize);
+    List<HousesSpcltyDomain> housesSpcltyDomains = housesDao.querySpclty();
+    logger.info("楼盘所有特点查询，:" + JSON.toJSONString(housesSpcltyDomains));
+    return new PageInfo(housesSpcltyDomains);
   }
 
   // 删除楼盘信息

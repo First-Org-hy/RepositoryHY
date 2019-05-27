@@ -5,8 +5,7 @@ import com.hy.model.BrokerageDomain;
 import com.hy.service.BrokerageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 /** Created by yaohou on 13:02 2019/4/7. description: 佣金服务 */
 @RestController
@@ -17,9 +16,10 @@ public class BrokerageController {
 
   @ResponseBody
   @GetMapping(value = "query")
-  public List<BrokerageDomain> queryBrokerages(BrokerageDomain brokerageDomain) {
-
-    return brokerageService.selectBrokerages(brokerageDomain);
+  public PageInfo<BrokerageDomain> queryBrokerages(BrokerageDomain brokerageDomain,
+    @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+    @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return brokerageService.selectBrokerages(brokerageDomain, pageNum, pageSize);
   }
 
   @ResponseBody

@@ -5,8 +5,7 @@ import com.hy.model.BankInfoDomain;
 import com.hy.service.BankInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 /** Created by yaohou on 17:13 2019/4/3. description: */
 @RestController
@@ -29,9 +28,18 @@ public class BankInfoController {
     return bankInfoService.add(bankInfoDomain);
   }
 
+  /**
+   * 银行卡信息查询
+   * @param bankInfoDomain
+   * @param pageNum
+   * @param pageSize
+   * @return
+   */
   @ResponseBody
   @GetMapping(value = "query")
-  public List<BankInfoDomain> queryBankInfo(BankInfoDomain bankInfoDomain) {
-    return bankInfoService.selectBankInfo(bankInfoDomain);
+  public PageInfo<BankInfoDomain> queryBankInfo(BankInfoDomain bankInfoDomain,
+         @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+         @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return bankInfoService.selectBankInfo(bankInfoDomain, pageNum, pageSize);
   }
 }

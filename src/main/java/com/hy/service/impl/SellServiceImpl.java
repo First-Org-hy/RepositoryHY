@@ -1,12 +1,18 @@
 package com.hy.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hy.common.Lable;
 import com.hy.dao.HousesDao;
 import com.hy.dao.SellDao;
 import com.hy.model.HousesDomain;
 import com.hy.model.HousesUserDomain;
+import com.hy.model.RecommendDomain;
 import com.hy.model.SellDomain;
 import com.hy.service.SellService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +21,7 @@ import java.util.List;
 /** Created by shakaiyue on 14:28 2019/4/7. description: */
 @Service(value = "sellService")
 public class SellServiceImpl implements SellService {
-
+  private static Logger logger = LoggerFactory.getLogger(SellServiceImpl.class);
   @Autowired private SellDao selldao;
 
   @Autowired private HousesDao housesDao;
@@ -68,8 +74,12 @@ public class SellServiceImpl implements SellService {
   // 通过经纪人id查询某个经纪人的销售记录
   // 根据楼盘id:housesId 查询销售信息
   @Override
-  public List<SellDomain> query(SellDomain sell) {
-    return selldao.query(sell);
+  public PageInfo<SellDomain> query(SellDomain sell,int pageNum, int pageSize) {
+
+    List<SellDomain> query = selldao.query(sell);
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("通过经纪人id查询某个经纪人的销售记录:" + JSON.toJSONString(query));
+    return new PageInfo(query);
   }
 
   /**
@@ -79,8 +89,11 @@ public class SellServiceImpl implements SellService {
    * @return
    */
   @Override
-  public List<SellDomain> querySellInfoByUserParId(SellDomain sell) {
-    return selldao.querySellInfoByUserParId(sell);
+  public PageInfo<SellDomain> querySellInfoByUserParId(SellDomain sell,int pageNum, int pageSize) {
+    List<SellDomain> query = selldao.querySellInfoByUserParId(sell);
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("通过经纪公司id查询经纪公司的销售记录:" + JSON.toJSONString(query));
+    return new PageInfo(query);
   }
 
   /**
@@ -109,7 +122,7 @@ public class SellServiceImpl implements SellService {
    * @return
    */
   @Override
-  public List<SellDomain> queryBySeller(String userId) {
+  public PageInfo<SellDomain> queryBySeller(String userId,int pageNum, int pageSize) {
     List<SellDomain> sells = selldao.queryBySeller(userId);
     for (SellDomain sell : sells) {
       String houseId = sell.getHousesId();
@@ -118,11 +131,13 @@ public class SellServiceImpl implements SellService {
       List<HousesDomain> houses = housesDao.selectHouses(house);
       sell.setHouses(houses);
     }
-    return sells;
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("查询某个驻点商务的全部销售记录:" + JSON.toJSONString(sells));
+    return new PageInfo(sells);
   }
 
   @Override
-  public List<HousesUserDomain> queryBySellId(String userId) {
+  public PageInfo<HousesUserDomain> queryBySellId(String userId,int pageNum, int pageSize) {
     List<HousesUserDomain> houseUsers = selldao.queryBySellId(userId);
     for (HousesUserDomain house : houseUsers) {
       String houseId = house.getHousesId();
@@ -132,6 +147,8 @@ public class SellServiceImpl implements SellService {
       List<HousesDomain> housesInfo = housesDao.selectHouses(houses);
       house.setHouses(housesInfo);
     }
-    return houseUsers;
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("查询销售记录:" + JSON.toJSONString(houseUsers));
+    return new PageInfo(houseUsers);
   }
 }

@@ -5,8 +5,7 @@ import com.hy.model.GuestDomain;
 import com.hy.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 /** Created by yaohou on 14:50 2019/5/3. description:客户表 */
 @RestController
@@ -17,8 +16,10 @@ public class GuestController {
   // 客户管理客户查询:crtTime(开始时间),updateTime(结束时间)  guestName like 姓名,电话,楼盘,推荐人
   @ResponseBody
   @GetMapping("/query")
-  public List<GuestDomain> query(GuestDomain guestDomain) {
-    return guestService.query(guestDomain);
+  public PageInfo<GuestDomain> query(GuestDomain guestDomain,
+                                     @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                     @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return guestService.query(guestDomain, pageNum, pageSize);
   }
 
   // 客户管理新增客户:guestDomain

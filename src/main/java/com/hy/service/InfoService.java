@@ -3,13 +3,13 @@ package com.hy.service;
 import com.hy.common.Lable;
 import com.hy.model.HouseDynamicDomain;
 import com.hy.model.HousesInfoDomain;
-
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 /** Created by yaohou on 22:16 2019/5/6. description: */
 public interface InfoService {
   // 资讯查询
-  List<HousesInfoDomain> queryInfo(HousesInfoDomain housesInfoDomain);
+  PageInfo<HousesInfoDomain> queryInfo(HousesInfoDomain housesInfoDomain, int pageNum, int pageSize);
   // 资讯新增
   Lable addInfo(HousesInfoDomain housesInfoDomain);
   // 资讯删除
@@ -23,5 +23,5 @@ public interface InfoService {
   // 楼盘动态新增
   Lable addDynamic(HouseDynamicDomain houseDynamicDomain);
   // 楼盘动态查询
-  List<HouseDynamicDomain> queryDynamic(HouseDynamicDomain houseDynamicDomain);
+  PageInfo<HouseDynamicDomain> queryDynamic(HouseDynamicDomain houseDynamicDomain, int pageNum, int pageSize);
 }

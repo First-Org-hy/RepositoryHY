@@ -1,10 +1,16 @@
 package com.hy.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hy.common.Lable;
 import com.hy.dao.RecommendDao;
 import com.hy.model.AppDomain;
+import com.hy.model.HouseDynamicDomain;
 import com.hy.model.RecommendDomain;
 import com.hy.service.RecommendService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +19,7 @@ import java.util.List;
 /** Created by yaohou on 16:14 2019/4/3. description: */
 @Service(value = "recommendService")
 public class RecommendServiceImpl implements RecommendService {
+  private static Logger logger = LoggerFactory.getLogger(RecommendServiceImpl.class);
   @Autowired private RecommendDao recommendDao;
 
   @Override
@@ -37,8 +44,12 @@ public class RecommendServiceImpl implements RecommendService {
    * @return
    */
   @Override
-  public List<RecommendDomain> queryRecoInfoByUserId(AppDomain app) {
-    return recommendDao.queryRecoInfoByUserId(app);
+  public PageInfo<RecommendDomain> queryRecoInfoByUserId(AppDomain app,int pageNum, int pageSize) {
+
+    List<RecommendDomain> recommendDomains = recommendDao.queryRecoInfoByUserId(app);
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("根据经纪人ID查询推荐列表数据:" + JSON.toJSONString(recommendDomains));
+    return new PageInfo(recommendDomains);
   }
 
   /**
@@ -48,8 +59,11 @@ public class RecommendServiceImpl implements RecommendService {
    * @return
    */
   @Override
-  public List<RecommendDomain> queryRecoInfoByUserParId(AppDomain app) {
-    return recommendDao.queryRecoInfoByUserParId(app);
+  public PageInfo<RecommendDomain> queryRecoInfoByUserParId(AppDomain app,int pageNum, int pageSize) {
+    List<RecommendDomain> recommendDomains = recommendDao.queryRecoInfoByUserParId(app);
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("根据经纪公司ID查询推荐列表数据:" + JSON.toJSONString(recommendDomains));
+    return new PageInfo(recommendDomains);
   }
 
   /**
@@ -59,8 +73,11 @@ public class RecommendServiceImpl implements RecommendService {
    * @return
    */
   @Override
-  public List<RecommendDomain> queryRecoInfoByGuestName(RecommendDomain reMend) {
-    return recommendDao.queryRecoInfoByGuestName(reMend);
+  public PageInfo<RecommendDomain> queryRecoInfoByGuestName(RecommendDomain reMend ,int pageNum, int pageSize)  {
+    List<RecommendDomain> recommendDomains = recommendDao.queryRecoInfoByGuestName(reMend);
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("根据经纪人ID，客户姓名，客户电话 查询推荐列表数据:" + JSON.toJSONString(recommendDomains));
+    return new PageInfo(recommendDomains);
   }
 
   /**
@@ -84,13 +101,19 @@ public class RecommendServiceImpl implements RecommendService {
 
   // 查询经纪公司的名称，联系电话
   @Override
-  public List<AppDomain> queryCompanyInfo(String userId) {
-    return recommendDao.queryCompanyInfo(userId);
+  public PageInfo<AppDomain> queryCompanyInfo(String userId ,int pageNum, int pageSize) {
+    List<AppDomain> appDomains = recommendDao.queryCompanyInfo(userId);
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("查询经纪公司的名称:" + JSON.toJSONString(appDomains));
+    return new PageInfo(appDomains);
   }
 
   // 根据楼盘id housesId,获取楼盘推荐信息
   @Override
-  public List<RecommendDomain> query(RecommendDomain recommendDomain) {
-    return recommendDao.query(recommendDomain);
+  public PageInfo<RecommendDomain> query(RecommendDomain recommendDomain, int pageNum, int pageSize) {
+    List<RecommendDomain> query = recommendDao.query(recommendDomain);
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("查询经纪公司的名称:" + JSON.toJSONString(query));
+    return new PageInfo(query);
   }
 }

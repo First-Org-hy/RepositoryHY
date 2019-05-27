@@ -1,12 +1,11 @@
 package com.hy.service;
 
 import com.hy.model.BrokerageDomain;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 /** Created by yaohou on 12:58 2019/4/7. description: */
 public interface BrokerageService {
-  List<BrokerageDomain> selectBrokerages(BrokerageDomain brokerageDomain);
+  PageInfo<BrokerageDomain> selectBrokerages(BrokerageDomain brokerageDomain,  int pageNum, int pageSize);
 
   int add(BrokerageDomain brokerageDomain);
 

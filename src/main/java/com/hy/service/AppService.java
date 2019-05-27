@@ -19,7 +19,7 @@ public interface AppService {
    * @date 2019/5/2 14:36
    * @return java.util.List<com.hy.model.AppDomain>
    */
-  List<AppDomain> querySell(AppDomain app);
+  PageInfo<AppDomain> querySell(AppDomain app,int pageNum, int pageSize);
   // 用户管理-六种类型的用户查询，无需条件
   PageInfo<AppDomain> query(AppDomain appDomain, int pageNum, int pageSize);
   // 用户管理-修改用户类型：userId，userType

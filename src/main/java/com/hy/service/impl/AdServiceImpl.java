@@ -1,5 +1,7 @@
 package com.hy.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hy.common.Lable;
 import com.hy.dao.AdDao;
 import com.hy.model.AdDomain;
@@ -41,8 +43,9 @@ public class AdServiceImpl implements AdService {
   }
 
   @Override
-  public List<AdDomain> queryAd(AdDomain adDomain) {
-    return adDao.query(adDomain);
+  public PageInfo<AdDomain> queryAd(AdDomain adDomain, int pageNum, int pageSize) {
+    PageHelper .startPage(pageNum, pageSize);
+    return new PageInfo(adDao.query(adDomain));
   }
 
   @Override

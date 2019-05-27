@@ -6,7 +6,7 @@ import com.hy.model.HousesInfoDomain;
 import com.hy.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 /** Created by yaohou on 22:08 2019/5/6. description: 资讯,动态服务类 */
@@ -19,8 +19,10 @@ public class InfoController {
   // 资讯查询
   @ResponseBody
   @GetMapping("/queryInfo")
-  public List<HousesInfoDomain> queryInfo(HousesInfoDomain housesInfoDomain) {
-    return infoService.queryInfo(housesInfoDomain);
+  public PageInfo<HousesInfoDomain> queryInfo(HousesInfoDomain housesInfoDomain,
+                                              @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+  @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return infoService.queryInfo(housesInfoDomain, pageNum, pageSize);
   }
 
   // 资讯新增
@@ -47,8 +49,10 @@ public class InfoController {
   // 楼盘动态查询
   @ResponseBody
   @GetMapping("/queryDynamic")
-  public List<HouseDynamicDomain> queryDynamic(HouseDynamicDomain houseDynamicDomain) {
-    return infoService.queryDynamic(houseDynamicDomain);
+  public PageInfo<HouseDynamicDomain> queryDynamic(HouseDynamicDomain houseDynamicDomain,
+                                               @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+                                               @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return infoService.queryDynamic(houseDynamicDomain, pageNum, pageSize);
   }
 
   // 楼盘动态新增

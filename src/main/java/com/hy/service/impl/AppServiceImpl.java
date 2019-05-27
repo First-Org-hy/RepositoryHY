@@ -42,15 +42,18 @@ public class AppServiceImpl implements AppService {
   }
 
   @Override
-  public List<AppDomain> querySell(AppDomain app) {
+  public PageInfo<AppDomain> querySell(AppDomain app, int pageNum, int pageSize) {
     SellDomain sellDomain = null;
+    PageHelper.startPage(pageNum, pageSize);
     List<AppDomain> appDomains = appDao.querySell(app);
     for (AppDomain appDomain : appDomains) {
       sellDomain = new SellDomain();
       sellDomain.setUserId(appDomain.getUserId());
       appDomain.setSellList(sellDao.query(sellDomain));
     }
-    return appDomains;
+    logger.info("日志成功!" + JSON.toJSONString(appDomains));
+
+    return new PageInfo(appDomains);
   }
   // 用户管理-六种类型的用户查询，无需条件
   @Override

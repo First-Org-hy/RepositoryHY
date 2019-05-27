@@ -2,8 +2,7 @@ package com.hy.service;
 
 import com.hy.common.Lable;
 import com.hy.model.AdDomain;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 /** Created by yaohou on 22:04 2019/3/21. description: */
 public interface AdService {
@@ -11,7 +10,7 @@ public interface AdService {
 
   Lable delAd(AdDomain adDomain);
 
-  List<AdDomain> queryAd(AdDomain adDomain);
+  PageInfo<AdDomain> queryAd(AdDomain adDomain, int pageNum, int pageSize);
 
   Lable updateApp(AdDomain adDomain);
 }

@@ -1,17 +1,22 @@
 package com.hy.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hy.common.Lable;
 import com.hy.dao.HouseDao;
 import com.hy.model.*;
 import com.hy.service.HouseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /** Created by shakaiyue on 17:59 2019/4/12. description:新房，二手房，租房 Service */
 @Service(value = "houseService")
 public class HouseServiceImpl implements HouseService {
+  private static Logger logger = LoggerFactory.getLogger(HouseServiceImpl.class);
 
   @Autowired private HouseDao houseDao;
 
@@ -52,8 +57,11 @@ public class HouseServiceImpl implements HouseService {
    * @return
    */
   @Override
-  public List<RentHouseDomain> queryRentHouse(RentHouseDomain house) {
-    return houseDao.queryRentHouse(house);
+  public PageInfo<RentHouseDomain> queryRentHouse(RentHouseDomain house, int pageNum, int pageSize) {
+    PageHelper.startPage(pageNum, pageSize);
+    List<RentHouseDomain> rentHouseDomains = houseDao.queryRentHouse(house);
+    logger.info("租房详情查询：" + JSON.toJSONString(rentHouseDomains));
+    return new PageInfo(rentHouseDomains);
   }
 
   /**
@@ -63,8 +71,11 @@ public class HouseServiceImpl implements HouseService {
    * @return
    */
   @Override
-  public List<RentHouseDomain> queryRentsByUserId(RentHouseDomain rentHouseDomain) {
-    return houseDao.queryRentsByUserId(rentHouseDomain);
+  public PageInfo<RentHouseDomain> queryRentsByUserId(RentHouseDomain rentHouseDomain, int pageNum, int pageSize) {
+    PageHelper.startPage(pageNum, pageSize);
+    List<RentHouseDomain> rentHouseDomains = houseDao.queryRentsByUserId(rentHouseDomain);
+    logger.info("查询用户发布的所有租房：" + JSON.toJSONString(rentHouseDomains));
+    return new PageInfo(rentHouseDomains);
   }
 
   /**
@@ -94,8 +105,11 @@ public class HouseServiceImpl implements HouseService {
    * @return
    */
   @Override
-  public List<SecondHouseDomain> querySecondHouse(SecondHouseDomain house) {
-    return houseDao.querySecondHouse(house);
+  public PageInfo<SecondHouseDomain> querySecondHouse(SecondHouseDomain house, int pageNum, int pageSize) {
+    PageHelper.startPage(pageNum, pageSize);
+    List<SecondHouseDomain> secondHouseDomains = houseDao.querySecondHouse(house);
+    logger.info("二手房详情查询：" + JSON.toJSONString(secondHouseDomains));
+    return new PageInfo(secondHouseDomains);
   }
 
   /**
@@ -105,8 +119,11 @@ public class HouseServiceImpl implements HouseService {
    * @return
    */
   @Override
-  public List<SecondHouseDomain> querySecondsByUserId(SecondHouseDomain secondHouseDomain) {
-    return houseDao.querySecondsByUserId(secondHouseDomain);
+  public PageInfo<SecondHouseDomain> querySecondsByUserId(SecondHouseDomain secondHouseDomain, int pageNum, int pageSize) {
+    PageHelper.startPage(pageNum, pageSize);
+    List<SecondHouseDomain> secondHouseDomains = houseDao.querySecondsByUserId(secondHouseDomain);
+    logger.info("查询用户发布的所有二手房：" + JSON.toJSONString(secondHouseDomains));
+    return new PageInfo(secondHouseDomains);
   }
 
   /**
@@ -133,8 +150,11 @@ public class HouseServiceImpl implements HouseService {
    * @return
    */
   @Override
-  public List<HouseDynamicDomain> queryDyByHouseId(String houseId) {
-    return houseDao.queryDyByHouseId(houseId);
+  public PageInfo<HouseDynamicDomain> queryDyByHouseId(String houseId, int pageNum, int pageSize) {
+    PageHelper.startPage(pageNum, pageSize);
+    List<HouseDynamicDomain> houseDynamicDomains = houseDao.queryDyByHouseId(houseId);
+    logger.info("根据楼盘Id查看楼盘动态：" + JSON.toJSONString(houseDynamicDomains));
+    return new PageInfo(houseDynamicDomains);
   }
 
   /**
@@ -173,8 +193,11 @@ public class HouseServiceImpl implements HouseService {
 
   // 房产资讯查询
   @Override
-  public List<HousesInfoDomain> queryHousesInfo() {
-    return houseDao.queryHousesInfo();
+  public PageInfo<HousesInfoDomain> queryHousesInfo(int pageNum, int pageSize) {
+    PageHelper.startPage(pageNum, pageSize);
+    List<HousesInfoDomain> housesInfoDomains = houseDao.queryHousesInfo();
+    logger.info("房产资讯查询：" + JSON.toJSONString(housesInfoDomains));
+    return new PageInfo(housesInfoDomains);
   }
 
   // 查询所有户型
@@ -191,7 +214,8 @@ public class HouseServiceImpl implements HouseService {
 
   //新房管理-查询
   @Override
-  public List<HouseDomain> queryNew(HouseDomain houseDomain) {
+  public PageInfo<HouseDomain> queryNew(HouseDomain houseDomain, int pageNum, int pageSize) {
+    PageHelper.startPage(pageNum, pageSize);
     List<HouseDomain> houses = houseDao.queryNew(houseDomain);
     for(HouseDomain house : houses){
 
@@ -212,7 +236,8 @@ public class HouseServiceImpl implements HouseService {
       h.setHouseSellSt("2");
       house.setHouseRemainNum(houseDao.countHouse(h));
     }
-    return houses;
+    logger.info("新房查询：" + JSON.toJSONString(houses));
+    return new PageInfo(houses);
   }
 
   //新房管理-新增
