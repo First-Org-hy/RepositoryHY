@@ -5,7 +5,7 @@ import com.hy.model.AdDomain;
 import com.hy.service.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 /** Created by yaohou on 21:59 2019/3/21. description: 用户类 */
@@ -29,8 +29,10 @@ public class AdController {
 
   @ResponseBody
   @GetMapping("/query")
-  public List<AdDomain> queryApp(AdDomain adDomain) {
-    return adService.queryAd(adDomain);
+  public PageInfo<AdDomain> queryApp(AdDomain adDomain ,
+                                     @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+  @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return adService.queryAd(adDomain, pageNum, pageSize);
   }
 
   @ResponseBody

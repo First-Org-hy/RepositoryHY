@@ -1,10 +1,16 @@
 package com.hy.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hy.common.Lable;
 import com.hy.dao.AdDao;
 import com.hy.model.AdDomain;
+import com.hy.model.AppDomain;
 import com.hy.model.InfoPictureDomain;
 import com.hy.service.AdService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +19,7 @@ import java.util.List;
 /** Created by yaohou on 22:14 2019/3/21. description: */
 @Service(value = "adService")
 public class AdServiceImpl implements AdService {
-
+  private static Logger logger = LoggerFactory.getLogger(AdServiceImpl.class);
   @Autowired private AdDao adDao;
 
   @Override
@@ -59,13 +65,15 @@ public class AdServiceImpl implements AdService {
   }
 
   @Override
-  public List<AdDomain> queryAd(AdDomain adDomain) {
+  public PageInfo<AdDomain> queryAd(AdDomain adDomain, int pageNum, int pageSize) {
     List<AdDomain> adDomains = adDao.query(adDomain);
     for (AdDomain adDomain1 : adDomains) {
       adDomain1.setInfoPictureDomains(adDao.queryPic(adDomain1.getAdId()));
     }
-
-    return adDomains;
+    PageHelper.startPage(pageNum, pageSize);
+    logger.info("日志成功!" + JSON.toJSONString(adDomains));
+    System.out.println(adDomains);
+    return new PageInfo(adDomains);
   }
 
   @Override
