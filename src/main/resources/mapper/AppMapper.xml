@@ -95,7 +95,13 @@
         <if test="userPhone != null">
             userPhone = #{userPhone, jdbcType=VARCHAR},
         </if>
-        userType = #{userType}, updateTime = CURRENT_TIMESTAMP
+        <if test="userType != null">
+            userType = #{userType, jdbcType=VARCHAR},
+        </if>
+        <if test="userState != null">
+            userState = #{userState, jdbcType=VARCHAR},
+        </if>
+        updateTime = CURRENT_TIMESTAMP
         WHERE userId = #{userId}
     </update>
     <select id="query" parameterType="com.hy.model.AppDomain" resultType="com.hy.model.AppDomain">
@@ -117,6 +123,13 @@
         <if test="userPhone != null">
             OR userType like concat('%',#{userPhone, jdbcType=VARCHAR},'%')
         </if>
+        <if test="userType != null">
+            OR userType like concat('%',#{userType, jdbcType=VARCHAR},'%')
+        </if>
+        <if test="userName != null">
+            OR userName like concat('%',#{userName, jdbcType=VARCHAR},'%')
+        </if>
+
         ORDER BY updateTime DESC
     </select>
     <select id="queryById" parameterType="com.hy.model.AppDomain" resultType="com.hy.model.AppDomain">

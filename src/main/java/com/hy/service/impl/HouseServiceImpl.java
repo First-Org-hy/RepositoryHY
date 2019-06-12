@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /** Created by shakaiyue on 17:59 2019/4/12. description:新房，二手房，租房 Service */
@@ -57,7 +58,8 @@ public class HouseServiceImpl implements HouseService {
    * @return
    */
   @Override
-  public PageInfo<RentHouseDomain> queryRentHouse(RentHouseDomain house, int pageNum, int pageSize) {
+  public PageInfo<RentHouseDomain> queryRentHouse(
+      RentHouseDomain house, int pageNum, int pageSize) {
     PageHelper.startPage(pageNum, pageSize);
     List<RentHouseDomain> rentHouseDomains = houseDao.queryRentHouse(house);
     logger.info("租房详情查询：" + JSON.toJSONString(rentHouseDomains));
@@ -71,7 +73,8 @@ public class HouseServiceImpl implements HouseService {
    * @return
    */
   @Override
-  public PageInfo<RentHouseDomain> queryRentsByUserId(RentHouseDomain rentHouseDomain, int pageNum, int pageSize) {
+  public PageInfo<RentHouseDomain> queryRentsByUserId(
+      RentHouseDomain rentHouseDomain, int pageNum, int pageSize) {
     PageHelper.startPage(pageNum, pageSize);
     List<RentHouseDomain> rentHouseDomains = houseDao.queryRentsByUserId(rentHouseDomain);
     logger.info("查询用户发布的所有租房：" + JSON.toJSONString(rentHouseDomains));
@@ -105,7 +108,8 @@ public class HouseServiceImpl implements HouseService {
    * @return
    */
   @Override
-  public PageInfo<SecondHouseDomain> querySecondHouse(SecondHouseDomain house, int pageNum, int pageSize) {
+  public PageInfo<SecondHouseDomain> querySecondHouse(
+      SecondHouseDomain house, int pageNum, int pageSize) {
     PageHelper.startPage(pageNum, pageSize);
     List<SecondHouseDomain> secondHouseDomains = houseDao.querySecondHouse(house);
     logger.info("二手房详情查询：" + JSON.toJSONString(secondHouseDomains));
@@ -119,7 +123,8 @@ public class HouseServiceImpl implements HouseService {
    * @return
    */
   @Override
-  public PageInfo<SecondHouseDomain> querySecondsByUserId(SecondHouseDomain secondHouseDomain, int pageNum, int pageSize) {
+  public PageInfo<SecondHouseDomain> querySecondsByUserId(
+      SecondHouseDomain secondHouseDomain, int pageNum, int pageSize) {
     PageHelper.startPage(pageNum, pageSize);
     List<SecondHouseDomain> secondHouseDomains = houseDao.querySecondsByUserId(secondHouseDomain);
     logger.info("查询用户发布的所有二手房：" + JSON.toJSONString(secondHouseDomains));
@@ -211,28 +216,27 @@ public class HouseServiceImpl implements HouseService {
     return houseDao.houseType(houseTypeDomain);
   }
 
-
-  //新房管理-查询
+  // 新房管理-查询
   @Override
   public PageInfo<HouseDomain> queryNew(HouseDomain houseDomain, int pageNum, int pageSize) {
     PageHelper.startPage(pageNum, pageSize);
     List<HouseDomain> houses = houseDao.queryNew(houseDomain);
-    for(HouseDomain house : houses){
+    for (HouseDomain house : houses) {
 
-      //查询同一楼盘下的所有新房-条件：楼盘ID
+      // 查询同一楼盘下的所有新房-条件：楼盘ID
       HouseDomain h = new HouseDomain();
       h.setHousesId(house.getHousesId());
       List<HouseDomain> hs = houseDao.queryNewByHousesId(h);
-      if(hs.size() > 0){
+      if (hs.size() > 0) {
         house.setHouses(hs);
       }
-      //查询登记数量 0:登记数量
+      // 查询登记数量 0:登记数量
       h.setHouseSellSt("0");
       house.setHouseNumTol(houseDao.countHouse(h));
-      //查询在售数量 1:在售数量
+      // 查询在售数量 1:在售数量
       h.setHouseSellSt("1");
       house.setHouseSellNum(houseDao.countHouse(h));
-      //查询在售数量 2:已售数量
+      // 查询在售数量 2:已售数量
       h.setHouseSellSt("2");
       house.setHouseRemainNum(houseDao.countHouse(h));
     }
@@ -240,7 +244,7 @@ public class HouseServiceImpl implements HouseService {
     return new PageInfo(houses);
   }
 
-  //新房管理-新增
+  // 新房管理-新增
   @Override
   public Lable addNewHouse(HouseDomain houseDomain) {
     Lable lable = new Lable();
@@ -250,35 +254,35 @@ public class HouseServiceImpl implements HouseService {
     h.setHouseTypeId(houseDomain.getHouseTypeId());
     List<HouseDomain> houses = houseDomain.getHouses();
     int i = 0;
-    if(houses.size() > 0){
-      for(HouseDomain house : houses){
+    if (houses.size() > 0) {
+      for (HouseDomain house : houses) {
         h.setHouseName(house.getHouseName());
         h.setHouseSellSt("1");
         houseDao.addNewHouse(h);
         i++;
       }
-    }else{
+    } else {
       houseDao.addNewHouse(h);
       i++;
     }
     if (i > 0) {
       lable.setId("1");
       lable.setMessage("新房添加成功");
-    }else{
+    } else {
       lable.setId("0");
       lable.setMessage("新房添加失败");
     }
     return lable;
   }
 
-  //新房管理-修改
+  // 新房管理-修改
   @Override
   public Lable upNewHouse(HouseDomain houseDomain) {
     Lable lable = new Lable();
-    if(houseDomain.getId() == null){
+    if (houseDomain.getId() == null) {
       lable.setId("0");
       lable.setMessage("ID为空，新房修改失败");
-    }else {
+    } else {
       HouseDomain h = new HouseDomain();
       h.setHouseArea(houseDomain.getHouseArea());
       h.setHousesId(houseDomain.getHousesId());
@@ -308,16 +312,16 @@ public class HouseServiceImpl implements HouseService {
     return lable;
   }
 
-  //新房管理-删除整个楼盘下的新房
+  // 新房管理-删除整个楼盘下的新房
   @Override
   public Lable deNewHouse(HouseDomain houseDomain) {
     Lable lable = new Lable();
-    if(houseDomain.getHousesId() != null){
+    if (houseDomain.getHousesId() != null) {
       int i = houseDao.deNewHouse(houseDomain);
       if (i > 0) {
         lable.setId("1");
         lable.setMessage("新房删除成功");
-      }else{
+      } else {
         lable.setId("2");
         lable.setMessage("新房删除失败");
       }
@@ -325,20 +329,30 @@ public class HouseServiceImpl implements HouseService {
     return lable;
   }
 
-  //新房管理-删除某个新房
+  // 新房管理-删除某个新房
   @Override
   public Lable deNewHouseById(HouseDomain houseDomain) {
     Lable lable = new Lable();
-    if(houseDomain.getId() != null){
+    if (houseDomain.getId() != null) {
       int i = houseDao.deNewHouseById(houseDomain);
       if (i > 0) {
         lable.setId("1");
         lable.setMessage("新房删除成功");
-      }else{
+      } else {
         lable.setId("2");
         lable.setMessage("新房删除失败");
       }
     }
     return lable;
+  }
+
+  @Override
+  public Lable delRentHouse(RentHouseDomain rentHouseDomain) {
+    return houseDao.deRentHouse(rentHouseDomain);
+  }
+
+  @Override
+  public Lable delSecondHouse(SecondHouseDomain secondHouseDomain) {
+    return houseDao.deSecondHouse(secondHouseDomain);
   }
 }

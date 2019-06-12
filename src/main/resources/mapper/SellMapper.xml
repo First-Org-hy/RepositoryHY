@@ -114,9 +114,6 @@
             <if test="picAddress != null">
                 #{picAddress, jdbcType=VARCHAR},
             </if>
-            <if test="guestAddress != null">
-                #{guestAddress, jdbcType=VARCHAR},
-            </if>
             <if test="sellState != null">
                 #{sellState, jdbcType=VARCHAR},
             </if>

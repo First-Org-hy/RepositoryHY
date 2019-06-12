@@ -1,8 +1,9 @@
 package com.hy.service;
 
+import com.github.pagehelper.PageInfo;
 import com.hy.common.Lable;
 import com.hy.model.*;
-import com.github.pagehelper.PageInfo;
+
 import java.util.List;
 
 /** Created by shakaiyue on 18:11 2019/4/7. description:新房，二手房，租房 service */
@@ -11,16 +12,18 @@ public interface HouseService {
 
   Lable addRentHouse(RentHouseDomain house);
 
-  PageInfo<RentHouseDomain> queryRentHouse(RentHouseDomain house,  int pageNum, int pageSize);
+  PageInfo<RentHouseDomain> queryRentHouse(RentHouseDomain house, int pageNum, int pageSize);
 
-  PageInfo<RentHouseDomain> queryRentsByUserId(RentHouseDomain rentHouseDomain,  int pageNum, int pageSize);
+  PageInfo<RentHouseDomain> queryRentsByUserId(
+      RentHouseDomain rentHouseDomain, int pageNum, int pageSize);
 
   Lable addSecondHouse(SecondHouseDomain house);
 
-  PageInfo<SecondHouseDomain> querySecondHouse(SecondHouseDomain house,  int pageNum, int pageSize);
+  PageInfo<SecondHouseDomain> querySecondHouse(SecondHouseDomain house, int pageNum, int pageSize);
 
   // 普通用户二手房查询:
-  PageInfo<SecondHouseDomain> querySecondsByUserId(SecondHouseDomain secondHouseDomain,  int pageNum, int pageSize);
+  PageInfo<SecondHouseDomain> querySecondsByUserId(
+      SecondHouseDomain secondHouseDomain, int pageNum, int pageSize);
 
   Lable addOrderRecord(OrderRecordDomain order);
 
@@ -37,14 +40,18 @@ public interface HouseService {
   List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain);
   // 查询户型
   List<HouseTypeDomain> houseType(HouseTypeDomain houseTypeDomain);
-  //查询新房
-  PageInfo<HouseDomain> queryNew(HouseDomain houseDomain,  int pageNum, int pageSize);
-  //增加新房
+  // 查询新房
+  PageInfo<HouseDomain> queryNew(HouseDomain houseDomain, int pageNum, int pageSize);
+  // 增加新房
   Lable addNewHouse(HouseDomain houseDomain);
-  //修改新房
+  // 修改新房
   Lable upNewHouse(HouseDomain houseDomain);
-  //删除新房
+  // 删除新房
   Lable deNewHouse(HouseDomain houseDomain);
-  //删除新房
+  // 删除新房
   Lable deNewHouseById(HouseDomain houseDomain);
+  // 删除租房
+  Lable delRentHouse(RentHouseDomain rentHouseDomain);
+  // 删除二手房
+  Lable delSecondHouse(SecondHouseDomain secondHouseDomain);
 }

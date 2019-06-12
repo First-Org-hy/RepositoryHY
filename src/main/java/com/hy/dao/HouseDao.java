@@ -1,5 +1,6 @@
 package com.hy.dao;
 
+import com.hy.common.Lable;
 import com.hy.model.*;
 
 import java.util.List;
@@ -36,22 +37,26 @@ public interface HouseDao {
   List<HousesDomain> queryhouseType(HouseTypeDomain houseTypeDomain);
   // 查询户型
   List<HouseTypeDomain> houseType(HouseTypeDomain houseTypeDomain);
-  //新房管理-查询：根据楼盘iD  Distinct  条件：户型名称 houseTypeName， 楼盘名称 houseName
+  // 新房管理-查询：根据楼盘iD  Distinct  条件：户型名称 houseTypeName， 楼盘名称 houseName
   List<HouseDomain> queryNew(HouseDomain houseDomain);
-  //新房管理-查询每个楼盘下的所有新房
+  // 新房管理-查询每个楼盘下的所有新房
   List<HouseDomain> queryNewByHousesId(HouseDomain houseDomain);
-  //新房管理-房屋数量查询 0：登记数量  1：在售  2：已售出
+  // 新房管理-房屋数量查询 0：登记数量  1：在售  2：已售出
   int countHouse(HouseDomain houseDomain);
-  //新房管理-新增
+  // 新房管理-新增
   int addNewHouse(HouseDomain houseDomain);
 
-  //新房管理-修改
+  // 新房管理-修改
   int upNewHouse(HouseDomain houseDomain);
 
-  //新房管理-删除整个楼盘下的新房
+  // 新房管理-删除整个楼盘下的新房
   int deNewHouse(HouseDomain houseDomain);
 
-  //新房管理-删除某个新房
+  // 新房管理-删除某个新房
   int deNewHouseById(HouseDomain houseDomain);
-}
 
+  // 删除租房
+  Lable deRentHouse(RentHouseDomain rentHouseDomain);
+  // 删除二手房
+  Lable deSecondHouse(SecondHouseDomain secondHouseDomain);
+}

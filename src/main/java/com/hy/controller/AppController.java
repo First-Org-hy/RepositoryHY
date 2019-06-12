@@ -64,9 +64,71 @@ public class AppController {
   // 根据公司id： parentId 查询
   @ResponseBody
   @GetMapping("/querySell")
-  public PageInfo<AppDomain> querySell(AppDomain app,
-            @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+  public PageInfo<AppDomain> querySell(
+      AppDomain app,
+      @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+      @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
     return appService.querySell(app, pageNum, pageSize);
   }
+
+  @ResponseBody
+  @GetMapping("/queryCmpny")
+  public PageInfo<AppDomain> queryCmpny(
+      AppDomain appDomain,
+      @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+      @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    // 经济公司查询
+    appDomain.setUserType("4");
+    return appService.query(appDomain, pageNum, pageSize);
+  }
+
+  // 经纪人新增:所属公司,
+  @ResponseBody
+  @PostMapping("/addMng")
+  public Lable addMng(AppDomain app) {
+    app.setUserType("5");
+    return appService.addApp(app);
+  }
+  // 经纪人修改:修改公司,状态:通过,不通过
+  @ResponseBody
+  @PutMapping("/updateMng")
+  public Lable updateMng(AppDomain appDomain) {
+    return appService.update(appDomain);
+  }
+
+  // 经纪人查询:推荐查询(已成交/未成交,删除),已提成佣金,待提成佣金(修改:已领取(已领取 和 未领取 查询))
+  @ResponseBody
+  @GetMapping("/queryMng")
+  public PageInfo<AppDomain> queryMng(
+      AppDomain appDomain,
+      @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,
+      @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    // 经济公司查询
+    appDomain.setUserType("5");
+    return appService.query(appDomain, pageNum, pageSize);
+  }
+  // 推荐查询(已成交/未成交,删除),已提成佣金,待提成佣金(修改:已领取(已领取 和 未领取 查询))
+  // TODO
+
+  // 经纪人删除 ('/del')
+
+  // 经济公司新增:
+  @ResponseBody
+  @PostMapping("/addCmpny")
+  public Lable addCmpny(AppDomain app) {
+    app.setUserType("4");
+    return appService.addApp(app);
+  }
+
+  // 经济公司修改:状态:通过,不通过
+  @ResponseBody
+  @PutMapping("/updateCmpny")
+  public Lable updateCmpny(AppDomain appDomain) {
+    appDomain.setUserType("4");
+    return appService.update(appDomain);
+  }
+
+  // 经济公司删除('/del')
+  // 经济公司查询:经纪人查询,推荐查询(已成交/未成交,删除),已提成佣金,待提成佣金(修改:已领取(已领取 和 未领取 查询))
+  // TODO
 }
